@@ -1,0 +1,12 @@
+-- Active: 1712328349345@@147.139.210.135@5432@b1801@public
+CREATE TABLE user_auth(  
+    id_user VARCHAR(50) NOT NULL PRIMARY KEY,
+    email VARCHAR(40) NOT NULL,
+    password VARCHAR(40) NOT NULL,
+    nama VARCHAR(40) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    jabatan VARCHAR(30) DEFAULT NULL
+);
+
+SELECT * FROM user_auth
+
