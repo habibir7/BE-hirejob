@@ -4,6 +4,7 @@
   "description": "BE Beginner",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "start": "node index.js",
     "server": "nodemon index.js"
   },
