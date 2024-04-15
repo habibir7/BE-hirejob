@@ -91,7 +91,7 @@ const detailProfileWorkerController = {
       console.log("sortBy:", sortBy);
 
       // Check sort
-      let sort = "ASC";
+      let sort = "DESC";
       if (req.query.sort) {
         if (
           req.query.sort === "ASC" ||

@@ -93,7 +93,6 @@ CREATE TABLE skills (
     created_at TIMESTAMP, 
     updated_at TIMESTAMP
 )
--- !minus fk user_id!
 
 SELECT * FROM detail_profile_worker
 
@@ -124,6 +123,11 @@ SET
     updated_at=NOW() 
 WHERE id='${id}';
 
+ALTER TABLE skills ADD COLUMN user_id VARCHAR;
+
+ALTER TABLE skills
+ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_auth (id_user) ON DELETE CASCADE;
+
 -- ===========================================
 -- TABLE work_experience
 -- ===========================================
@@ -137,7 +141,6 @@ CREATE TABLE work_experience (
     created_at TIMESTAMP, 
     updated_at TIMESTAMP
 )
--- !minus fk user_id!
 
 INSERT INTO 
     work_experience (id, position, company_name, working_start_at, working_end_at, description, created_at)
@@ -200,9 +203,14 @@ SET
     working_start_at=TO_DATE('${working_start_at}', '%d-%m-%Y'),
     working_end_at=TO_DATE('${working_end_at}', '%d-%m-%Y'),
     description='${description}',
-    updated_at=NOW() 
+    updated_at=NOW()
 WHERE
     id='${id}';
+
+ALTER TABLE work_experience ADD COLUMN user_id VARCHAR;
+
+ALTER TABLE work_experience
+ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_auth (id_user) ON DELETE CASCADE;
 
 -- ===========================================
 -- TABLE portofolio
@@ -215,7 +223,6 @@ CREATE TABLE portofolio (
     created_at TIMESTAMP, 
     updated_at TIMESTAMP
 )
--- !minus fk user_id!
 
 INSERT INTO 
     portofolio (id, link_repo, type, photo, created_at)
@@ -271,3 +278,8 @@ SET
     updated_at=NOW() 
 WHERE
     id='${id}';
+
+ALTER TABLE portofolio ADD COLUMN user_id VARCHAR;
+
+ALTER TABLE portofolio
+ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_auth (id_user) ON DELETE CASCADE;
