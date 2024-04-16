@@ -6,13 +6,7 @@ const showDetailProfileWorkerModel = async () => {
     Pool.query(
       `
       SELECT
-          detail_profile_worker.id,
-          detail_profile_worker.province,
-          detail_profile_worker.city,
-          detail_profile_worker.last_work,
-          detail_profile_worker.bio,
-          detail_profile_worker.created_at,
-          detail_profile_worker.updated_at
+          *
       FROM
           detail_profile_worker
       ORDER BY
@@ -37,8 +31,6 @@ const showDetailProfileWorkerByIdModel = async (id) => {
       `
       SELECT
           detail_profile_worker.id,
-          detail_profile_worker.province,
-          detail_profile_worker.city,
           detail_profile_worker.last_work,
           detail_profile_worker.bio,
           detail_profile_worker.created_at,
@@ -128,15 +120,15 @@ const searchDetailProfileWorkerCountModel = async (data) => {
 
 const inputDetailProfileWorkerModel = async (data) => {
   console.log("model - inputDetailProfileWorker");
-  let { id, province, city, last_work, bio } = data;
+  let { id,id_user } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
       `
       INSERT INTO 
-          detail_profile_worker (id, province, city, last_work, bio, created_at) 
+          detail_profile_worker (id, user_id, created_at) 
       VALUES
-          ('${id}', '${province}', '${city}', '${last_work}', '${bio}', NOW());
+          ('${id}','${id_user}', NOW());
       `,
       (err, res) => {
         if (!err) {

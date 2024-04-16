@@ -11,6 +11,9 @@ const {
 const {
   createRecruiterModel
 } = require("../model/recruiter")
+const {
+  inputDetailProfileWorkerModel
+} = require("../model/detail_profile_worker");
 const { GenerateToken } = require("../helper/token");
 const { sendEmailActivated } = require("../helper/email");
 
@@ -105,13 +108,19 @@ const AuthController = {
             .status(201)
             .json({ code: 201, message: "Data berhasil Di input" });
         }
-      }else{
-        let result = await createAuthModel(data);
-        if (result.rowCount === 1) {
+      }else if(role == "worker"){
+        data = {id:uuidv4(),...data}
+        let resultauth = await createAuthModel(data);
+        let result = await inputDetailProfileWorkerModel(data)
+        if (result.rowCount === 1 && resultauth.rowCount === 1) {
           return res
             .status(201)
             .json({ code: 201, message: "Data berhasil Di input" });
         }
+      }else{
+        return res
+        .status(401)
+        .json({ code: 401, message: "Maaf role tidak ditemukan" });
       }
       return res
         .status(401)
