@@ -1,2 +1,4 @@
 node_modules
 .env
+src/router/index.js
+src/router/auth.js
