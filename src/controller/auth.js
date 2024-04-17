@@ -3,10 +3,12 @@ const argon2 = require("argon2");
 const {
   getAuthModel,
   getAuthByEmailModel,
+  getAuthByIdModel,
   createAuthModel,
   createOtpAuthModel,
   updatePasswordAuthModel,
   nullOtpAuthModel,
+  activatedUser
 } = require("../model/auth");
 const {
   createRecruiterModel
@@ -15,7 +17,7 @@ const {
   inputDetailProfileWorkerModel
 } = require("../model/detail_profile_worker");
 const { GenerateToken } = require("../helper/token");
-const { sendEmailActivated } = require("../helper/email");
+const { sendEmailActivated,sendEmailActivatedotp } = require("../helper/email");
 
 const AuthController = {
   login: async (req, res, next) => {
@@ -98,7 +100,19 @@ const AuthController = {
           message: "Email sudah terdaftar coba masukkan email lain",
         });
       }
-      let data = { id_user: uuidv4(), email, password, name, phone, role };
+      let data = { id_user: uuidv4(), email, password, name, phone, role , verifyotp: uuidv4()};
+
+
+      let url = `http://localhost:3000/auth/activated/${data.id_user}/${data.verifyotp}`
+
+      let sendOTP = await sendEmailActivated(email,url,name)
+
+        if(!sendOTP){
+            return res
+            .status(401)
+            .json({ status: 401, messages: "register failed when send email" });
+        }
+
       if(role == "recruiter"){
         data = {id_recruiter:uuidv4(),...data,company_name,position}
         let resultauth = await createAuthModel(data);
@@ -158,7 +172,7 @@ const AuthController = {
         otp += chars.charAt(Math.floor(Math.random() * chars.length));
       }
       console.log(otp);
-      let sendOTP = await sendEmailActivated(email, otp, userData.name);
+      let sendOTP = await sendEmailActivatedotp(email, otp, userData.name);
 
       if (!sendOTP) {
         return res
@@ -241,6 +255,35 @@ const AuthController = {
         .json({ code: 404, message: "Register Controller Error" });
     }
   },
+  verification: async (req, res, next) => {
+    let { id_user, otp } = req.params;
+
+    let user = await getAuthByIdModel(id_user);
+    if (user.rowCount === 0) {
+        return res
+            .status(404)
+            .json({ status: 404, messages: "email not register" });
+    }
+    let userData = user.rows[0];
+
+    if (otp !== userData.verifyotp) {
+        return res
+            .status(404)
+            .json({ status: 404, messages: "otp invalid" });
+    }
+
+    let activated = await activatedUser(id_user);
+
+    if (!activated) {
+        return res
+            .status(404)
+            .json({ status: 404, messages: "account failed verification" });
+    }
+
+    return res
+        .status(201)
+        .json({ status: 201, messages: "account success verification" });
+}
 };
 
 module.exports = AuthController;
