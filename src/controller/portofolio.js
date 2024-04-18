@@ -10,7 +10,7 @@ const {
   updatePortofolioModel,
   deletePortofolioModel,
 } = require("../model/portofolio");
-const cloudinary = require('../config/photo')
+const cloudinary = require("../config/photo");
 
 const portofolioController = {
   showPortofolio: async (req, res, next) => {
@@ -70,9 +70,7 @@ const portofolioController = {
       // Check searchBy
       let searchBy = "type";
       if (req.query.searchBy) {
-        if (
-          req.query.searchBy === "type"
-        ) {
+        if (req.query.searchBy === "type") {
           searchBy = req.query.searchBy;
         }
       }
@@ -93,10 +91,7 @@ const portofolioController = {
       // Check sort
       let sort = "ASC";
       if (req.query.sort) {
-        if (
-          req.query.sort === "ASC" ||
-          req.query.sort === "DESC"
-        ) {
+        if (req.query.sort === "ASC" || req.query.sort === "DESC") {
           sort = req.query.sort;
         }
       }
@@ -109,9 +104,7 @@ const portofolioController = {
 
       // Process
       let data = { searchBy, search, sortBy, sort, limit, page };
-      let portofolio = await searchPortofolioDetailModel(
-        data
-      );
+      let portofolio = await searchPortofolioDetailModel(data);
       let count = await searchPortofolioCountModel(data);
       let total = count.rowCount;
       let result = portofolio.rows;
@@ -148,7 +141,7 @@ const portofolioController = {
 
   inputPortofolio: async (req, res, next) => {
     try {
-      let { link_repo, type, photo, } = req.body;
+      let { link_repo, type, photo } = req.body;
 
       // Check token
       // if(!req.payload){
@@ -168,38 +161,49 @@ const portofolioController = {
       }
 
       // Check photo
-      console.log('photo')
-      console.log(req.file)
+      console.log("photo");
+      console.log(req.file);
 
       // Check format photo
-      console.log('isFileValid : '+ req.isFileValid)
+      console.log("isFileValid : " + req.isFileValid);
       if (req.isFileValid === false) {
-          return res.status(404).json({code: 404, message: req.isFileValidMessage})
+        return res
+          .status(404)
+          .json({ code: 404, message: req.isFileValidMessage });
       }
       if (req.isFileValid === undefined) {
-          return res.status(404).json({code: 404, message: "Photo required"})
+        return res.status(404).json({ code: 404, message: "Photo required" });
       }
-      
+
       // Check photo size
-      console.log('photo_size : ' + req.file.size)
+      console.log("photo_size : " + req.file.size);
       if (req.file.size >= 5242880) {
-          return res.status(404).json({code: 404, message: "Photo is too large (max. 5 mb)"})
+        return res
+          .status(404)
+          .json({ code: 404, message: "Photo is too large (max. 5 mb)" });
       }
 
       // Upload photo using cloudinary
-      const imageUpload = await cloudinary.uploader.upload(req.file.path,{
-          folder: 'peworld-database'
-      })
+      const imageUpload = await cloudinary.uploader.upload(req.file.path, {
+        folder: "peworld-database",
+      });
 
       // Check if photo not uploaded to cloudinary
-      console.log('cloudinary')
-      console.log(imageUpload)
+      console.log("cloudinary");
+      console.log(imageUpload);
       if (!imageUpload) {
-          return res.status(404).json({code: 404, message: "Upload photo failed"})
+        return res
+          .status(404)
+          .json({ code: 404, message: "Upload photo failed" });
       }
 
       // Process
-      let data = { id: uuidv4(), link_repo, type, photo:imageUpload.secure_url };
+      let data = {
+        id: uuidv4(),
+        link_repo,
+        type,
+        photo: imageUpload.secure_url,
+      };
       let result = await inputPortofolioModel(data);
       if (result.rowCount === 1) {
         return res
@@ -218,7 +222,7 @@ const portofolioController = {
 
   updatePortofolio: async (req, res, next) => {
     try {
-      let { link_repo, type, photo, } = req.body;
+      let { link_repo, type, photo } = req.body;
 
       // Check token
       // if (!req.payload) {
@@ -259,14 +263,64 @@ const portofolioController = {
         id,
         link_repo: link_repo || newPortofolio.link_repo,
         type: type || newPortofolio.type,
-        photo: photo || newPortofolio.photo
+        photo: photo || newPortofolio.photo,
       };
 
-      let result = await updatePortofolioModel(data);
-      if (result.rowCount === 1) {
-        return res
-          .status(200)
-          .json({ code: 200, message: "Success update data" });
+      // Check & update with photo
+      console.log("photo");
+      console.log(req.file);
+
+      // Update with photo
+      if (req.isFileValid === true) {
+        // Check photo size
+        console.log("photo_size : " + req.file.size);
+        if (req.file.size >= 5242880) {
+          return res
+            .status(404)
+            .json({ code: 404, message: "Photo is too large (max. 5 mb)" });
+        }
+
+        // Upload photo
+        const imageUpload = await cloudinary.uploader.upload(req.file.path, {
+          folder: "peworld-database",
+        });
+
+        // Check if photo not uploaded to cloudinary
+        console.log("cloudinary");
+        console.log(imageUpload);
+        if (!imageUpload) {
+          return res
+            .status(404)
+            .json({ code: 404, message: "Upload photo failed" });
+        }
+
+        // Process
+        data.photo = imageUpload.secure_url;
+        let result = await updatePortofolioModel(data);
+        if (result.rowCount === 1) {
+          return res
+            .status(200)
+            .json({ code: 200, message: "Success update data" });
+        }
+      } else if (req.isFileValid === false) {
+        // Check format photo
+        console.log("isFileValid : " + req.isFileValid);
+        if (!req.isFileValid) {
+          return res
+            .status(404)
+            .json({ code: 404, message: req.isFileValidMessage });
+        }
+      }
+      // Update without photo
+      else if (req.isFileValid === undefined) {
+        // Process
+        data.photo = newPortofolio.photo;
+        let result = await updatePortofolioModel(data);
+        if (result.rowCount === 1) {
+          return res
+            .status(200)
+            .json({ code: 200, message: "Success update data" });
+        }
       }
 
       return res.status(401).json({ code: 404, message: "Failed update data" });

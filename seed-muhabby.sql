@@ -441,5 +441,20 @@ WHERE
 
 ALTER TABLE contact ADD COLUMN user_id VARCHAR;
 
+-- ===========================================
+-- optional
+-- ===========================================
 ALTER TABLE contact
 ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_auth (id_user) ON DELETE CASCADE;
+
+ALTER TABLE detail_profile_recruiter ADD COLUMN province_id INTEGER;
+ALTER TABLE detail_profile_recruiter ADD COLUMN city_id INTEGER;
+
+ALTER TABLE detail_profile_recruiter
+ADD CONSTRAINT fk_province_id FOREIGN KEY (province_id) REFERENCES province (id_province) ON DELETE CASCADE;
+
+ALTER TABLE detail_profile_recruiter
+ADD CONSTRAINT fk_city_id FOREIGN KEY (city_id) REFERENCES city (id_city) ON DELETE CASCADE;
+
+ALTER TABLE detail_profile_recruiter ADD COLUMN photo VARCHAR DEFAULT NULL;
+ALTER TABLE detail_profile_worker ADD COLUMN photo VARCHAR DEFAULT NULL;

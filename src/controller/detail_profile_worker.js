@@ -93,10 +93,7 @@ const detailProfileWorkerController = {
       // Check sort
       let sort = "DESC";
       if (req.query.sort) {
-        if (
-          req.query.sort === "ASC" ||
-          req.query.sort === "DESC"
-        ) {
+        if (req.query.sort === "ASC" || req.query.sort === "DESC") {
           sort = req.query.sort;
         }
       }
@@ -190,7 +187,7 @@ const detailProfileWorkerController = {
 
   updateDetailProfileWorker: async (req, res, next) => {
     try {
-      let { province, city, last_work, bio } = req.body;
+      let { province_id, city_id, last_work, bio, photo } = req.body;
 
       // Check token
       // if (!req.payload) {
@@ -229,11 +226,71 @@ const detailProfileWorkerController = {
       // Process
       let data = {
         id,
-        province: province || newDetailProfileWorker.province,
-        city: city || newDetailProfileWorker.city,
+        province_id: province_id || newDetailProfileWorker.province_id,
+        city_id: city_id || newDetailProfileWorker.city_id,
         last_work: last_work || newDetailProfileWorker.last_work,
         bio: bio || newDetailProfileWorker.bio,
+        photo: photo || newDetailProfileWorker.photo
       };
+
+      // Check & update with photo
+      console.log("photo");
+      console.log(req.file);
+
+      // Update with photo
+      if (req.isFileValid === true) {
+        // Check photo size
+        console.log("photo_size : " + req.file.size);
+        if (req.file.size >= 5242880) {
+          return res
+            .status(404)
+            .json({ code: 404, message: "Photo is too large (max. 5 mb)" });
+        }
+
+        // Upload photo
+        const imageUpload = await cloudinary.uploader.upload(req.file.path, {
+          folder: "peworld-database",
+        });
+
+        // Check if photo not uploaded to cloudinary
+        console.log("cloudinary");
+        console.log(imageUpload);
+        if (!imageUpload) {
+          return res
+            .status(404)
+            .json({ code: 404, message: "Upload photo failed" });
+        }
+
+        // Process
+        data.photo = imageUpload.secure_url;
+        let result = await updateDetailProfileWorkerModel(data);
+        if (result.rowCount === 1) {
+          return res
+            .status(200)
+            .json({ code: 200, message: "Success update data" });
+        }
+      } else if (req.isFileValid === false) {
+        // Check format photo
+        console.log("isFileValid : " + req.isFileValid);
+        if (!req.isFileValid) {
+          return res
+            .status(404)
+            .json({ code: 404, message: req.isFileValidMessage });
+        }
+      }
+      // Update without photo
+      else if (req.isFileValid === undefined) {
+        // Process
+        data.photo = newDetailProfileWorker.photo;
+        let result = await updateDetailProfileWorkerModel(data);
+        if (result.rowCount === 1) {
+          return res
+            .status(200)
+            .json({ code: 200, message: "Success update data" });
+        }
+      }
+
+      return res.status(401).json({ code: 404, message: "Failed update data" });
 
       let result = await updateDetailProfileWorkerModel(data);
       if (result.rowCount === 1) {
