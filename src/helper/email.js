@@ -23,7 +23,7 @@ async function sendMail(mailOption){
 	}
 }
 
-const sendEmailActivated = async (email_user, otp, name) => {
+const sendEmailActivatedotp = async (email_user, otp, name) => {
 	const mailOption = {
 		from: process.env.EMAIL_NAME,
 		to: email_user,
@@ -33,5 +33,15 @@ const sendEmailActivated = async (email_user, otp, name) => {
 	return await sendMail(mailOption)
 }
 
+const sendEmailActivated = async (email_user, url, name) => {
+	const mailOption = {
+		from: process.env.EMAIL_NAME,
+		to: email_user,
+		subject: `Hello ${name}, Please Verification for Hire Job App`,
+		text: `Hello ${name}, Please Verification for Recipe Test App, this is your activated link ${url}`
+	}
+	return await sendMail(mailOption)
+}
 
-module.exports = {sendEmailActivated}
+
+module.exports = {sendEmailActivated,sendEmailActivatedotp}

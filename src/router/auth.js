@@ -10,5 +10,6 @@ router.post("/create",usersController.createAuth)
 router.post("/otp",usersController.requestOTP)
 router.post("/inputotp",usersController.otpLogin)
 router.post("/passwordreset",Protect,usersController.resetPassword)
+router.get("/activated/:id_user/:otp",usersController.verification)
 
 module.exports = router
