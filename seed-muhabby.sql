@@ -94,7 +94,7 @@ CREATE TABLE skills (
     updated_at TIMESTAMP
 )
 
-SELECT * FROM detail_profile_worker
+SELECT * FROM skills
 
 SELECT
     skills.id,
@@ -282,4 +282,164 @@ WHERE
 ALTER TABLE portofolio ADD COLUMN user_id VARCHAR;
 
 ALTER TABLE portofolio
+ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_auth (id_user) ON DELETE CASCADE;
+
+-- ===========================================
+-- TABLE province
+-- ===========================================
+CREATE TABLE province(
+    id_province SERIAL PRIMARY KEY,
+    province_name VARCHAR
+)
+
+INSERT INTO 
+    province (province_name)
+VALUES
+    ('Aceh'),
+    ('Sumatera Utara'),
+    ('Sumatera Barat'),
+    ('Riau'),
+    ('Jambi'),
+    ('Sumatera Selatan'),
+    ('Bengkulu'),
+    ('Lampung'),
+    ('Kepulauan Bangka Belitung'),
+    ('Kepulauan Riau'),
+    ('DKI Jakarta'),
+    ('Jawa Barat'),
+    ('Jawa Tengah'),
+    ('DI Yogyakarta'),
+    ('Jawa Timur'),
+    ('Banten'),
+    ('Bali'),
+    ('Nusa Tenggara Barat'),
+    ('Nusa Tenggara Timur'),
+    ('Kalimantan Barat'),
+    ('Kalimantan Tengah'),
+    ('Kalimantan Selatan'),
+    ('Kalimantan Timur'),
+    ('Kalimantan Utara'),
+    ('Sulawesi Utara'),
+    ('Sulawesi Tengah'),
+    ('Sulawesi Selatan'),
+    ('Sulawesi Tenggara'),
+    ('Gorontalo'),
+    ('Sulawesi Barat'),
+    ('Maluku'),
+    ('Maluku Utara'),
+    ('Papua'),
+    ('Papua Barat');
+
+-- ===========================================
+-- TABLE city
+-- ===========================================
+CREATE TABLE city(
+    id_city SERIAL PRIMARY KEY,
+    city_name VARCHAR
+)
+
+-- ADD FK province_id
+ALTER TABLE city ADD COLUMN province_id INTEGER;
+
+ALTER TABLE city
+ADD CONSTRAINT fk_province_id FOREIGN KEY (province_id) REFERENCES province (id_province) ON DELETE CASCADE;
+
+-- GET/SHOW city join with province_name from province
+SELECT city.id_city, city.city_name, province.province_name
+FROM city
+    JOIN province ON city.province_id = province.id_province
+
+-- ADD DATA
+INSERT INTO 
+    city (city_name, province_id)
+VALUES
+    ('Kota Sorong', 34),      
+    ('Kab. Pegunungan Arfak', 34),
+    ('Kab. Manokwari Selatan', 34),
+    ('Kab. Maybrat', 34),
+    ('Kab. Tambrauw', 34),
+    ('Kab. Kaimana', 34),
+    ('Kab. Teluk Wondama', 34),
+    ('Kab. Teluk Bintuni', 34),
+    ('Kab. Raja Ampat', 34),
+    ('Kab. Sorong Selatan', 34),
+    ('Kab. Fak Fak', 34),
+    ('Kab. Manokwari', 34),
+    ('Kab. Sorong', 34)
+
+-- RESET SERIAL
+SELECT pg_get_serial_sequence('city', 'id_city');
+
+SELECT setval('city_id_city_seq', 116);
+
+SELECT 
+    city.id_city,
+    city.city_name,
+    city.province_id
+FROM
+    city
+WHERE
+    city_name ILIKE '%kota%' ORDER BY city_name ASC 
+
+-- ===========================================
+-- TABLE contact
+-- ===========================================
+CREATE TABLE contact (
+    id VARCHAR UNIQUE PRIMARY KEY, 
+    email VARCHAR,
+    instagram VARCHAR,
+    github VARCHAR,
+    gitlab VARCHAR,
+    created_at TIMESTAMP, 
+    updated_at TIMESTAMP
+)
+
+SELECT * FROM contact
+
+SELECT
+    contact.id,
+    contact.email,
+    contact.instagram,
+    contact.github,
+    contact.gitlab,
+    contact.created_at,
+    contact.updated_at
+FROM contact
+ORDER BY created_at DESC
+
+SELECT 
+    contact.id,
+    contact.email,
+    contact.instagram,
+    contact.github,
+    contact.gitlab,
+    contact.created_at,
+    contact.updated_at
+FROM contact
+WHERE ${searchBy} ILIKE '%${search}%' ORDER BY ${sortBy} ${sort} LIMIT ${limit} OFFSET ${page}
+
+INSERT INTO 
+    contact (id, email, instagram, github, gitlab, created_at) 
+VALUES 
+    ('${id}', 
+    '${email}', 
+    '${instagram}', 
+    '${github}', 
+    '${gitlab}', 
+    NOW());
+
+UPDATE 
+    contact 
+SET 
+    email='${email}',
+    instagram='${instagram}',
+    github='${github}',
+    gitlab='${gitlab}',
+    updated_at=NOW() 
+WHERE 
+    id='${id}';
+
+ALTER TABLE contact ADD COLUMN user_id VARCHAR;
+
+ALTER TABLE contact
 ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_auth (id_user) ON DELETE CASCADE;

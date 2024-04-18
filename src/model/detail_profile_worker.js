@@ -120,7 +120,7 @@ const searchDetailProfileWorkerCountModel = async (data) => {
 
 const inputDetailProfileWorkerModel = async (data) => {
   console.log("model - inputDetailProfileWorker");
-  let { id,id_user } = data;
+  let { id, id_user } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(

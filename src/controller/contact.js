@@ -1,38 +1,37 @@
 /* eslint-disable no-unused-vars */
 const { v4: uuidv4 } = require("uuid");
 const {
-  showPortofolioModel,
-  showPortofolioByIdModel,
-  getPortofolioByIdModel,
-  searchPortofolioDetailModel,
-  searchPortofolioCountModel,
-  inputPortofolioModel,
-  updatePortofolioModel,
-  deletePortofolioModel,
-} = require("../model/portofolio");
-const cloudinary = require('../config/photo')
+  showContactModel,
+  showContactByIdModel,
+  getContactByIdModel,
+  searchContactDetailModel,
+  searchContactCountModel,
+  inputContactModel,
+  updateContactModel,
+  deleteContactModel,
+} = require("../model/contact");
 
-const portofolioController = {
-  showPortofolio: async (req, res, next) => {
+const contactController = {
+  showContact: async (req, res, next) => {
     try {
       // Process
-      let portofolio = await showPortofolioModel();
-      let result = portofolio.rows;
+      let contact = await showContactModel();
+      let result = contact.rows;
       return res.status(200).json({
         code: 200,
-        message: "Success showPortofolio",
+        message: "Success showContact",
         data: result,
       });
     } catch (err) {
-      console.log("showPortofolio error");
+      console.log("showContact error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed showPortofolio" });
+        .json({ code: 404, message: "Failed showContact" });
     }
   },
 
-  showPortofolioById: async (req, res, next) => {
+  showContactById: async (req, res, next) => {
     try {
       // Check params
       let { id } = req.params;
@@ -43,35 +42,35 @@ const portofolioController = {
       }
 
       // Process
-      let portofolio = await getPortofolioByIdModel(id);
-      let result = portofolio.rows;
+      let contact = await getContactByIdModel(id);
+      let result = contact.rows;
       if (!result.length) {
         return res.status(404).json({
           code: 404,
-          message: "Portofolio not found or id invalid",
+          message: "Contact not found or id invalid",
         });
       }
       return res.status(200).json({
         code: 200,
-        message: "Success showPortofolioById",
+        message: "Success showContactById",
         data: result[0],
       });
     } catch (err) {
-      console.log("showPortofolioById error");
+      console.log("showContactById error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed showPortofolioByIdcipe" });
+        .json({ code: 404, message: "Failed showContactByIdcipe" });
     }
   },
 
-  searchPortofolio: async (req, res, next) => {
+  searchContact: async (req, res, next) => {
     try {
       // Check searchBy
-      let searchBy = "type";
+      let searchBy = "email";
       if (req.query.searchBy) {
         if (
-          req.query.searchBy === "type"
+          req.query.searchBy === "email"
         ) {
           searchBy = req.query.searchBy;
         }
@@ -109,12 +108,12 @@ const portofolioController = {
 
       // Process
       let data = { searchBy, search, sortBy, sort, limit, page };
-      let portofolio = await searchPortofolioDetailModel(
+      let contact = await searchContactDetailModel(
         data
       );
-      let count = await searchPortofolioCountModel(data);
+      let count = await searchContactCountModel(data);
       let total = count.rowCount;
-      let result = portofolio.rows;
+      let result = contact.rows;
 
       // Pagination
       let pageNext;
@@ -133,22 +132,22 @@ const portofolioController = {
 
       return res.status(200).json({
         code: 200,
-        message: "Success searchPortofolioDetail",
+        message: "Success searchContactDetail",
         data: result,
         pagination,
       });
     } catch (err) {
-      console.log("searchPortofolio error");
+      console.log("searchContact error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed searchPortofolioDetail" });
+        .json({ code: 404, message: "Failed searchContactDetail" });
     }
   },
 
-  inputPortofolio: async (req, res, next) => {
+  inputContact: async (req, res, next) => {
     try {
-      let { link_repo, type, photo, } = req.body;
+      let { email, instagram, github, gitlab } = req.body;
 
       // Check token
       // if(!req.payload){
@@ -157,50 +156,25 @@ const portofolioController = {
 
       // Check body
       if (
-        !link_repo ||
-        link_repo === "" ||
-        link_repo === " " ||
-        !type ||
-        type === "" ||
-        type === " "
+        !email ||
+        email === "" ||
+        email === " " ||
+        !instagram ||
+        instagram === "" ||
+        instagram === " " ||
+        !github ||
+        github === "" ||
+        github === " " ||
+        !gitlab ||
+        gitlab === "" ||
+        gitlab === " "
       ) {
         return res.status(404).json({ code: 404, message: "Input invalid" });
       }
 
-      // Check photo
-      console.log('photo')
-      console.log(req.file)
-
-      // Check format photo
-      console.log('isFileValid : '+ req.isFileValid)
-      if (req.isFileValid === false) {
-          return res.status(404).json({code: 404, message: req.isFileValidMessage})
-      }
-      if (req.isFileValid === undefined) {
-          return res.status(404).json({code: 404, message: "Photo required"})
-      }
-      
-      // Check photo size
-      console.log('photo_size : ' + req.file.size)
-      if (req.file.size >= 5242880) {
-          return res.status(404).json({code: 404, message: "Photo is too large (max. 5 mb)"})
-      }
-
-      // Upload photo using cloudinary
-      const imageUpload = await cloudinary.uploader.upload(req.file.path,{
-          folder: 'peworld-database'
-      })
-
-      // Check if photo not uploaded to cloudinary
-      console.log('cloudinary')
-      console.log(imageUpload)
-      if (!imageUpload) {
-          return res.status(404).json({code: 404, message: "Upload photo failed"})
-      }
-
       // Process
-      let data = { id: uuidv4(), link_repo, type, photo:imageUpload.secure_url };
-      let result = await inputPortofolioModel(data);
+      let data = { id: uuidv4(), email, instagram, github, gitlab };
+      let result = await inputContactModel(data);
       if (result.rowCount === 1) {
         return res
           .status(201)
@@ -208,17 +182,17 @@ const portofolioController = {
       }
       return res.status(401).json({ code: 401, message: "Failed input data" });
     } catch (err) {
-      console.log("inputPortofolio error");
+      console.log("inputContact error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed inputPortofolio" });
+        .json({ code: 404, message: "Failed inputContact" });
     }
   },
 
-  updatePortofolio: async (req, res, next) => {
+  updateContact: async (req, res, next) => {
     try {
-      let { link_repo, type, photo, } = req.body;
+      let { email, instagram, github, gitlab } = req.body;
 
       // Check token
       // if (!req.payload) {
@@ -235,34 +209,35 @@ const portofolioController = {
           .json({ code: 404, message: "Params id invalid" });
       }
 
-      // Check Portofolio
-      let portofolio = await getPortofolioByIdModel(id);
-      let resultPortofolio = portofolio.rows;
-      if (!resultPortofolio.length) {
+      // Check Contact
+      let contact = await getContactByIdModel(id);
+      let resultContact = contact.rows;
+      if (!resultContact.length) {
         return res.status(404).json({
           code: 404,
-          message: "Portofolio not found or id invalid",
+          message: "Contact not found or id invalid",
         });
       }
 
-      let newPortofolio = resultPortofolio[0];
+      let newContact = resultContact[0];
 
       // Check if user_id and id token same or not
-      // if (req.payload.id !== newPortofolio.user_id) {
+      // if (req.payload.id !== newContact.user_id) {
       //     console.log(`id_token = ${req.payload.id}`)
-      //     console.log(`id_user = ${newPortofolio.user_id}`)
-      //     return res.status(404).json({code: 404, message: 'This is not your Portofolio'})
+      //     console.log(`id_user = ${newContact.user_id}`)
+      //     return res.status(404).json({code: 404, message: 'This is not your Contact'})
       // }
 
       // Process
       let data = {
         id,
-        link_repo: link_repo || newPortofolio.link_repo,
-        type: type || newPortofolio.type,
-        photo: photo || newPortofolio.photo
+        email: email || newContact.email,
+        instagram: instagram || newContact.instagram,
+        github: github || newContact.github,
+        gitlab: gitlab || newContact.gitlab
       };
 
-      let result = await updatePortofolioModel(data);
+      let result = await updateContactModel(data);
       if (result.rowCount === 1) {
         return res
           .status(200)
@@ -271,15 +246,15 @@ const portofolioController = {
 
       return res.status(401).json({ code: 404, message: "Failed update data" });
     } catch (err) {
-      console.log("putPortofolio error");
+      console.log("putContact error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed putPortofolio" });
+        .json({ code: 404, message: "Failed putContact" });
     }
   },
 
-  deletePortofolio: async (req, res, next) => {
+  deleteContact: async (req, res, next) => {
     try {
       // Check params
       let { id } = req.params;
@@ -289,30 +264,30 @@ const portofolioController = {
           .json({ code: 404, message: "Params id invalid" });
       }
 
-      let portofolio = await getPortofolioByIdModel(id);
+      let contact = await getContactByIdModel(id);
 
-      // Check Portofolio
-      let resultPortofolio = portofolio.rows;
-      if (!resultPortofolio.length) {
+      // Check Contact
+      let resultContact = contact.rows;
+      if (!resultContact.length) {
         return res.status(404).json({
           code: 404,
-          message: "Portofolio not found or id invalid",
+          message: "Contact not found or id invalid",
         });
       }
 
-      let newPortofolio = resultPortofolio[0];
+      let newContact = resultContact[0];
 
       // Check if user_id and id token same or not
-      // if (req.payload.id !== newPortofolio.user_id) {
+      // if (req.payload.id !== newContact.user_id) {
       //   console.log(`id_token = ${req.payload.id}`);
-      //   console.log(`id_user = ${newPortofolio.user_id}`);
+      //   console.log(`id_user = ${newContact.user_id}`);
       //   return res
       //     .status(404)
-      //     .json({ code: 404, message: "This is not your Portofolio" });
+      //     .json({ code: 404, message: "This is not your Contact" });
       // }
 
       // Process
-      let result = await deletePortofolioModel(id);
+      let result = await deleteContactModel(id);
       if (result.rowCount === 1) {
         return res
           .status(200)
@@ -320,13 +295,13 @@ const portofolioController = {
       }
       return res.status(404).json({ code: 404, message: "Failed delete data" });
     } catch (err) {
-      console.log("dropPortofolio error");
+      console.log("dropContact error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed dropPortofolio" });
+        .json({ code: 404, message: "Failed dropContact" });
     }
   },
 };
 
-module.exports = portofolioController;
+module.exports = contactController;

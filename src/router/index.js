@@ -8,6 +8,7 @@ const detailProfileWorker = require("./detail_profile_worker");
 const skills = require("./skills");
 const workExperience = require("./work_experience");
 const portofolio = require("./portofolio");
+const contact = require("./contact");
 
 router.use("/auth",auth)
 router.use("/recruiter",recruiter)
@@ -17,5 +18,6 @@ router.use("/detailProfileWorker", detailProfileWorker);
 router.use("/skills", skills);
 router.use("/workExperience", workExperience);
 router.use("/portofolio", portofolio);
+router.use("/contact", contact);
 
 module.exports = router
