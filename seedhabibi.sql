@@ -14,6 +14,10 @@ CREATE TABLE user_auth(
 
 SELECT * FROM user_auth
 
+ALTER TABLE user_auth ADD COLUMN verifyotp VARCHAR(50) DEFAULT NULL
+
+ALTER TABLE user_auth ADD COLUMN isverify BOOLEAN DEFAULT FALSE
+
 
 CREATE TABLE detail_profile_recruiter(
     id_recruiter VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -43,7 +47,7 @@ CREATE TABLE city(
     city_name VARCHAR(30) NOT NULL
 )
 
-SELECT * FROM city WHERE id_city='5ccd507e-337b-4c31-a4e2-57a3d211f756'
+SELECT * FROM city 
 
 CREATE TABLE province(
     id_province VARCHAR(50) NOT NULL,
@@ -54,3 +58,24 @@ ALTER TABLE city
 ADD PRIMARY KEY (id_city);
 
 SELECT user_auth.name, user_auth.position, user_auth.email, detail_profile_recruiter.* FROM detail_profile_recruiter JOIN user_auth ON detail_profile_recruiter.id_user = user_auth.id_user where id_user='b24f9b0e-54a2-462f-add9-1e7f40d2089f'
+
+
+CREATE TABLE messagedetail(
+    id_messagedetail VARCHAR(50) PRIMARY KEY NOT NULL,
+    position VARCHAR(40) NOT NULL,
+    id_recruiter VARCHAR(50) NOT NULL,
+    id_worker VARCHAR(50) NOT NULL
+)
+
+SELECT * FROM messagedetail
+
+CREATE TABLE message(
+    id_message VARCHAR(50) NOT NULL,
+    id_messagedetail VARCHAR(50) NOT NULL,
+    id_user VARCHAR(50) NOT NULL,
+    message_value TEXT NOT NULL,
+    created_at TIMESTAMP
+)
+
+INSERT INTO messagedetail (id_messagedetail, position, id_recruiter, id_worker) VALUES ('2123123', 'TEST', '123123', '3123')
+

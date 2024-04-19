@@ -36,6 +36,12 @@ const AuthController = {
     }
     let userData = user.rows[0];
 
+    if(userData.isverify !== "true"){
+      return res
+      .status(401)
+      .json({ status: 401, messages: "account not verified, please check your email" });
+    }
+
     let isVerify = await argon2.verify(userData.password, password);
     if (!isVerify) {
       return res.status(401).json({ status: 401, messages: "password wrong" });
@@ -103,7 +109,7 @@ const AuthController = {
       let data = { id_user: uuidv4(), email, password, name, phone, role , verifyotp: uuidv4()};
 
 
-      let url = `http://localhost:3000/auth/activated/${data.id_user}/${data.verifyotp}`
+      let url = `https://hirejob-khaki.vercel.app/auth/activated/${data.id_user}/${data.verifyotp}`
 
       let sendOTP = await sendEmailActivated(email,url,name)
 
@@ -280,9 +286,7 @@ const AuthController = {
             .json({ status: 404, messages: "account failed verification" });
     }
 
-    return res
-        .status(201)
-        .json({ status: 201, messages: "account success verification" });
+    return res.redirect('https://google.com')
 }
 };
 

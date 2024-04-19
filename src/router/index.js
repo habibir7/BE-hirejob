@@ -9,6 +9,8 @@ const skills = require("./skills");
 const workExperience = require("./work_experience");
 const portofolio = require("./portofolio");
 const contact = require("./contact");
+const message = require("./message")
+const messagedetail = require("./messagedetail")
 
 router.use("/auth",auth)
 router.use("/recruiter",recruiter)
@@ -19,5 +21,7 @@ router.use("/skills", skills);
 router.use("/workExperience", workExperience);
 router.use("/portofolio", portofolio);
 router.use("/contact", contact);
+router.use("/message", message);
+router.use("/messagedetail",messagedetail)
 
 module.exports = router
