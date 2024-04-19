@@ -36,16 +36,17 @@ const AuthController = {
     }
     let userData = user.rows[0];
 
-    if(userData.isverify !== "true"){
+    let isVerify = await argon2.verify(userData.password, password);
+    if (!isVerify) {
+      return res.status(401).json({ status: 401, messages: "password wrong" });
+    }
+    if(!userData.isverify){
       return res
       .status(401)
       .json({ status: 401, messages: "account not verified, please check your email" });
     }
 
-    let isVerify = await argon2.verify(userData.password, password);
-    if (!isVerify) {
-      return res.status(401).json({ status: 401, messages: "password wrong" });
-    }
+    
     console.log(userData);
 
     delete userData.password;
