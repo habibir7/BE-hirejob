@@ -10,7 +10,6 @@ const port = 3000
 
 app.use(cors({
     origin: '*',
-    credentials: true,
 	optionSuccessStatus: 200,
 }));
 
