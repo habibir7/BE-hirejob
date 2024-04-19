@@ -33,6 +33,13 @@ CREATE TABLE detail_profile_recruiter(
     updated_at TIMESTAMP
 )
 
+SELECT
+       user_auth.nama, user_auth.email, user_auth.phone, user_auth.position , detail_profile_recruiter.* 
+      FROM
+       detail_profile_recruiter JOIN user_auth ON detail_profile_worker.id_user = user_auth.id_user 
+      WHERE
+       detail_profile_recruiter.id_user='165aa6d0-66b6-4988-bc1f-10c814e82864'
+
 SELECT * FROM detail_profile_recruiter
 
 DROP TABLE detail_profile_recruiter

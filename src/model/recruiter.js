@@ -55,10 +55,15 @@ const getRecuiterModel = async () => {
 //   });
 // };
 
-const getRecuiterByIdModel = async (id_recruiter) => {
+const getRecuiterByIdModel = async (id_user) => {
   return new Promise((resolve, reject) => {
     Pool.query(
-      `SELECT * FROM detail_profile_recruiter WHERE id_recruiter='${id_recruiter}'`,
+      `SELECT
+       user_auth.name, user_auth.email, user_auth.phone, user_auth.position , detail_profile_recruiter.* 
+      FROM
+       detail_profile_recruiter JOIN user_auth ON detail_profile_recruiter.id_user = user_auth.id_user 
+      WHERE
+       detail_profile_recruiter.id_user='${id_user}'`,
       (err, res) => {
         if (!err) {
           return resolve(res);

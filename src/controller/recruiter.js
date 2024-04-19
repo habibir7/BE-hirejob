@@ -20,14 +20,14 @@ const recuiterController = {
   },
   getRecruiterByID: async (req, res, next) => {
     try {
-      let { id_recruiter } = req.params;
-      if (id_recruiter === "") {
+      let { id_user } = req.params;
+      if (id_user === "") {
         return res
           .status(404)
           .json({ code: 404, message: "Params id invalid" });
       }
 
-      let users = await getRecuiterByIdModel(id_recruiter);
+      let users = await getRecuiterByIdModel(id_user);
       let result = users.rows;
       return res.status(200).json({ message: "sukses getUsers", data: result });
     } catch (err) {

@@ -6,7 +6,7 @@ const upload = require('../middleware/photo')
 
 
 router.get("/",recruiterController.getRecruiter)
-router.get("/:id_recruiter",recruiterController.getRecruiterByID)
+router.get("/:id_user",recruiterController.getRecruiterByID)
 router.put("/:id_recruiter", upload.single('photo'), recruiterController.updateRecruiter)
 
 
