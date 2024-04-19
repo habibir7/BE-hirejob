@@ -27,7 +27,7 @@ const recuiterController = {
           .json({ code: 404, message: "Params id invalid" });
       }
 
-      let users = await getRecuiterModel(id_recruiter);
+      let users = await getRecuiterByIdModel(id_recruiter);
       let result = users.rows;
       return res.status(200).json({ message: "sukses getUsers", data: result });
     } catch (err) {
