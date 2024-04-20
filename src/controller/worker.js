@@ -1,77 +1,112 @@
 /* eslint-disable no-unused-vars */
 const { v4: uuidv4 } = require("uuid");
 const {
-  showDetailProfileWorkerModel,
-  showDetailProfileWorkerByIdModel,
-  getDetailProfileWorkerByIdModel,
-  searchDetailProfileWorkerDetailModel,
-  searchDetailProfileWorkerCountModel,
-  inputDetailProfileWorkerModel,
-  updateDetailProfileWorkerModel,
-  deleteDetailProfileWorkerModel,
-} = require("../model/detail_profile_worker");
+  showWorkerModel,
+  showWorkerByIdModel,
+  getWorkerByIdModel,
+  searchWorkerDetailModel,
+  searchWorkerCountModel,
+  inputWorkerModel,
+  updateWorkerModel,
+  deleteWorkerModel,
+  showWorkerAllDataByIdModel
+} = require("../model/worker");
 
-const detailProfileWorkerController = {
-  showDetailProfileWorker: async (req, res, next) => {
+const workerController = {
+  showWorker: async (req, res, next) => {
     try {
       // Process
-      let detailProfileWorker = await showDetailProfileWorkerModel();
-      let result = detailProfileWorker.rows;
+      let worker = await showWorkerModel();
+      let result = worker.rows;
       return res.status(200).json({
         code: 200,
-        message: "Success showDetailProfileWorker",
+        message: "Success showWorker",
         data: result,
       });
     } catch (err) {
-      console.log("showDetailProfileWorker error");
+      console.log("showWorker error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed showDetailProfileWorker" });
+        .json({ code: 404, message: "Failed showWorker" });
     }
   },
 
-  showDetailProfileWorkerById: async (req, res, next) => {
+  showWorkerAllData: async (req, res, next) => {
     try {
       // Check params
-      let { id } = req.params;
-      if (id === "") {
+      let { user_id } = req.params;
+      if (user_id === "") {
         return res
           .status(404)
           .json({ code: 404, message: "Params id invalid" });
       }
 
       // Process
-      let detailProfileWorker = await getDetailProfileWorkerByIdModel(id);
-      let result = detailProfileWorker.rows;
+      let worker = await showWorkerAllDataByIdModel(user_id);
+      let result = worker.rows;
       if (!result.length) {
         return res.status(404).json({
           code: 404,
-          message: "detailProfileWorker not found or id invalid",
+          message: "Worker not found or id invalid",
+        });
+      }
+      
+      return res.status(200).json({
+        code: 200,
+        message: "Success showWorkerAllDataById",
+        data: result[0],
+      });
+    } catch (err) {
+      console.log("showWorkerAllDataById error");
+      console.log(err);
+      return res
+        .status(404)
+        .json({ code: 404, message: "Failed showWorkerByAllDataById" });
+    }
+  },
+
+  showWorkerById: async (req, res, next) => {
+    try {
+      // Check params
+      let { user_id } = req.params;
+      if (user_id === "") {
+        return res
+          .status(404)
+          .json({ code: 404, message: "Params id invalid" });
+      }
+
+      // Process
+      let worker = await showWorkerByIdModel(user_id);
+      let result = worker.rows;
+      if (!result.length) {
+        return res.status(404).json({
+          code: 404,
+          message: "Worker not found or id invalid",
         });
       }
       return res.status(200).json({
         code: 200,
-        message: "Success showDetailProfileWorkerById",
+        message: "Success showWorkerById",
         data: result[0],
       });
     } catch (err) {
-      console.log("showDetailProfileWorkerById error");
+      console.log("showWorkerById error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed showDetailProfileWorkerByIdcipe" });
+        .json({ code: 404, message: "Failed showWorkerByIdcipe" });
     }
   },
 
-  searchDetailProfileWorker: async (req, res, next) => {
+  searchWorker: async (req, res, next) => {
     try {
       // Check searchBy
-      let searchBy = "province";
+      let searchBy = "name";
       if (req.query.searchBy) {
         if (
-          req.query.searchBy === "province" ||
-          req.query.searchBy === "city"
+          req.query.searchBy === "name" ||
+          req.query.searchBy === "skill_name"
         ) {
           searchBy = req.query.searchBy;
         }
@@ -79,11 +114,12 @@ const detailProfileWorkerController = {
       console.log("searchBy:", searchBy);
 
       // Check sortBy
-      let sortBy = "created_at";
+      let sortBy = "user_auth.created_at";
       if (req.query.sortBy) {
         if (
-          req.query.sortBy === "created_at" ||
-          req.query.sortBy === "updated_at"
+          req.query.sortBy === "user_auth.created_at" ||
+          req.query.sortBy === "name" ||
+          req.query.sortBy === "skill_name"
         ) {
           sortBy = req.query.sortBy;
         }
@@ -106,12 +142,12 @@ const detailProfileWorkerController = {
 
       // Process
       let data = { searchBy, search, sortBy, sort, limit, page };
-      let detailProfileWorker = await searchDetailProfileWorkerDetailModel(
+      let worker = await searchWorkerDetailModel(
         data
       );
-      let count = await searchDetailProfileWorkerCountModel(data);
+      let count = await searchWorkerCountModel(data);
       let total = count.rowCount;
-      let result = detailProfileWorker.rows;
+      let result = worker.rows;
 
       // Pagination
       let pageNext;
@@ -130,20 +166,20 @@ const detailProfileWorkerController = {
 
       return res.status(200).json({
         code: 200,
-        message: "Success searchDetailProfileWorkerDetail",
+        message: "Success searchWorkerDetail",
         data: result,
         pagination,
       });
     } catch (err) {
-      console.log("searchDetailProfileWorker error");
+      console.log("searchWorker error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed searchDetailProfileWorkerDetail" });
+        .json({ code: 404, message: "Failed searchWorkerDetail" });
     }
   },
 
-  inputDetailProfileWorker: async (req, res, next) => {
+  inputWorker: async (req, res, next) => {
     try {
       let { province, city, last_work, bio } = req.body;
 
@@ -169,7 +205,7 @@ const detailProfileWorkerController = {
 
       // Process
       let data = { id: uuidv4(), province, city, last_work, bio };
-      let result = await inputDetailProfileWorkerModel(data);
+      let result = await inputWorkerModel(data);
       if (result.rowCount === 1) {
         return res
           .status(201)
@@ -177,17 +213,17 @@ const detailProfileWorkerController = {
       }
       return res.status(401).json({ code: 401, message: "Failed input data" });
     } catch (err) {
-      console.log("inputDetailProfileWorker error");
+      console.log("inputWorker error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed inputDetailProfileWorker" });
+        .json({ code: 404, message: "Failed inputWorker" });
     }
   },
 
-  updateDetailProfileWorker: async (req, res, next) => {
+  updateWorker: async (req, res, next) => {
     try {
-      let { province_id, city_id, last_work, bio, photo } = req.body;
+      let { name, province_id, city_id, last_work, bio, photo, job_desk } = req.body;
 
       // Check token
       // if (!req.payload) {
@@ -204,33 +240,35 @@ const detailProfileWorkerController = {
           .json({ code: 404, message: "Params id invalid" });
       }
 
-      // Check DetailProfileWorker
-      let detailProfileWorker = await getDetailProfileWorkerByIdModel(id);
-      let resultDetailProfileWorker = detailProfileWorker.rows;
-      if (!resultDetailProfileWorker.length) {
+      // Check Worker
+      let Worker = await getWorkerByIdModel(id);
+      let resultWorker = Worker.rows;
+      if (!resultWorker.length) {
         return res.status(404).json({
           code: 404,
-          message: "DetailProfileWorker not found or id invalid",
+          message: "Worker not found or id invalid",
         });
       }
 
-      let newDetailProfileWorker = resultDetailProfileWorker[0];
+      let newWorker = resultWorker[0];
 
       // Check if user_id and id token same or not
-      // if (req.payload.id !== newDetailProfileWorker.user_id) {
+      // if (req.payload.id !== newWorker.user_id) {
       //     console.log(`id_token = ${req.payload.id}`)
-      //     console.log(`id_user = ${newDetailProfileWorker.user_id}`)
-      //     return res.status(404).json({code: 404, message: 'This is not your DetailProfileWorker'})
+      //     console.log(`id_user = ${newWorker.user_id}`)
+      //     return res.status(404).json({code: 404, message: 'This is not your Worker'})
       // }
 
       // Process
       let data = {
         id,
-        province_id: province_id || newDetailProfileWorker.province_id,
-        city_id: city_id || newDetailProfileWorker.city_id,
-        last_work: last_work || newDetailProfileWorker.last_work,
-        bio: bio || newDetailProfileWorker.bio,
-        photo: photo || newDetailProfileWorker.photo
+        province_id: province_id || newWorker.province_id,
+        city_id: city_id || newWorker.city_id,
+        last_work: last_work || newWorker.last_work,
+        bio: bio || newWorker.bio,
+        photo: photo || newWorker.photo,
+        job_desk: job_desk || newWorker.job_desk,
+        name: name || newWorker.name
       };
 
       // Check & update with photo
@@ -263,7 +301,7 @@ const detailProfileWorkerController = {
 
         // Process
         data.photo = imageUpload.secure_url;
-        let result = await updateDetailProfileWorkerModel(data);
+        let result = await updateWorkerModel(data);
         if (result.rowCount === 1) {
           return res
             .status(200)
@@ -281,8 +319,8 @@ const detailProfileWorkerController = {
       // Update without photo
       else if (req.isFileValid === undefined) {
         // Process
-        data.photo = newDetailProfileWorker.photo;
-        let result = await updateDetailProfileWorkerModel(data);
+        data.photo = newWorker.photo;
+        let result = await updateWorkerModel(data);
         if (result.rowCount === 1) {
           return res
             .status(200)
@@ -292,7 +330,7 @@ const detailProfileWorkerController = {
 
       return res.status(401).json({ code: 404, message: "Failed update data" });
 
-      let result = await updateDetailProfileWorkerModel(data);
+      let result = await updateWorkerModel(data);
       if (result.rowCount === 1) {
         return res
           .status(200)
@@ -301,15 +339,15 @@ const detailProfileWorkerController = {
 
       return res.status(401).json({ code: 404, message: "Failed update data" });
     } catch (err) {
-      console.log("putDetailProfileWorker error");
+      console.log("putWorker error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed putDetailProfileWorker" });
+        .json({ code: 404, message: "Failed putWorker" });
     }
   },
 
-  deleteDetailProfileWorker: async (req, res, next) => {
+  deleteWorker: async (req, res, next) => {
     try {
       // Check params
       let { id } = req.params;
@@ -319,30 +357,30 @@ const detailProfileWorkerController = {
           .json({ code: 404, message: "Params id invalid" });
       }
 
-      let detailProfileWorker = await getDetailProfileWorkerByIdModel(id);
+      let worker = await getWorkerByIdModel(id);
 
-      // Check DetailProfileWorker
-      let resultDetailProfileWorker = detailProfileWorker.rows;
-      if (!resultDetailProfileWorker.length) {
+      // Check Worker
+      let resultWorker = worker.rows;
+      if (!resultWorker.length) {
         return res.status(404).json({
           code: 404,
-          message: "DetailProfileWorker not found or id invalid",
+          message: "Worker not found or id invalid",
         });
       }
 
-      let newDetailProfileWorker = resultDetailProfileWorker[0];
+      let newWorker = resultWorker[0];
 
       // Check if user_id and id token same or not
-      // if (req.payload.id !== newDetailProfileWorker.user_id) {
+      // if (req.payload.id !== newWorker.user_id) {
       //   console.log(`id_token = ${req.payload.id}`);
-      //   console.log(`id_user = ${newDetailProfileWorker.user_id}`);
+      //   console.log(`id_user = ${newWorker.user_id}`);
       //   return res
       //     .status(404)
-      //     .json({ code: 404, message: "This is not your DetailProfileWorker" });
+      //     .json({ code: 404, message: "This is not your Worker" });
       // }
 
       // Process
-      let result = await deleteDetailProfileWorkerModel(id);
+      let result = await deleteWorkerModel(id);
       if (result.rowCount === 1) {
         return res
           .status(200)
@@ -350,13 +388,13 @@ const detailProfileWorkerController = {
       }
       return res.status(404).json({ code: 404, message: "Failed delete data" });
     } catch (err) {
-      console.log("dropDetailProfileWorker error");
+      console.log("dropWorker error");
       console.log(err);
       return res
         .status(404)
-        .json({ code: 404, message: "Failed dropDetailProfileWorker" });
+        .json({ code: 404, message: "Failed dropWorker" });
     }
   },
 };
 
-module.exports = detailProfileWorkerController;
+module.exports = workerController;

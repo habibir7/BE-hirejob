@@ -159,6 +159,7 @@ const portofolioController = {
       ) {
         return res.status(404).json({ code: 404, message: "Input invalid" });
       }
+
       let id_user = req.payload.id_user
       // Check photo
       console.log("photo");
@@ -203,6 +204,7 @@ const portofolioController = {
         link_repo,
         type,
         photo: imageUpload.secure_url,
+        id_user
       };
       let result = await inputPortofolioModel(data);
       if (result.rowCount === 1) {

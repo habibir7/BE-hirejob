@@ -14,8 +14,8 @@ const {
   createRecruiterModel
 } = require("../model/recruiter")
 const {
-  inputDetailProfileWorkerModel
-} = require("../model/detail_profile_worker");
+  inputWorkerModel
+} = require("../model/worker");
 const { GenerateToken } = require("../helper/token");
 const { sendEmailActivated,sendEmailActivatedotp } = require("../helper/email");
 
@@ -132,7 +132,7 @@ const AuthController = {
       }else if(role == "worker"){
         data = {id:uuidv4(),...data}
         let resultauth = await createAuthModel(data);
-        let result = await inputDetailProfileWorkerModel(data)
+        let result = await inputWorkerModel(data)
         if (result.rowCount === 1 && resultauth.rowCount === 1) {
           return res
             .status(201)

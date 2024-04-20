@@ -128,7 +128,7 @@ const searchWorkExperienceCountModel = async (data) => {
 
 const inputWorkExperienceModel = async (data) => {
   console.log("model - inputWorkExperience");
-  let { id, position, company_name, working_start_at, working_end_at, description,id_user } = data;
+  let { id, position, company_name, working_start_at, working_end_at, description, id_user } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(

@@ -1,7 +1,7 @@
 const Pool = require("../config/db");
 
-const showDetailProfileWorkerModel = async () => {
-  console.log("model - showDetailProfileWorker");
+const showWorkerModel = async () => {
+  console.log("model - showWorker");
   return new Promise((resolve, reject) =>
     Pool.query(
       `
@@ -24,21 +24,19 @@ const showDetailProfileWorkerModel = async () => {
   );
 };
 
-const showDetailProfileWorkerByIdModel = async (id) => {
-  console.log("model - showDetailProfileWorkerById");
+const showWorkerByIdModel = async (user_id) => {
+  console.log("model - showWorkerById");
   return new Promise((resolve, reject) =>
     Pool.query(
       `
       SELECT
-          detail_profile_worker.id,
-          detail_profile_worker.last_work,
-          detail_profile_worker.bio,
-          detail_profile_worker.created_at,
-          detail_profile_worker.updated_at
+          *
       FROM
           detail_profile_worker
+      JOIN
+          user_auth ON detail_profile_worker.user_id = user_auth.id_user
       WHERE
-          detail_profile_worker.id = '${id}'
+          detail_profile_worker.user_id = '${user_id}'
       `,
       (err, res) => {
         if (!err) {
@@ -52,11 +50,22 @@ const showDetailProfileWorkerByIdModel = async (id) => {
   );
 };
 
-const getDetailProfileWorkerByIdModel = async (id) => {
-  console.log("model - getDetailProfileWorkerById");
+const showWorkerAllDataByIdModel = async (user_id) => {
+  console.log("model - showWorkerById");
   return new Promise((resolve, reject) =>
     Pool.query(
-      `SELECT * FROM detail_profile_worker WHERE id = '${id}'`,
+      `
+      SELECT
+          *
+      FROM
+          detail_profile_worker
+      JOIN user_auth ON detail_profile_worker.user_id = user_auth.id_user
+      JOIN skills ON detail_profile_worker.user_id = skills.id_user
+      JOIN work_experience ON detail_profile_worker.user_id = work_experience.id_user
+      JOIN portofolio ON detail_profile_worker.user_id = portofolio.id_user
+      WHERE
+          detail_profile_worker.user_id = '${user_id}'
+      `,
       (err, res) => {
         if (!err) {
           return resolve(res);
@@ -69,24 +78,39 @@ const getDetailProfileWorkerByIdModel = async (id) => {
   );
 };
 
-const searchDetailProfileWorkerDetailModel = async (data) => {
+const getWorkerByIdModel = async (user_id) => {
+  console.log("model - getWorkerById");
+  return new Promise((resolve, reject) =>
+    Pool.query(
+      `SELECT * FROM detail_profile_worker WHERE id = '${user_id}'`,
+      (err, res) => {
+        if (!err) {
+          return resolve(res);
+        } else {
+          console.log("error db -", err);
+          reject(err);
+        }
+      }
+    )
+  );
+};
+
+const searchWorkerDetailModel = async (data) => {
   let { searchBy, search, sortBy, sort, limit, page } = data;
-  console.log("model - searchDetailProfileWorkerDetail");
+  console.log("model - searchWorkerDetail");
   return new Promise((resolve, reject) =>
     Pool.query(
       `
       SELECT 
-          detail_profile_worker.id,
-          detail_profile_worker.province,
-          detail_profile_worker.city,
-          detail_profile_worker.last_work,
-          detail_profile_worker.bio,
-          detail_profile_worker.created_at,
-          detail_profile_worker.updated_at
+          *
       FROM
           detail_profile_worker
+      JOIN
+          user_auth ON detail_profile_worker.user_id = user_auth.id_user
       WHERE
-          ${searchBy} ILIKE '%${search}%' ORDER BY ${sortBy} ${sort} LIMIT ${limit} OFFSET ${page}
+          ${searchBy} ILIKE '%${search}%' AND user_auth.isverify='true' 
+      ORDER BY
+          ${sortBy} ${sort} LIMIT ${limit} OFFSET ${page}
       `,
       (err, res) => {
         if (!err) {
@@ -100,12 +124,23 @@ const searchDetailProfileWorkerDetailModel = async (data) => {
   );
 };
 
-const searchDetailProfileWorkerCountModel = async (data) => {
+const searchWorkerCountModel = async (data) => {
   let { searchBy, search } = data;
-  console.log("model - searchDetailProfileWorkerCount");
+  console.log("model - searchWorkerCount");
   return new Promise((resolve, reject) =>
     Pool.query(
-      `SELECT * FROM detail_profile_worker WHERE ${searchBy} ILIKE '%${search}%'`,
+      `
+      SELECT
+      *
+      FROM
+      detail_profile_worker
+      JOIN
+          user_auth ON detail_profile_worker.user_id = user_auth.id_user
+      WHERE
+          ${searchBy} 
+      ILIKE
+          '%${search}%' AND user_auth.isverify='true'
+      `,
       (err, res) => {
         if (!err) {
           return resolve(res);
@@ -118,8 +153,8 @@ const searchDetailProfileWorkerCountModel = async (data) => {
   );
 };
 
-const inputDetailProfileWorkerModel = async (data) => {
-  console.log("model - inputDetailProfileWorker");
+const inputWorkerModel = async (data) => {
+  console.log("model - inputWorker");
   let { id, id_user } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
@@ -142,9 +177,9 @@ const inputDetailProfileWorkerModel = async (data) => {
   );
 };
 
-const updateDetailProfileWorkerModel = async (data) => {
-  console.log("model - updateDetailProfileWorker");
-  let { id, province_id, city_id, last_work, bio, photo } = data;
+const updateWorkerModel = async (data) => {
+  console.log("model - updateWorker");
+  let { id, province_id, city_id, last_work, bio, photo, job_desk } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -157,6 +192,7 @@ const updateDetailProfileWorkerModel = async (data) => {
           last_work='${last_work}', 
           bio='${bio}',
           photo='${photo}',
+          job_desk='${job_desk}',
           updated_at=NOW() 
       WHERE
           id='${id}';
@@ -173,8 +209,8 @@ const updateDetailProfileWorkerModel = async (data) => {
   );
 };
 
-const deleteDetailProfileWorkerModel = async (id) => {
-  console.log("model - deleteDetailProfileWorker");
+const deleteWorkerModel = async (id) => {
+  console.log("model - deleteWorker");
   return new Promise((resolve, reject) =>
     Pool.query(
       `DELETE FROM detail_profile_worker WHERE id='${id}';`,
@@ -191,12 +227,13 @@ const deleteDetailProfileWorkerModel = async (id) => {
 };
 
 module.exports = {
-  showDetailProfileWorkerModel,
-  showDetailProfileWorkerByIdModel,
-  getDetailProfileWorkerByIdModel,
-  searchDetailProfileWorkerDetailModel,
-  searchDetailProfileWorkerCountModel,
-  inputDetailProfileWorkerModel,
-  updateDetailProfileWorkerModel,
-  deleteDetailProfileWorkerModel,
+  showWorkerModel,
+  showWorkerByIdModel,
+  getWorkerByIdModel,
+  searchWorkerDetailModel,
+  searchWorkerCountModel,
+  inputWorkerModel,
+  updateWorkerModel,
+  deleteWorkerModel,
+  showWorkerAllDataByIdModel
 };

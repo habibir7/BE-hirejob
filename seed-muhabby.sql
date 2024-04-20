@@ -44,6 +44,27 @@ SELECT
 FROM detail_profile_worker
 ORDER BY created_at DESC
 
+SELECT
+    *
+FROM
+    detail_profile_worker
+JOIN user_auth ON detail_profile_worker.user_id = user_auth.id_user
+JOIN skills ON detail_profile_worker.user_id = skills.id_user
+JOIN work_experience ON detail_profile_worker.user_id = work_experience.id_user
+JOIN portofolio ON detail_profile_worker.user_id = portofolio.id_user
+WHERE
+    detail_profile_worker.user_id = 'a1260e2f-fa0f-4d25-9b4d-96bde97af4c9'
+
+SELECT
+    *
+FROM
+detail_profile_worker
+JOIN
+    user_auth ON detail_profile_worker.user_id = user_auth.id_user
+WHERE
+    name
+ILIKE '%%' AND user_auth.isverify='true'
+
 SELECT 
     detail_profile_worker.id,
     detail_profile_worker.province,
@@ -83,6 +104,8 @@ ALTER TABLE detail_profile_worker ADD COLUMN city_id VARCHAR;
 
 ALTER TABLE detail_profile_worker
 ADD CONSTRAINT fk_city_id FOREIGN KEY (city_id) REFERENCES city (id_city) ON DELETE CASCADE;
+
+ALTER TABLE detail_profile_worker ADD COLUMN job_desk VARCHAR;
 
 -- ===========================================
 -- TABLE skills
