@@ -6,14 +6,7 @@ const showWorkExperienceModel = async () => {
     Pool.query(
       `
       SELECT
-          work_experience.id,
-          work_experience.position,
-          work_experience.company_name,
-          work_experience.working_start_at,
-          work_experience.working_end_at,
-          work_experience.description,
-          work_experience.created_at,
-          work_experience.updated_at
+          *
       FROM 
           work_experience
       ORDER BY 
@@ -37,14 +30,7 @@ const showWorkExperienceByIdModel = async (id) => {
     Pool.query(
       `
       SELECT
-          work_experience.id,
-          work_experience.position,
-          work_experience.company_name,
-          work_experience.working_start_at,
-          work_experience.working_end_at,
-          work_experience.description,
-          work_experience.created_at,
-          work_experience.updated_at
+          *
       FROM 
           work_experience
       WHERE
@@ -83,14 +69,7 @@ const searchWorkExperienceDetailModel = async (data) => {
     Pool.query(
       `
       SELECT 
-          work_experience.id,
-          work_experience.position,
-          work_experience.company_name,
-          work_experience.working_start_at,
-          work_experience.working_end_at,
-          work_experience.description,
-          work_experience.created_at,
-          work_experience.updated_at
+          *
       FROM 
           work_experience
       WHERE 
@@ -142,8 +121,8 @@ const inputWorkExperienceModel = async (data) => {
           TO_DATE('${working_start_at}', '%d-%m-%Y'),
           TO_DATE('${working_end_at}', '%d-%m-%Y'),
           '${description}',
-          NOW()),
-          '${id_user}';
+          NOW(),
+          '${id_user}')
       `,
       (err, res) => {
         if (!err) {

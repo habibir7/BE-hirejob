@@ -63,6 +63,7 @@ const showWorkerAllDataByIdModel = async (user_id) => {
       JOIN skills ON detail_profile_worker.user_id = skills.id_user
       JOIN work_experience ON detail_profile_worker.user_id = work_experience.id_user
       JOIN portofolio ON detail_profile_worker.user_id = portofolio.id_user
+      JOIN contact ON detail_profile_worker.user_id = contact.id_user
       WHERE
           detail_profile_worker.user_id = '${user_id}'
       `,

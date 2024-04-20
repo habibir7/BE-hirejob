@@ -6,10 +6,7 @@ const showSkillsModel = async () => {
     Pool.query(
       `
       SELECT
-          skills.id,
-          skills.skill_name,
-          skills.created_at,
-          skills.updated_at
+          *
       FROM skills
       ORDER BY created_at DESC
       `,
@@ -31,10 +28,7 @@ const showSkillsByIdModel = async (id) => {
     Pool.query(
       `
       SELECT
-          skills.id,
-          skills.skill_name,
-          skills.created_at,
-          skills.updated_at
+          *
       FROM
           skills
       WHERE
@@ -122,7 +116,7 @@ const inputSkillsModel = async (data) => {
       INSERT INTO 
           skills (id, skill_name, created_at, id_user) 
       VALUES
-          ('${id}', '${skill_name}', NOW()), '${id_user}';
+          ('${id}', '${skill_name}', NOW(), '${id_user}')
       `,
       (err, res) => {
         if (!err) {

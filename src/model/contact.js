@@ -6,13 +6,7 @@ const showContactModel = async () => {
     Pool.query(
       `
       SELECT
-          contact.id,
-          contact.email,
-          contact.instagram,
-          contact.github,
-          contact.gitlab,
-          contact.created_at,
-          contact.updated_at
+          *
       FROM contact
       ORDER BY created_at DESC
       `,
@@ -34,13 +28,7 @@ const showContactByIdModel = async (id) => {
     Pool.query(
       `
       SELECT
-          contact.id,
-          contact.email,
-          contact.instagram,
-          contact.github,
-          contact.gitlab,
-          contact.created_at,
-          contact.updated_at
+          *
       FROM
           contact
       WHERE
@@ -79,13 +67,7 @@ const searchContactDetailModel = async (data) => {
     Pool.query(
       `
       SELECT 
-          contact.id,
-          contact.email,
-          contact.instagram,
-          contact.github,
-          contact.gitlab,
-          contact.created_at,
-          contact.updated_at
+          *
       FROM
           contact
       WHERE
@@ -123,21 +105,21 @@ const searchContactCountModel = async (data) => {
 
 const inputContactModel = async (data) => {
   console.log("model - inputContact");
-  let { id, email, instagram, github, gitlab,id_user } = data;
+  let { id, email, instagram, github, gitlab, id_user } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
       `
       INSERT INTO 
-          contact (id, email, instagram, github, gitlab, created_at,id_user) 
+          contact (id, email, instagram, github, gitlab, created_at, id_user) 
       VALUES 
           ('${id}', 
           '${email}', 
           '${instagram}', 
           '${github}', 
           '${gitlab}', 
-          NOW()),
-          '${id_user}';
+          NOW(),
+          '${id_user}');
       `,
       (err, res) => {
         if (!err) {

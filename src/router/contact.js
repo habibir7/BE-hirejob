@@ -2,7 +2,6 @@ const express = require("express");
 const contactController = require("../controller/contact");
 const { Protect } = require("../middleware/private");
 const router = express.Router();
-// const {Protect} = require('../middleware/private')
 // const upload = require('../middleware/photo')
 
 router.get("/", contactController.showContact);

@@ -6,12 +6,7 @@ const showPortofolioModel = async () => {
     Pool.query(
       `
       SELECT
-          portofolio.id,
-          portofolio.link_repo,
-          portofolio.type,
-          portofolio.photo,
-          portofolio.created_at,
-          portofolio.updated_at
+          *
       FROM portofolio
       ORDER BY created_at DESC
       `,
@@ -33,12 +28,7 @@ const showPortofolioByIdModel = async (id) => {
     Pool.query(
       `
       SELECT
-          portofolio.id,
-          portofolio.link_repo,
-          portofolio.type,
-          portofolio.photo,
-          portofolio.created_at,
-          portofolio.updated_at
+          *
       FROM
           portofolio
       WHERE
@@ -77,12 +67,7 @@ const searchPortofolioDetailModel = async (data) => {
     Pool.query(
       `
       SELECT 
-          portofolio.id,
-          portofolio.link_repo,
-          portofolio.type,
-          portofolio.photo,
-          portofolio.created_at,
-          portofolio.updated_at
+          *
       FROM
           portofolio
       WHERE
@@ -132,8 +117,8 @@ const inputPortofolioModel = async (data) => {
           '${link_repo}', 
           '${type}', 
           '${photo}', 
-          NOW()),
-          '${id_user}';
+          NOW(),
+          '${id_user}');
       `,
       (err, res) => {
         if (!err) {
