@@ -196,7 +196,7 @@ const AuthController = {
 
       return res
         .status(201)
-        .json({ code: 201, message: "Otp berhasil Di kirim" });
+        .json({ code: 201, message: "Otp berhasil Di kirim" , email});
     } catch (err) {
       console.log("OTP Error");
       console.log(err);
