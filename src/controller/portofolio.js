@@ -159,7 +159,7 @@ const portofolioController = {
       ) {
         return res.status(404).json({ code: 404, message: "Input invalid" });
       }
-
+      let id_user = req.payload.id_user
       // Check photo
       console.log("photo");
       console.log(req.file);

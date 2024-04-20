@@ -128,13 +128,13 @@ const searchWorkExperienceCountModel = async (data) => {
 
 const inputWorkExperienceModel = async (data) => {
   console.log("model - inputWorkExperience");
-  let { id, position, company_name, working_start_at, working_end_at, description } = data;
+  let { id, position, company_name, working_start_at, working_end_at, description,id_user } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
       `
       INSERT INTO 
-          work_experience (id, position, company_name, working_start_at, working_end_at, description, created_at) 
+          work_experience (id, position, company_name, working_start_at, working_end_at, description, created_at, id_user) 
       VALUES 
           ('${id}',
           '${position}',
@@ -142,7 +142,8 @@ const inputWorkExperienceModel = async (data) => {
           TO_DATE('${working_start_at}', '%d-%m-%Y'),
           TO_DATE('${working_end_at}', '%d-%m-%Y'),
           '${description}',
-          NOW());
+          NOW()),
+          '${id_user}';
       `,
       (err, res) => {
         if (!err) {

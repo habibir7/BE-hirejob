@@ -120,19 +120,20 @@ const searchPortofolioCountModel = async (data) => {
 
 const inputPortofolioModel = async (data) => {
   console.log("model - inputPortofolio");
-  let { id, link_repo, type, photo } = data;
+  let { id, link_repo, type, photo, id_user } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
       `
       INSERT INTO 
-          portofolio (id, link_repo, type, photo, created_at) 
+          portofolio (id, link_repo, type, photo, created_at, id_user) 
       VALUES
           ('${id}', 
           '${link_repo}', 
           '${type}', 
           '${photo}', 
-          NOW());
+          NOW()),
+          '${id_user}';
       `,
       (err, res) => {
         if (!err) {

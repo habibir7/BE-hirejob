@@ -164,7 +164,8 @@ const skillsController = {
       }
 
       // Process
-      let data = { id: uuidv4(), skill_name };
+      let id_user = req.payload.id_user
+      let data = { id: uuidv4(), skill_name,id_user };
       let result = await inputSkillsModel(data);
       if (result.rowCount === 1) {
         return res

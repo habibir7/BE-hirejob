@@ -173,7 +173,8 @@ const contactController = {
       }
 
       // Process
-      let data = { id: uuidv4(), email, instagram, github, gitlab };
+      let id_user = req.payload.id_user
+      let data = { id: uuidv4(), email, instagram, github, gitlab,id_user };
       let result = await inputContactModel(data);
       if (result.rowCount === 1) {
         return res

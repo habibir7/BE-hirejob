@@ -123,20 +123,21 @@ const searchContactCountModel = async (data) => {
 
 const inputContactModel = async (data) => {
   console.log("model - inputContact");
-  let { id, email, instagram, github, gitlab } = data;
+  let { id, email, instagram, github, gitlab,id_user } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
       `
       INSERT INTO 
-          contact (id, email, instagram, github, gitlab, created_at) 
+          contact (id, email, instagram, github, gitlab, created_at,id_user) 
       VALUES 
           ('${id}', 
           '${email}', 
           '${instagram}', 
           '${github}', 
           '${gitlab}', 
-          NOW());
+          NOW()),
+          '${id_user}';
       `,
       (err, res) => {
         if (!err) {

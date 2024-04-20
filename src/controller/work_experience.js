@@ -173,7 +173,8 @@ const workExperienceController = {
       }
 
       // Process
-      let data = { id: uuidv4(), position, company_name, working_start_at, working_end_at, description };
+      let id_user = req.payload.id_user
+      let data = { id: uuidv4(), position, company_name, working_start_at, working_end_at, description,id_user };
       let result = await inputWorkExperienceModel(data);
       if (result.rowCount === 1) {
         return res
