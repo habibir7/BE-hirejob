@@ -244,12 +244,13 @@ const AuthController = {
           messages: "new password is required",
         });
       }
+      email = req.payload.email
       password = await argon2.hash(password);
       let result = await updatePasswordAuthModel(password, req.payload.id_user);
       if (result.rowCount === 1) {
         return res
           .status(201)
-          .json({ code: 201, message: "Data berhasil Di input" });
+          .json({ code: 201, message: "Data berhasil Di input" ,email});
       }
       return res
         .status(404)
@@ -287,6 +288,7 @@ const AuthController = {
             .json({ status: 404, messages: "account failed verification" });
     }
 
+    
     return res.redirect('https://google.com')
 }
 };
