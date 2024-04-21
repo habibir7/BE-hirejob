@@ -54,7 +54,8 @@ const portofolioController = {
       return res.status(200).json({
         code: 200,
         message: "Success showPortofolioById",
-        data: result[0],
+        data: result,
+        // data: result[0],
       });
     } catch (err) {
       console.log("showPortofolioById error");

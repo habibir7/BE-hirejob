@@ -53,7 +53,8 @@ const workExperienceController = {
       return res.status(200).json({
         code: 200,
         message: "Success showWorkExperienceById",
-        data: result[0],
+        data: result,
+        // data: result[0],
       });
     } catch (err) {
       console.log("showWorkExperienceById error");
