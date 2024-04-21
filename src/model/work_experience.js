@@ -24,7 +24,7 @@ const showWorkExperienceModel = async () => {
   );
 };
 
-const showWorkExperienceByIdModel = async (id) => {
+const showWorkExperienceByIdModel = async (user_id) => {
   console.log("model - showWorkExperienceById");
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -34,7 +34,7 @@ const showWorkExperienceByIdModel = async (id) => {
       FROM 
           work_experience
       WHERE
-        work_experience.id = '${id}'
+        work_experience.id_user = '${user_id}'
       `,
       (err, res) => {
         if (!err) {

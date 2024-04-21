@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", workExperienceController.showWorkExperience);
 router.get("/detail", workExperienceController.searchWorkExperience);
-router.get("/:id", workExperienceController.showWorkExperienceById);
+router.get("/:user_id", workExperienceController.showWorkExperienceById);
 router.post("/",Protect, workExperienceController.inputWorkExperience);
 router.put("/:id",Protect, workExperienceController.updateWorkExperience);
 router.delete("/:id", workExperienceController.deleteWorkExperience);

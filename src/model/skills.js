@@ -22,7 +22,7 @@ const showSkillsModel = async () => {
   );
 };
 
-const showSkillsByIdModel = async (id) => {
+const showSkillsByIdModel = async (user_id) => {
   console.log("model - showSkillsById");
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -32,7 +32,7 @@ const showSkillsByIdModel = async (id) => {
       FROM
           skills
       WHERE
-          skills.id = '${id}'
+          skills.id_user = '${user_id}'
       `,
       (err, res) => {
         if (!err) {

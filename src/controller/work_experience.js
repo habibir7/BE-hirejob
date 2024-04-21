@@ -34,15 +34,15 @@ const workExperienceController = {
   showWorkExperienceById: async (req, res, next) => {
     try {
       // Check params
-      let { id } = req.params;
-      if (id === "") {
+      let { user_id } = req.params;
+      if (user_id === "") {
         return res
           .status(404)
           .json({ code: 404, message: "Params id invalid" });
       }
 
       // Process
-      let workExperience = await getWorkExperienceByIdModel(id);
+      let workExperience = await getWorkExperienceByIdModel(user_id);
       let result = workExperience.rows;
       if (!result.length) {
         return res.status(404).json({

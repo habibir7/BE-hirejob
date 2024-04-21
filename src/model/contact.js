@@ -22,7 +22,7 @@ const showContactModel = async () => {
   );
 };
 
-const showContactByIdModel = async (id) => {
+const showContactByIdModel = async (user_id) => {
   console.log("model - showContactById");
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -32,7 +32,7 @@ const showContactByIdModel = async (id) => {
       FROM
           contact
       WHERE
-          contact.id = '${id}'
+          contact.id_user = '${user_id}'
       `,
       (err, res) => {
         if (!err) {

@@ -35,15 +35,15 @@ const portofolioController = {
   showPortofolioById: async (req, res, next) => {
     try {
       // Check params
-      let { id } = req.params;
-      if (id === "") {
+      let { user_id } = req.params;
+      if (user_id === "") {
         return res
           .status(404)
           .json({ code: 404, message: "Params id invalid" });
       }
 
       // Process
-      let portofolio = await getPortofolioByIdModel(id);
+      let portofolio = await getPortofolioByIdModel(user_id);
       let result = portofolio.rows;
       if (!result.length) {
         return res.status(404).json({
@@ -159,7 +159,6 @@ const portofolioController = {
       ) {
         return res.status(404).json({ code: 404, message: "Input invalid" });
       }
-
       let id_user = req.payload.id_user
       // Check photo
       console.log("photo");

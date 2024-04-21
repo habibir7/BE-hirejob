@@ -34,8 +34,8 @@ const skillsController = {
   showSkillsById: async (req, res, next) => {
     try {
       // Check params
-      let { id } = req.params;
-      if (id === "") {
+      let { user_id } = req.params;
+      if (user_id === "") {
         return res
           .status(404)
           .json({ code: 404, message: "Params id invalid" });

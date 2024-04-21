@@ -6,7 +6,7 @@ const {Protect} = require('../middleware/private')
 
 router.get("/", skillsController.showSkills);
 router.get("/detail", skillsController.searchSkills);
-router.get("/:id", skillsController.showSkillsById);
+router.get("/:user_id", skillsController.showSkillsById);
 router.post("/",Protect, skillsController.inputSkills);
 router.put("/:id",Protect, skillsController.updateSkills);
 router.delete("/:id", skillsController.deleteSkills);
