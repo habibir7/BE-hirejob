@@ -34,15 +34,15 @@ const contactController = {
   showContactById: async (req, res, next) => {
     try {
       // Check params
-      let { id } = req.params;
-      if (id === "") {
+      let { id_user } = req.params;
+      if (id_user === "") {
         return res
           .status(404)
           .json({ code: 404, message: "Params id invalid" });
       }
 
       // Process
-      let contact = await getContactByIdModel(id);
+      let contact = await getContactByIdModel(id_user);
       let result = contact.rows;
       if (!result.length) {
         return res.status(200).json({
