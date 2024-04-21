@@ -142,7 +142,7 @@ const portofolioController = {
 
   inputPortofolio: async (req, res, next) => {
     try {
-      let { link_repo, type, photo } = req.body;
+      let { link_repo, type, photo, porto_name } = req.body;
 
       // Check token
       // if(!req.payload){
@@ -156,7 +156,10 @@ const portofolioController = {
         link_repo === " " ||
         !type ||
         type === "" ||
-        type === " "
+        type === " " ||
+        !porto_name ||
+        porto_name === "" ||
+        porto_name === " "
       ) {
         return res.status(404).json({ code: 404, message: "Input invalid" });
       }
@@ -204,7 +207,8 @@ const portofolioController = {
         link_repo,
         type,
         photo: imageUpload.secure_url,
-        id_user
+        id_user,
+        porto_name
       };
       let result = await inputPortofolioModel(data);
       if (result.rowCount === 1) {
@@ -224,7 +228,7 @@ const portofolioController = {
 
   updatePortofolio: async (req, res, next) => {
     try {
-      let { link_repo, type, photo } = req.body;
+      let { link_repo, type, photo, porto_name } = req.body;
 
       // Check token
       // if (!req.payload) {
@@ -266,6 +270,7 @@ const portofolioController = {
         link_repo: link_repo || newPortofolio.link_repo,
         type: type || newPortofolio.type,
         photo: photo || newPortofolio.photo,
+        porto_name: porto_name || newPortofolio.porto_name
       };
 
       // Check & update with photo

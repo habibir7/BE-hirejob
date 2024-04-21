@@ -481,3 +481,5 @@ ADD CONSTRAINT fk_city_id FOREIGN KEY (city_id) REFERENCES city (id_city) ON DEL
 
 ALTER TABLE detail_profile_recruiter ADD COLUMN photo VARCHAR DEFAULT NULL;
 ALTER TABLE detail_profile_worker ADD COLUMN photo VARCHAR DEFAULT NULL;
+
+ALTER TABLE work_experience ADD COLUMN photo VARCHAR DEFAULT NULL;
