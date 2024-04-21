@@ -22,7 +22,7 @@ const showPortofolioModel = async () => {
   );
 };
 
-const showPortofolioByIdModel = async (user_id) => {
+const showPortofolioByIdModel = async (id_user) => {
   console.log("model - showPortofolioById");
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -32,7 +32,7 @@ const showPortofolioByIdModel = async (user_id) => {
       FROM
           portofolio
       WHERE
-          portofolio.id_user = '${user_id}'
+          portofolio.id_user = '${id_user}'
       `,
       (err, res) => {
         if (!err) {

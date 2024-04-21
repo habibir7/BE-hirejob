@@ -7,7 +7,7 @@ const { Protect } = require("../middleware/private");
 
 router.get("/", portofolioController.showPortofolio);
 router.get("/detail", portofolioController.searchPortofolio);
-router.get("/:user_id", portofolioController.showPortofolioById);
+router.get("/:id_user", portofolioController.showPortofolioById);
 router.post("/",Protect, upload.single('photo'), portofolioController.inputPortofolio);
 router.put("/:id",Protect, upload.single('photo'), portofolioController.updatePortofolio);
 router.delete("/:id", portofolioController.deletePortofolio);
