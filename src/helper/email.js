@@ -38,7 +38,7 @@ const sendEmailActivated = async (email_user, url, name) => {
 		from: process.env.EMAIL_NAME,
 		to: email_user,
 		subject: `Hello ${name}, Please Verification for Hire Job App`,
-		text: `Hello ${name}, Please Verification for Recipe Test App, this is your activated link ${url}`
+		text: `Hello ${name}, Please Verification for Hire Job App, this is your activated link ${url}`
 	}
 	return await sendMail(mailOption)
 }
