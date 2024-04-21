@@ -34,20 +34,21 @@ const contactController = {
   showContactById: async (req, res, next) => {
     try {
       // Check params
-      let { id_user } = req.params;
-      if (id_user === "") {
+      let { id } = req.params;
+      if (id === "") {
         return res
           .status(404)
           .json({ code: 404, message: "Params id invalid" });
       }
 
       // Process
-      let contact = await showContactByIdModel(id_user);
+      let contact = await getContactByIdModel(id);
       let result = contact.rows;
       if (!result.length) {
-        return res.status(404).json({
-          code: 404,
-          message: "Contact not found or id invalid",
+        return res.status(200).json({
+          code: 200,
+          message: "success getContactByID",
+          data: result
         });
       }
       return res.status(200).json({
@@ -174,7 +175,7 @@ const contactController = {
 
       // Process
       let id_user = req.payload.id_user
-      let data = { id: uuidv4(), email, instagram, github, gitlab, id_user };
+      let data = { id: uuidv4(), email, instagram, github, gitlab,id_user };
       let result = await inputContactModel(data);
       if (result.rowCount === 1) {
         return res
@@ -235,7 +236,7 @@ const contactController = {
         email: email || newContact.email,
         instagram: instagram || newContact.instagram,
         github: github || newContact.github,
-        gitlab: gitlab || newContact.gitlab
+        gitlab: gitlab || newContact.gitlab,
       };
 
       let result = await updateContactModel(data);

@@ -46,9 +46,11 @@ const workExperienceController = {
       let workExperience = await showWorkExperienceByIdModel(user_id);
       let result = workExperience.rows;
       if (!result.length) {
-        return res.status(404).json({
-          code: 404,
-          message: "WorkExperience not found or id invalid",
+        return res.status(200).json({
+          code: 200,
+          message: "succes getWorkexperienceById",
+          data: result,
+
         });
       }
       return res.status(200).json({

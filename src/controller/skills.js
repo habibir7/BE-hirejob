@@ -45,9 +45,10 @@ const skillsController = {
       let skills = await showSkillsByIdModel(user_id);
       let result = skills.rows;
       if (!result.length) {
-        return res.status(404).json({
-          code: 404,
-          message: "Skills not found or id invalid",
+        return res.status(200).json({
+          code: 200,
+          message: "success getSkillsByID",
+          data: result
         });
       }
       return res.status(200).json({

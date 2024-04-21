@@ -46,9 +46,10 @@ const portofolioController = {
       let portofolio = await showPortofolioByIdModel(id_user);
       let result = portofolio.rows;
       if (!result.length) {
-        return res.status(404).json({
-          code: 404,
-          message: "Portofolio not found or id invalid",
+        return res.status(200).json({
+          code: 200,
+          message: "success getPortofolioByID",
+          data: result
         });
       }
       return res.status(200).json({
