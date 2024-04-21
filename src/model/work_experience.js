@@ -149,8 +149,8 @@ const updateWorkExperienceModel = async (data) => {
       SET 
           position='${position}',
           company_name='${company_name}',
-          working_start_at=TO_DATE('${working_start_at}', '%d-%m-%Y'),
-          working_end_at=TO_DATE('${working_end_at}', '%d-%m-%Y'),
+          working_start_at='${working_start_at}',
+          working_end_at='${working_end_at}',
           description='${description}',
           photo='${photo}',
           updated_at=NOW() 
