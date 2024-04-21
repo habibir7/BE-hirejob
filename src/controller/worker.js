@@ -11,6 +11,10 @@ const {
   deleteWorkerModel,
   showWorkerAllDataByIdModel
 } = require("../model/worker");
+const {
+  updateAuthModel
+} = require("../model/auth")
+const cloudinary = require("../config/photo");
 
 const workerController = {
   showWorker: async (req, res, next) => {
@@ -252,25 +256,29 @@ const workerController = {
 
       let newWorker = resultWorker[0];
 
+      console.log(newWorker)
       // Check if user_id and id token same or not
       // if (req.payload.id !== newWorker.user_id) {
       //     console.log(`id_token = ${req.payload.id}`)
       //     console.log(`id_user = ${newWorker.user_id}`)
       //     return res.status(404).json({code: 404, message: 'This is not your Worker'})
       // }
-
       // Process
       let data = {
         id,
-        province_id: province_id || newWorker.province_id,
-        city_id: city_id || newWorker.city_id,
-        last_work: last_work || newWorker.last_work,
-        bio: bio || newWorker.bio,
-        photo: photo || newWorker.photo,
-        job_desk: job_desk || newWorker.job_desk,
-        name: name || newWorker.name
+        province_id: province_id || resultWorker.province_id,
+        city_id: city_id || resultWorker.city_id,
+        last_work: last_work || resultWorker.last_work,
+        bio: bio || resultWorker.bio,
+        photo: photo || resultWorker.photo,
+        job_desk: job_desk || resultWorker.job_desk,
+        name: name || resultWorker.name,
+        id_user: newWorker.user_id,
+        email: newWorker.email,
+        phone: newWorker.phone
       };
 
+      console.log(data)
       // Check & update with photo
       console.log("photo");
       console.log(req.file);
@@ -302,7 +310,8 @@ const workerController = {
         // Process
         data.photo = imageUpload.secure_url;
         let result = await updateWorkerModel(data);
-        if (result.rowCount === 1) {
+        let resultauth = await updateAuthModel(data)
+        if (result.rowCount === 1 & resultauth.rowCount === 1) {
           return res
             .status(200)
             .json({ code: 200, message: "Success update data" });
@@ -321,7 +330,8 @@ const workerController = {
         // Process
         data.photo = newWorker.photo;
         let result = await updateWorkerModel(data);
-        if (result.rowCount === 1) {
+        let resultauth = await updateAuthModel(data)
+        if (result.rowCount === 1 & resultauth.rowCount === 1) {
           return res
             .status(200)
             .json({ code: 200, message: "Success update data" });

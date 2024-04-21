@@ -83,7 +83,17 @@ const getWorkerByIdModel = async (user_id) => {
   console.log("model - getWorkerById");
   return new Promise((resolve, reject) =>
     Pool.query(
-      `SELECT * FROM detail_profile_worker WHERE id = '${user_id}'`,
+      `SELECT
+        detail_profile_worker.*,
+        user_auth.name,
+        user_auth.email,
+        user_auth.phone
+      FROM
+        detail_profile_worker JOIN user_auth 
+      ON
+        detail_profile_worker.user_id = user_auth.id_user 
+      WHERE
+        id = '${user_id}'`,
       (err, res) => {
         if (!err) {
           return resolve(res);
