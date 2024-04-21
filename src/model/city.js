@@ -4,7 +4,14 @@ const getCityByIdModel = async (id_city) => {
   console.log(id_city);
   return new Promise((resolve, reject) =>
     Koneksi.query(
-      `SELECT * FROM city WHERE id_city='${id_city}'`,
+      `SELECT 
+          city.id_city,
+          city.city_name,
+          province.province_name
+      FROM
+          city
+      JOIN province ON city.province_id = province.id_province
+      WHERE id_city='${id_city}'`,
       (err, res) => {
         if (!err) {
           return resolve(res);
