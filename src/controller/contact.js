@@ -54,7 +54,7 @@ const contactController = {
       return res.status(200).json({
         code: 200,
         message: "Success showContactById",
-        data: result[0],
+        data: result,
       });
     } catch (err) {
       console.log("showContactById error");
