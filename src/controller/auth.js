@@ -288,8 +288,13 @@ const AuthController = {
             .json({ status: 404, messages: "account failed verification" });
     }
 
-    
-    return res.redirect('https://google.com')
+    if(userData.role === "worker")
+    {
+      return res.redirect('https://hirejob-project.vercel.app/login/worker')
+    }else if(userData.role === "recruiter")
+    {
+      return res.redirect('https://hirejob-project.vercel.app/login/recruiter')
+    }
 }
 };
 
