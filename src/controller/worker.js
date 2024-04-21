@@ -266,13 +266,13 @@ const workerController = {
       // Process
       let data = {
         id,
-        province_id: province_id || resultWorker.province_id,
-        city_id: city_id || resultWorker.city_id,
-        last_work: last_work || resultWorker.last_work,
-        bio: bio || resultWorker.bio,
-        photo: photo || resultWorker.photo,
-        job_desk: job_desk || resultWorker.job_desk,
-        name: name || resultWorker.name,
+        province_id: province_id || newWorker.province_id,
+        city_id: city_id || newWorker.city_id,
+        last_work: last_work || newWorker.last_work,
+        bio: bio || newWorker.bio,
+        photo: photo || newWorker.photo,
+        job_desk: job_desk || newWorker.job_desk,
+        name: name || newWorker.name,
         id_user: newWorker.user_id,
         email: newWorker.email,
         phone: newWorker.phone
