@@ -32,7 +32,7 @@ const showSkillsByIdModel = async (user_id) => {
       FROM
           skills
       WHERE
-          skills.id_user = '${user_id}'
+          id_user = '${user_id}'
       `,
       (err, res) => {
         if (!err) {

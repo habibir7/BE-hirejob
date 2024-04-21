@@ -42,7 +42,7 @@ const skillsController = {
       }
 
       // Process
-      let skills = await getSkillsByIdModel(id);
+      let skills = await showSkillsByIdModel(user_id);
       let result = skills.rows;
       if (!result.length) {
         return res.status(404).json({

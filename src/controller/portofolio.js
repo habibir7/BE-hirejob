@@ -43,7 +43,7 @@ const portofolioController = {
       }
 
       // Process
-      let portofolio = await getPortofolioByIdModel(user_id);
+      let portofolio = await showPortofolioByIdModel(user_id);
       let result = portofolio.rows;
       if (!result.length) {
         return res.status(404).json({

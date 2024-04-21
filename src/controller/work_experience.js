@@ -42,7 +42,7 @@ const workExperienceController = {
       }
 
       // Process
-      let workExperience = await getWorkExperienceByIdModel(user_id);
+      let workExperience = await showWorkExperienceByIdModel(user_id);
       let result = workExperience.rows;
       if (!result.length) {
         return res.status(404).json({
