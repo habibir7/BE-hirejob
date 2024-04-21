@@ -152,6 +152,12 @@ const searchWorkerCountModel = async (data) => {
       detail_profile_worker
       JOIN
           user_auth ON detail_profile_worker.user_id = user_auth.id_user
+      JOIN
+          province ON detail_profile_worker.province_id = province.id_province
+      JOIN
+          city ON detail_profile_worker.city_id = city.id_city
+      JOIN
+          skills ON detail_profile_worker.user_id = skills.id_user
       WHERE
           ${searchBy} 
       ILIKE
