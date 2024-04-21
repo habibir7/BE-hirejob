@@ -103,11 +103,26 @@ const searchWorkerDetailModel = async (data) => {
     Pool.query(
       `
       SELECT 
-          *
+          detail_profile_worker.user_id,
+          detail_profile_worker.photo,
+          user_auth.name,
+          detail_profile_worker.last_work,
+          detail_profile_worker.job_desk,
+          province.province_name,
+          city.city_name,
+          skills.skill_name,
+          detail_profile_worker.created_at,
+          detail_profile_worker.updated_at
       FROM
           detail_profile_worker
       JOIN
           user_auth ON detail_profile_worker.user_id = user_auth.id_user
+      JOIN
+          province ON detail_profile_worker.province_id = province.id_province
+      JOIN
+          city ON detail_profile_worker.city_id = city.id_city
+      JOIN
+          skills ON detail_profile_worker.user_id = skills.id_user
       WHERE
           ${searchBy} ILIKE '%${search}%' AND user_auth.isverify='true' 
       ORDER BY
