@@ -149,7 +149,7 @@ const workExperienceController = {
 
   inputWorkExperience: async (req, res, next) => {
     try {
-      let { position, company_name, working_start_at, working_end_at, description } = req.body;
+      let { position, company_name, working_start_at, working_end_at, description,photo } = req.body;
 
       // Check token
       // if(!req.payload){
@@ -288,15 +288,67 @@ const workExperienceController = {
         company_name: company_name || newWorkExperience.company_name,
         working_start_at: working_start_at || newWorkExperience.working_start_at,
         working_end_at: working_end_at || newWorkExperience.working_end_at,
-        description: description || newWorkExperience.description
+        description: description || newWorkExperience.description,
+        photo: newWorkExperience.photo
       };
 
-      let result = await updateWorkExperienceModel(data);
-      if (result.rowCount === 1) {
-        return res
-          .status(200)
-          .json({ code: 200, message: "Success update data" });
+      if (req.isFileValid === true) {
+        // Check photo size
+        console.log("photo_size : " + req.file.size);
+        if (req.file.size >= 5242880) {
+          return res
+            .status(404)
+            .json({ code: 404, message: "Photo is too large (max. 5 mb)" });
+        }
+
+        // Upload photo
+        const imageUpload = await cloudinary.uploader.upload(req.file.path, {
+          folder: "peworld-database",
+        });
+
+        // Check if photo not uploaded to cloudinary
+        console.log("cloudinary");
+        console.log(imageUpload);
+        if (!imageUpload) {
+          return res
+            .status(404)
+            .json({ code: 404, message: "Upload photo failed" });
+        }
+
+        // Process
+        data.photo = imageUpload.secure_url;
+        let result = await updateWorkExperienceModel(data);
+        if (result.rowCount === 1) {
+          return res
+            .status(200)
+            .json({ code: 200, message: "Success input data" });
+        }
+      } else if (req.isFileValid === false) {
+        // Check format photo
+        console.log("isFileValid : " + req.isFileValid);
+        if (!req.isFileValid) {
+          return res
+            .status(404)
+            .json({ code: 404, message: req.isFileValidMessage });
+        }
       }
+      // Update without photo
+      else if (req.isFileValid === undefined) {
+        // Process
+        let result = await updateWorkExperienceModel(data);
+        if (result.rowCount === 1) {
+          return res
+            .status(200)
+            .json({ code: 200, message: "Success input data" });
+        }
+      }
+
+      // let result = await updateWorkExperienceModel(data);
+      // if (result.rowCount === 1) {
+      //   return res
+      //     .status(200)
+      //     .json({ code: 200, message: "Success update data" });
+      // }
 
       return res.status(401).json({ code: 404, message: "Failed update data" });
     } catch (err) {

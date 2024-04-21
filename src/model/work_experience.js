@@ -139,7 +139,7 @@ const inputWorkExperienceModel = async (data) => {
 
 const updateWorkExperienceModel = async (data) => {
   console.log("model - updateWorkExperience");
-  let { id, position, company_name, working_start_at, working_end_at, description} = data;
+  let { id, position, company_name, working_start_at, working_end_at, description, photo} = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -152,6 +152,7 @@ const updateWorkExperienceModel = async (data) => {
           working_start_at=TO_DATE('${working_start_at}', '%d-%m-%Y'),
           working_end_at=TO_DATE('${working_end_at}', '%d-%m-%Y'),
           description='${description}',
+          photo='${photo}',
           updated_at=NOW() 
       WHERE
           id='${id}';
