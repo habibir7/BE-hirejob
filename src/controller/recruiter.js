@@ -41,10 +41,8 @@ const recuiterController = {
   },
   updateRecruiter: async (req, res, next) => {
     try {
-      let { id_user } = req.params;
-      if (id_user === "") {
-        return res.status(404).json({ message: "params id invalid" });
-      }
+      let id_user = req.payload.id_user
+      console.log(req.payload.id_user)
       let {
         company_name,
         company_field,
