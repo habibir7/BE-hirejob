@@ -307,6 +307,8 @@ ALTER TABLE portofolio ADD COLUMN user_id VARCHAR;
 ALTER TABLE portofolio
 ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_auth (id_user) ON DELETE CASCADE;
 
+ALTER TABLE portofolio ADD COLUMN porto_name VARCHAR;
+
 -- ===========================================
 -- TABLE province
 -- ===========================================

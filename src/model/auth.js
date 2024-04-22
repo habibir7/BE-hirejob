@@ -118,7 +118,7 @@ const activatedUser = async(id_user) => {
 
 const updateAuthModel = async(data) => {
 	let { id_user , email , phone, name} = data
-	console.log("model - activatedUser")
+	console.log("model - updateAuthModel")
 	return new Promise((resolve,reject)=>
 		Pool.query(`UPDATE user_auth SET email='${email}', phone='${phone}', name='${name}' WHERE id_user='${id_user}'`,(err,res)=>{
 			if(!err){
@@ -131,4 +131,19 @@ const updateAuthModel = async(data) => {
 	)
 }
 
-module.exports = {getAuthModel,getAuthByEmailModel,getAuthByIdModel,createAuthModel,createOtpAuthModel,getOtpAuthModel,nullOtpAuthModel,updatePasswordAuthModel,updateAuthModel,activatedUser}
+const updateAuthRecruiterModel = async(data) => {
+	let { id_user , email} = data
+	console.log("model - updateAuthRecruiterModel")
+	return new Promise((resolve,reject)=>
+		Pool.query(`UPDATE user_auth SET email='${email}' WHERE id_user='${id_user}'`,(err,res)=>{
+			if(!err){
+				return resolve(res)
+			} else {
+				console.log(`error db -`,err)
+				reject(err)
+			}
+		})
+	)
+}
+
+module.exports = {getAuthModel,getAuthByEmailModel,getAuthByIdModel,createAuthModel,createOtpAuthModel,getOtpAuthModel,nullOtpAuthModel,updatePasswordAuthModel,updateAuthModel,activatedUser,updateAuthRecruiterModel}

@@ -59,11 +59,11 @@ const getRecuiterByIdModel = async (id_user) => {
   return new Promise((resolve, reject) => {
     Pool.query(
       `SELECT
-       user_auth.name, user_auth.email, user_auth.phone, user_auth.position , detail_profile_recruiter.* 
+          user_auth.name, user_auth.email, user_auth.phone, user_auth.position , detail_profile_recruiter.* 
       FROM
-       detail_profile_recruiter JOIN user_auth ON detail_profile_recruiter.id_user = user_auth.id_user 
+          detail_profile_recruiter JOIN user_auth ON detail_profile_recruiter.id_user = user_auth.id_user 
       WHERE
-       detail_profile_recruiter.id_user='${id_user}'`,
+          detail_profile_recruiter.id_user='${id_user}'`,
       (err, res) => {
         if (!err) {
           return resolve(res);
@@ -124,10 +124,11 @@ const updateRecruiterModel = async (data) => {
     company_info,
     company_email,
     company_phone,
-    id_recruiter,
+    id_user,
     province_id,
     city_id,
-    photo
+    photo,
+    linkedin
   } = data;
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -142,9 +143,10 @@ const updateRecruiterModel = async (data) => {
           company_phone='${company_phone}', 
           city_id='${city_id}', 
           province_id='${province_id}', 
-          photo='${photo}' 
+          photo='${photo}',
+          linkedin='${linkedin}'
       WHERE
-          id_recruiter='${id_recruiter}'`,
+          id_user='${id_user}'`,
       (err, res) => {
         if (!err) {
           return resolve(res);

@@ -5,7 +5,7 @@ const {
   updateRecruiterModel,
 } = require("../model/recruiter");
 const {
-  updateAuthModel
+  updateAuthRecruiterModel
 } = require("../model/auth")
 const cloudinary = require("../config/photo");
 
@@ -41,10 +41,6 @@ const recuiterController = {
   },
   updateRecruiter: async (req, res, next) => {
     try {
-      //   let { id_user } = req.params;
-      //   if (id_user === "") {
-      //     return res.status(404).json({ message: "params id invalid" });
-      //   }
       let { id_user } = req.params;
       if (id_user === "") {
         return res.status(404).json({ message: "params id invalid" });
@@ -59,6 +55,7 @@ const recuiterController = {
         city_id,
         province_id,
         photo,
+        linkedin
       } = req.body;
       //   let recruiter = await getRecuiterByIdModel(id_user);
       let recruiter = await getRecuiterByIdModel(id_user);
@@ -69,6 +66,7 @@ const recuiterController = {
           .json({ message: "recruiter not found or id invalid" });
       }
       let Recruiter = resultRecruiter[0];
+      console.log(Recruiter)
       let data = {
         id_user,
         company_name: company_name || Recruiter.company_name,
@@ -80,7 +78,8 @@ const recuiterController = {
         city_id: city_id || Recruiter.city_id,
         province_id: province_id || Recruiter.province_id,
         photo: photo || Recruiter.photo,
-        linkedin: linkedin || Recruiter.linkedin
+        linkedin: linkedin || Recruiter.linkedin,
+        // user_id : id_user
       };
 
       // Check & update with photo
@@ -114,7 +113,7 @@ const recuiterController = {
         // Process
         data.photo = imageUpload.secure_url;
         let result = await updateRecruiterModel(data);
-        let resultauth = await updateAuthModel(data)
+        let resultauth = await updateAuthRecruiterModel(data)
         if (result.rowCount === 1 && resultauth.rowCount === 1) {
           return res
             .status(200)
@@ -134,7 +133,7 @@ const recuiterController = {
         // Process
         data.photo = Recruiter.photo;
         let result = await updateRecruiterModel(data);
-        let resultauth = await updateAuthModel(data)
+        let resultauth = await updateAuthRecruiterModel(data)
         if (result.rowCount === 1  && resultauth.rowCount === 1) {
           return res
             .status(200)
@@ -144,14 +143,14 @@ const recuiterController = {
 
       return res.status(401).json({ code: 401, message: "Failed update data" });
 
-      let result = await updateRecruiterModel(data);
-      if (result.rowCount === 1) {
-        return res
-          .status(201)
-          .json({ code: 201, message: "success update data" });
-      }
+      // let result = await updateRecruiterModel(data);
+      // if (result.rowCount === 1) {
+      //   return res
+      //     .status(201)
+      //     .json({ code: 201, message: "success update data" });
+      // }
 
-      return res.status(404).json({ code: 404, message: "Error Update Data" });
+      // return res.status(404).json({ code: 404, message: "Error Update Data" });
     } catch (err) {
       console.log("users controller error");
       console.log(err);
