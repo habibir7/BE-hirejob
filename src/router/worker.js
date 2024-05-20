@@ -9,7 +9,7 @@ router.get("/all/:user_id", workerController.showWorkerAllData);
 router.get("/detail", workerController.searchWorker);
 router.get("/:user_id", workerController.showWorkerById);
 router.post("/",Protect, upload.single('photo'), workerController.inputWorker);
-router.put("/:id", upload.single('photo'), workerController.updateWorker);
+router.put("/",Protect, upload.single('photo'), workerController.updateWorker);
 router.delete("/:id", workerController.deleteWorker);
 
 module.exports = router;

@@ -118,10 +118,11 @@ const activatedUser = async(id_user) => {
 
 const updateAuthModel = async(data) => {
 	let { id_user , email , phone, name} = data
-	console.log("model - updateAuthModel")
+	console.log("model - updateAuthModel", data)
 	return new Promise((resolve,reject)=>
 		Pool.query(`UPDATE user_auth SET email='${email}', phone='${phone}', name='${name}' WHERE id_user='${id_user}'`,(err,res)=>{
 			if(!err){
+				console.log("succes")
 				return resolve(res)
 			} else {
 				console.log(`error db -`,err)

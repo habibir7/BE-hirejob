@@ -237,12 +237,8 @@ const workerController = {
       // }
 
       // Check params
-      let { id } = req.params;
-      if (id === "") {
-        return res
-          .status(404)
-          .json({ code: 404, message: "Params id invalid" });
-      }
+      let id = req.payload.id_user;
+      console.log(id)
 
       // Check Worker
       let Worker = await getWorkerByIdModel(id);
@@ -331,14 +327,16 @@ const workerController = {
         data.photo = newWorker.photo;
         let result = await updateWorkerModel(data);
         let resultauth = await updateAuthModel(data)
-        if (result.rowCount === 1 & resultauth.rowCount === 1) {
+        console.log(result.rowCount)
+        console.log(resultauth.rowCount)
+        if (result.rowCount === 1 || resultauth.rowCount === 1) {
           return res
             .status(200)
             .json({ code: 200, message: "Success update data" });
         }
       }
 
-      return res.status(401).json({ code: 404, message: "Failed update data" });
+      return res.status(404).json({ code: 404, message: "Failed update data" });
 
       let result = await updateWorkerModel(data);
       if (result.rowCount === 1) {

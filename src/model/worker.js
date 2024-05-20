@@ -24,8 +24,9 @@ const showWorkerModel = async () => {
   );
 };
 
-const showWorkerByIdModel = async (user_id) => {
+const showWorkerByIdModel = async (id) => {
   console.log("model - showWorkerById");
+  console.log(id)
   return new Promise((resolve, reject) =>
     Pool.query(
       `
@@ -36,7 +37,7 @@ const showWorkerByIdModel = async (user_id) => {
       JOIN
           user_auth ON detail_profile_worker.user_id = user_auth.id_user
       WHERE
-          detail_profile_worker.user_id = '${user_id}'
+          detail_profile_worker.user_id = '${id}'
       `,
       (err, res) => {
         if (!err) {
@@ -79,7 +80,7 @@ const showWorkerAllDataByIdModel = async (user_id) => {
   );
 };
 
-const getWorkerByIdModel = async (user_id) => {
+const getWorkerByIdModel = async (id) => {
   console.log("model - getWorkerById");
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -93,7 +94,7 @@ const getWorkerByIdModel = async (user_id) => {
       ON
         detail_profile_worker.user_id = user_auth.id_user 
       WHERE
-        id = '${user_id}'`,
+      detail_profile_worker.user_id = '${id}'`,
       (err, res) => {
         if (!err) {
           return resolve(res);
