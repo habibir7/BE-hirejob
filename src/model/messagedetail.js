@@ -1,10 +1,23 @@
 const Koneksi = require("../config/db")
 
 
-const getMessagedetailByIdModel = async (id_messagedetail) => {
-    console.log(id_messagedetail)
+const getMessagedetailByIdWorkerModel = async (id_user) => {
+    console.log(id_user)
 	return new Promise((resolve,reject)=>
-		Koneksi.query(`SELECT * FROM messagedetail WHERE id_messagedetail='${id_messagedetail}'`,(err,res)=>{
+		Koneksi.query(`SELECT * FROM messagedetail WHERE id_worker='${id_user}'`,(err,res)=>{
+			if(!err){
+				return resolve(res)
+			} else {
+				reject(err)
+			}
+		})
+	)
+}
+
+const getMessagedetailByIdRecruiterModel = async (id_user) => {
+    console.log(id_user)
+	return new Promise((resolve,reject)=>
+		Koneksi.query(`SELECT * FROM messagedetail WHERE id_recruiter='${id_user}'`,(err,res)=>{
 			if(!err){
 				return resolve(res)
 			} else {
@@ -38,7 +51,6 @@ const createMessagedetailModel = async(data) => {
 				reject(err)
 			}
         })
-       
     )
 }
 
@@ -57,15 +69,15 @@ const updateMessagedetailModel = async(data) => {
 }
 const deleteMessagedetailModel = async(id_messagedetail) => {
 	return new Promise((resolve,reject) =>
-	 Koneksi.query(`DELETE FROM messagedetail where id_messagedetail ='${id_messagedetail}'`,(err,res) => {
+	Koneksi.query(`DELETE FROM messagedetail where id_messagedetail ='${id_messagedetail}'`,(err,res) => {
 		if(!err){
 			return resolve(res)
 		} else {
 			console.log(`error db - `,err)
 			reject(err)
 		}
-	 })
+	})
 	)
 }
 
-module.exports = {createMessagedetailModel,getMessagedetailModel,getMessagedetailByIdModel,updateMessagedetailModel,deleteMessagedetailModel}
+module.exports = {createMessagedetailModel,getMessagedetailModel,getMessagedetailByIdWorkerModel,getMessagedetailByIdRecruiterModel,updateMessagedetailModel,deleteMessagedetailModel}

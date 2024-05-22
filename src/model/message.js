@@ -1,10 +1,10 @@
 const Koneksi = require("../config/db")
 
 
-const getMessageByIdModel = async (id_message) => {
-    console.log(id_message)
+const getMessageByIdMessageDetailModel = async (id_messagedetail) => {
+    console.log(id_messagedetail)
 	return new Promise((resolve,reject)=>
-		Koneksi.query(`SELECT * FROM messagedetail WHERE id_messagedetail='${id_message}'`,(err,res)=>{
+		Koneksi.query(`SELECT * FROM message WHERE id_messagedetail='${id_messagedetail}'`,(err,res)=>{
 			if(!err){
 				return resolve(res)
 			} else {
@@ -67,4 +67,4 @@ const deleteMessageModel = async(id_message) => {
 	)
 }
 
-module.exports = {createMessageModel,getMessageModel,getMessageByIdModel,updateMessageModel,deleteMessageModel}
+module.exports = {createMessageModel,getMessageModel,getMessageByIdMessageDetailModel,updateMessageModel,deleteMessageModel}
