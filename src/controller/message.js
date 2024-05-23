@@ -46,13 +46,7 @@ const MessageController = {
             ){
                 return res.json({code: 404,message: "Harap masukkan Message Dengan lengkap"})
             }
-            let cek = await getMessageByIdModel(id_messagedetail);
-            if (cek.rowCount === 0) {
-              return res.status(404).json({
-                code: 404,
-                message: "messagedetail not found or id invalid",
-              });
-            }
+            let cek = await getMessageByIdMessageDetailModel(id_messagedetail);
             let id = req.payload.id_user
             let data = {id_message: uuidv4(),id_messagedetail, message_value,id}
             let result = await createMessageModel(data)
