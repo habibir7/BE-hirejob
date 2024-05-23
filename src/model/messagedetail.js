@@ -4,7 +4,7 @@ const Koneksi = require("../config/db")
 const getMessagedetailByIdWorkerModel = async (id_user) => {
     console.log(id_user)
 	return new Promise((resolve,reject)=>
-		Koneksi.query(`SELECT * FROM messagedetail WHERE id_worker='${id_user}'`,(err,res)=>{
+		Koneksi.query(`SELECT messagedetail.*, detail_profile_recruiter.company_name, detail_profile_recruiter.photo  FROM messagedetail JOIN detail_profile_recruiter ON messagedetail.id_recruiter = detail_profile_recruiter.id_user  WHERE messagedetail.id_worker='${id_user}'`,(err,res)=>{
 			if(!err){
 				return resolve(res)
 			} else {
@@ -17,7 +17,7 @@ const getMessagedetailByIdWorkerModel = async (id_user) => {
 const getMessagedetailByIdRecruiterModel = async (id_user) => {
     console.log(id_user)
 	return new Promise((resolve,reject)=>
-		Koneksi.query(`SELECT * FROM messagedetail WHERE id_recruiter='${id_user}'`,(err,res)=>{
+		Koneksi.query(`SELECT messagedetail.*, user_auth.name, detail_profile_worker.photo FROM messagedetail JOIN detail_profile_worker ON messagedetail.id_worker = detail_profile_worker.user_id JOIN user_auth ON messagedetail.id_worker = user_auth.id_user WHERE messagedetail.id_recruiter='${id_user}'`,(err,res)=>{
 			if(!err){
 				return resolve(res)
 			} else {
