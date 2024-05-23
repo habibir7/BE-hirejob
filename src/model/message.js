@@ -4,7 +4,7 @@ const Koneksi = require("../config/db")
 const getMessageByIdMessageDetailModel = async (id_messagedetail) => {
     console.log(id_messagedetail)
 	return new Promise((resolve,reject)=>
-		Koneksi.query(`SELECT * FROM message WHERE id_messagedetail='${id_messagedetail}'`,(err,res)=>{
+		Koneksi.query(`SELECT * FROM message WHERE id_messagedetail='${id_messagedetail}' ORDER BY created_at DESC`,(err,res)=>{
 			if(!err){
 				return resolve(res)
 			} else {
