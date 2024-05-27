@@ -307,7 +307,7 @@ const workerController = {
         data.photo = imageUpload.secure_url;
         let result = await updateWorkerModel(data);
         let resultauth = await updateAuthModel(data)
-        if (result.rowCount === 1 & resultauth.rowCount === 1) {
+        if (result.rowCount === 1 || resultauth.rowCount === 1) {
           return res
             .status(200)
             .json({ code: 200, message: "Success update data" });
