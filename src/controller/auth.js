@@ -118,6 +118,7 @@ const AuthController = {
         name,
         phone,
         role,
+        city_id : 516,
         verifyotp: uuidv4(),
       };
 
@@ -132,7 +133,7 @@ const AuthController = {
       }
 
       if (role == "recruiter") {
-        data = { id_recruiter: uuidv4(), ...data, company_name, position };
+        data = { id_recruiter: uuidv4(), ...data, company_name, position, city_id };
         let resultauth = await createAuthModel(data);
         let result = await createRecruiterModel(data);
         if (result.rowCount === 1 && resultauth.rowCount === 1) {
