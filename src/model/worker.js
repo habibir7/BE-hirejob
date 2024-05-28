@@ -36,9 +36,14 @@ const showWorkerByIdModel = async (id) => {
           detail_profile_worker
       JOIN
           user_auth ON detail_profile_worker.user_id = user_auth.id_user
+      JOIN
+          city ON detail_profile_worker.city_id = city.id_city
+      JOIN
+          province ON city.province_id = province.id_province
       WHERE
           detail_profile_worker.user_id = '${id}'
       `,
+
       (err, res) => {
         if (!err) {
           return resolve(res);
