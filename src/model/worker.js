@@ -228,7 +228,7 @@ const updateWorkerModel = async (data) => {
           job_desk='${job_desk}',
           updated_at=NOW() 
       WHERE
-          id='${id}';
+          user_id='${id}';
       `,
       (err, res) => {
         if (!err) {
