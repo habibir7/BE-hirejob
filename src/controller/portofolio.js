@@ -49,7 +49,7 @@ const portofolioController = {
         return res.status(200).json({
           code: 200,
           message: "success getPortofolioByID",
-          data: result
+          data: result,
         });
       }
       return res.status(200).json({
@@ -164,7 +164,7 @@ const portofolioController = {
       ) {
         return res.status(404).json({ code: 404, message: "Input invalid" });
       }
-      let id_user = req.payload.id_user
+      let id_user = req.payload.id_user;
       // Check photo
       console.log("photo");
       console.log(req.file);
@@ -209,7 +209,7 @@ const portofolioController = {
         type,
         photo: imageUpload.secure_url,
         id_user,
-        porto_name
+        porto_name,
       };
       let result = await inputPortofolioModel(data);
       if (result.rowCount === 1) {
@@ -271,7 +271,7 @@ const portofolioController = {
         link_repo: link_repo || newPortofolio.link_repo,
         type: type || newPortofolio.type,
         photo: photo || newPortofolio.photo,
-        porto_name: porto_name || newPortofolio.porto_name
+        porto_name: porto_name || newPortofolio.porto_name,
       };
 
       // Check & update with photo

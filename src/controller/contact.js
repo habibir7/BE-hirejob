@@ -25,9 +25,7 @@ const contactController = {
     } catch (err) {
       console.log("showContact error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed showContact" });
+      return res.status(404).json({ code: 404, message: "Failed showContact" });
     }
   },
 
@@ -48,7 +46,7 @@ const contactController = {
         return res.status(200).json({
           code: 200,
           message: "success getContactByID",
-          data: result
+          data: result,
         });
       }
       return res.status(200).json({
@@ -70,9 +68,7 @@ const contactController = {
       // Check searchBy
       let searchBy = "email";
       if (req.query.searchBy) {
-        if (
-          req.query.searchBy === "email"
-        ) {
+        if (req.query.searchBy === "email") {
           searchBy = req.query.searchBy;
         }
       }
@@ -93,10 +89,7 @@ const contactController = {
       // Check sort
       let sort = "ASC";
       if (req.query.sort) {
-        if (
-          req.query.sort === "ASC" ||
-          req.query.sort === "DESC"
-        ) {
+        if (req.query.sort === "ASC" || req.query.sort === "DESC") {
           sort = req.query.sort;
         }
       }
@@ -109,9 +102,7 @@ const contactController = {
 
       // Process
       let data = { searchBy, search, sortBy, sort, limit, page };
-      let contact = await searchContactDetailModel(
-        data
-      );
+      let contact = await searchContactDetailModel(data);
       let count = await searchContactCountModel(data);
       let total = count.rowCount;
       let result = contact.rows;
@@ -174,8 +165,8 @@ const contactController = {
       }
 
       // Process
-      let id_user = req.payload.id_user
-      let data = { id: uuidv4(), email, instagram, github, gitlab,id_user };
+      let id_user = req.payload.id_user;
+      let data = { id: uuidv4(), email, instagram, github, gitlab, id_user };
       let result = await inputContactModel(data);
       if (result.rowCount === 1) {
         return res
@@ -250,9 +241,7 @@ const contactController = {
     } catch (err) {
       console.log("putContact error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed putContact" });
+      return res.status(404).json({ code: 404, message: "Failed putContact" });
     }
   },
 
@@ -299,9 +288,7 @@ const contactController = {
     } catch (err) {
       console.log("dropContact error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed dropContact" });
+      return res.status(404).json({ code: 404, message: "Failed dropContact" });
     }
   },
 };

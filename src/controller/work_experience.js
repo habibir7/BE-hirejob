@@ -50,7 +50,6 @@ const workExperienceController = {
           code: 200,
           message: "succes getWorkexperienceById",
           data: result,
-
         });
       }
       return res.status(200).json({
@@ -73,9 +72,7 @@ const workExperienceController = {
       // Check searchBy
       let searchBy = "position";
       if (req.query.searchBy) {
-        if (
-          req.query.searchBy === "position"
-        ) {
+        if (req.query.searchBy === "position") {
           searchBy = req.query.searchBy;
         }
       }
@@ -96,10 +93,7 @@ const workExperienceController = {
       // Check sort
       let sort = "ASC";
       if (req.query.sort) {
-        if (
-          req.query.sort === "ASC" ||
-          req.query.sort === "DESC"
-        ) {
+        if (req.query.sort === "ASC" || req.query.sort === "DESC") {
           sort = req.query.sort;
         }
       }
@@ -112,9 +106,7 @@ const workExperienceController = {
 
       // Process
       let data = { searchBy, search, sortBy, sort, limit, page };
-      let workExperience = await searchWorkExperienceDetailModel(
-        data
-      );
+      let workExperience = await searchWorkExperienceDetailModel(data);
       let count = await searchWorkExperienceCountModel(data);
       let total = count.rowCount;
       let result = workExperience.rows;
@@ -151,13 +143,20 @@ const workExperienceController = {
 
   inputWorkExperience: async (req, res, next) => {
     try {
-      let { position, company_name, working_start_at, working_end_at, description,photo } = req.body;
+      let {
+        position,
+        company_name,
+        working_start_at,
+        working_end_at,
+        description,
+        photo,
+      } = req.body;
 
       // Check token
       // if(!req.payload){
       //     return res.status(404).json({code: 404, message: "Server need token, please login"})
       // }
-      console.log(company_name)
+      console.log(company_name);
       // Check body
       if (
         !position ||
@@ -177,8 +176,17 @@ const workExperienceController = {
       }
 
       // Process
-      let id_user = req.payload.id_user
-      let data = { id: uuidv4(), position, company_name, working_start_at, working_end_at, description,id_user, photo};
+      let id_user = req.payload.id_user;
+      let data = {
+        id: uuidv4(),
+        position,
+        company_name,
+        working_start_at,
+        working_end_at,
+        description,
+        id_user,
+        photo,
+      };
       if (req.isFileValid === true) {
         // Check photo size
         console.log("photo_size : " + req.file.size);
@@ -247,7 +255,13 @@ const workExperienceController = {
 
   updateWorkExperience: async (req, res, next) => {
     try {
-      let { position, company_name, working_start_at, working_end_at, description } = req.body;
+      let {
+        position,
+        company_name,
+        working_start_at,
+        working_end_at,
+        description,
+      } = req.body;
 
       // Check token
       // if (!req.payload) {
@@ -288,10 +302,11 @@ const workExperienceController = {
         id,
         position: position || newWorkExperience.position,
         company_name: company_name || newWorkExperience.company_name,
-        working_start_at: working_start_at || newWorkExperience.working_start_at,
+        working_start_at:
+          working_start_at || newWorkExperience.working_start_at,
         working_end_at: working_end_at || newWorkExperience.working_end_at,
         description: description || newWorkExperience.description,
-        photo: newWorkExperience.photo
+        photo: newWorkExperience.photo,
       };
 
       if (req.isFileValid === true) {

@@ -136,7 +136,7 @@ const inputPortofolioModel = async (data) => {
 
 const updatePortofolioModel = async (data) => {
   console.log("model - updatePortofolio");
-  let { id, link_repo, type, photo, porto_name} = data;
+  let { id, link_repo, type, photo, porto_name } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(

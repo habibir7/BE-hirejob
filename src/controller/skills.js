@@ -25,9 +25,7 @@ const skillsController = {
     } catch (err) {
       console.log("showSkills error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed showSkills" });
+      return res.status(404).json({ code: 404, message: "Failed showSkills" });
     }
   },
 
@@ -48,7 +46,7 @@ const skillsController = {
         return res.status(200).json({
           code: 200,
           message: "success getSkillsByID",
-          data: result
+          data: result,
         });
       }
       return res.status(200).json({
@@ -70,9 +68,7 @@ const skillsController = {
       // Check searchBy
       let searchBy = "skill_name";
       if (req.query.searchBy) {
-        if (
-          req.query.searchBy === "skill_name"
-        ) {
+        if (req.query.searchBy === "skill_name") {
           searchBy = req.query.searchBy;
         }
       }
@@ -93,10 +89,7 @@ const skillsController = {
       // Check sort
       let sort = "ASC";
       if (req.query.sort) {
-        if (
-          req.query.sort === "ASC" ||
-          req.query.sort === "DESC"
-        ) {
+        if (req.query.sort === "ASC" || req.query.sort === "DESC") {
           sort = req.query.sort;
         }
       }
@@ -109,9 +102,7 @@ const skillsController = {
 
       // Process
       let data = { searchBy, search, sortBy, sort, limit, page };
-      let skills = await searchSkillsDetailModel(
-        data
-      );
+      let skills = await searchSkillsDetailModel(data);
       let count = await searchSkillsCountModel(data);
       let total = count.rowCount;
       let result = skills.rows;
@@ -156,17 +147,13 @@ const skillsController = {
       // }
 
       // Check body
-      if (
-        !skill_name ||
-        skill_name === "" ||
-        skill_name === " "
-      ) {
+      if (!skill_name || skill_name === "" || skill_name === " ") {
         return res.status(404).json({ code: 404, message: "Input invalid" });
       }
 
       // Process
-      let id_user = req.payload.id_user
-      let data = { id: uuidv4(), skill_name,id_user };
+      let id_user = req.payload.id_user;
+      let data = { id: uuidv4(), skill_name, id_user };
       let result = await inputSkillsModel(data);
       if (result.rowCount === 1) {
         return res
@@ -177,9 +164,7 @@ const skillsController = {
     } catch (err) {
       console.log("inputSkills error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed inputSkills" });
+      return res.status(404).json({ code: 404, message: "Failed inputSkills" });
     }
   },
 
@@ -224,7 +209,7 @@ const skillsController = {
       // Process
       let data = {
         id,
-        skill_name: skill_name || newSkills.skill_name
+        skill_name: skill_name || newSkills.skill_name,
       };
 
       let result = await updateSkillsModel(data);
@@ -238,9 +223,7 @@ const skillsController = {
     } catch (err) {
       console.log("putSkills error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed putSkills" });
+      return res.status(404).json({ code: 404, message: "Failed putSkills" });
     }
   },
 
@@ -287,9 +270,7 @@ const skillsController = {
     } catch (err) {
       console.log("dropSkills error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed dropSkills" });
+      return res.status(404).json({ code: 404, message: "Failed dropSkills" });
     }
   },
 };

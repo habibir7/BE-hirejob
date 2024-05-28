@@ -39,7 +39,7 @@ const searchCityModel = async (data) => {
   let { searchBy, search, sortBy, sort, limit, page } = data;
   console.log("model - searchCityDetail");
   return new Promise((resolve, reject) =>
-  Koneksi.query(
+    Koneksi.query(
       `
 		SELECT 
 			city.id_city,
@@ -66,7 +66,7 @@ const searchCityCountModel = async (data) => {
   let { searchBy, search } = data;
   console.log("model - searchCityCount");
   return new Promise((resolve, reject) =>
-  Koneksi.query(
+    Koneksi.query(
       `SELECT * FROM city WHERE ${searchBy} ILIKE '%${search}%'`,
       (err, res) => {
         if (!err) {
@@ -136,5 +136,5 @@ module.exports = {
   updateCityModel,
   deleteCityModel,
   searchCityModel,
-  searchCityCountModel
+  searchCityCountModel,
 };

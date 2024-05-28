@@ -9,11 +9,9 @@ const {
   inputWorkerModel,
   updateWorkerModel,
   deleteWorkerModel,
-  showWorkerAllDataByIdModel
+  showWorkerAllDataByIdModel,
 } = require("../model/worker");
-const {
-  updateAuthModel
-} = require("../model/auth")
+const { updateAuthModel } = require("../model/auth");
 const cloudinary = require("../config/photo");
 
 const workerController = {
@@ -30,9 +28,7 @@ const workerController = {
     } catch (err) {
       console.log("showWorker error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed showWorker" });
+      return res.status(404).json({ code: 404, message: "Failed showWorker" });
     }
   },
 
@@ -55,7 +51,7 @@ const workerController = {
           message: "Worker not found or id invalid",
         });
       }
-      
+
       return res.status(200).json({
         code: 200,
         message: "Success showWorkerAllDataById",
@@ -146,9 +142,7 @@ const workerController = {
 
       // Process
       let data = { searchBy, search, sortBy, sort, limit, page };
-      let worker = await searchWorkerDetailModel(
-        data
-      );
+      let worker = await searchWorkerDetailModel(data);
       let count = await searchWorkerCountModel(data);
       let total = count.rowCount;
       let result = worker.rows;
@@ -219,15 +213,14 @@ const workerController = {
     } catch (err) {
       console.log("inputWorker error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed inputWorker" });
+      return res.status(404).json({ code: 404, message: "Failed inputWorker" });
     }
   },
 
   updateWorker: async (req, res, next) => {
     try {
-      let { name, province_id, city_id, last_work, bio, photo, job_desk } = req.body;
+      let { name, province_id, city_id, last_work, bio, photo, job_desk } =
+        req.body;
 
       // Check token
       // if (!req.payload) {
@@ -238,7 +231,7 @@ const workerController = {
 
       // Check params
       let id = req.payload.id_user;
-      console.log(id)
+      console.log(id);
 
       // Check Worker
       let Worker = await getWorkerByIdModel(id);
@@ -252,7 +245,7 @@ const workerController = {
 
       let newWorker = resultWorker[0];
 
-      console.log(newWorker)
+      console.log(newWorker);
       // Check if user_id and id token same or not
       // if (req.payload.id !== newWorker.user_id) {
       //     console.log(`id_token = ${req.payload.id}`)
@@ -271,10 +264,10 @@ const workerController = {
         name: name || newWorker.name,
         id_user: newWorker.user_id,
         email: newWorker.email,
-        phone: newWorker.phone
+        phone: newWorker.phone,
       };
 
-      console.log(data)
+      console.log(data);
       // Check & update with photo
       console.log("photo");
       console.log(req.file);
@@ -306,8 +299,8 @@ const workerController = {
         // Process
         data.photo = imageUpload.secure_url;
         let result = await updateWorkerModel(data);
-        let resultauth = await updateAuthModel(data)
-        if (result.rowCount === 1 & resultauth.rowCount === 1) {
+        let resultauth = await updateAuthModel(data);
+        if ((result.rowCount === 1) & (resultauth.rowCount === 1)) {
           return res
             .status(200)
             .json({ code: 200, message: "Success update data" });
@@ -326,9 +319,9 @@ const workerController = {
         // Process
         data.photo = newWorker.photo;
         let result = await updateWorkerModel(data);
-        let resultauth = await updateAuthModel(data)
-        console.log(result.rowCount)
-        console.log(resultauth.rowCount)
+        let resultauth = await updateAuthModel(data);
+        console.log(result.rowCount);
+        console.log(resultauth.rowCount);
         if (result.rowCount === 1 || resultauth.rowCount === 1) {
           return res
             .status(200)
@@ -337,21 +330,10 @@ const workerController = {
       }
 
       return res.status(404).json({ code: 404, message: "Failed update data" });
-
-      let result = await updateWorkerModel(data);
-      if (result.rowCount === 1) {
-        return res
-          .status(200)
-          .json({ code: 200, message: "Success update data" });
-      }
-
-      return res.status(401).json({ code: 404, message: "Failed update data" });
     } catch (err) {
       console.log("putWorker error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed putWorker" });
+      return res.status(404).json({ code: 404, message: "Failed putWorker" });
     }
   },
 
@@ -398,9 +380,7 @@ const workerController = {
     } catch (err) {
       console.log("dropWorker error");
       console.log(err);
-      return res
-        .status(404)
-        .json({ code: 404, message: "Failed dropWorker" });
+      return res.status(404).json({ code: 404, message: "Failed dropWorker" });
     }
   },
 };

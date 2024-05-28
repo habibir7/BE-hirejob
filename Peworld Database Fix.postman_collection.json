@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5fc44847-5ba2-4da8-8048-21efa90cb84e",
-		"name": "Peworld Database",
+		"_postman_id": "004b4d2e-175f-46b8-bf49-085cfaf214c9",
+		"name": "Peworld Database Fix",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "32908400"
+		"_exporter_id": "33167825"
 	},
 	"item": [
 		{
@@ -38,7 +38,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "muhabbymulyalgr46@gmail.com",
+									"value": "muhabbymulya94@gmail.com",
 									"type": "text"
 								},
 								{
@@ -58,8 +58,18 @@
 								},
 								{
 									"key": "role",
-									"value": "worker",
+									"value": "recruiter",
 									"description": "worker / recruiter",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "Teste",
+									"type": "text"
+								},
+								{
+									"key": "position",
+									"value": "Test",
 									"type": "text"
 								}
 							]
@@ -89,12 +99,12 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "muhabbymulyalgr46@gmail.com",
+									"value": "scarlett.allen@example.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "muhabby123",
+									"value": "scarlettallen",
 									"type": "text"
 								}
 							]
@@ -255,7 +265,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/recruiter/b24f9b0e-54a2-462f-add9-1e7f40d2089f",
+							"raw": "http://localhost:3000/recruiter/47d0cbe6-f2d1-48a2-a45c-41594def4b0c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -263,7 +273,7 @@
 							"port": "3000",
 							"path": [
 								"recruiter",
-								"b24f9b0e-54a2-462f-add9-1e7f40d2089f"
+								"47d0cbe6-f2d1-48a2-a45c-41594def4b0c"
 							]
 						}
 					},
@@ -272,6 +282,16 @@
 				{
 					"name": "UPDATE Recruiter",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiNDdkMGNiZTYtZjJkMS00OGEyLWE0NWMtNDE1OTRkZWY0YjBjIiwiZW1haWwiOiJtdWhhYmJ5bXVseWE5NEBnbWFpbC5jb20iLCJuYW1lIjoiTXVoYWJieSIsInBob25lIjoiMDg1MzEwMDE4OTEiLCJwb3NpdGlvbiI6IlRlc3QiLCJyb2xlIjoicmVjcnVpdGVyIiwib3RwIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNC0wNC0yMlQwMDo0NzowOS41NTRaIiwidXBkYXRlZF9hdCI6bnVsbCwidmVyaWZ5b3RwIjoiYmQ5ZDMzY2ItNDRmZi00OTFlLWE2ZmUtZTZjOTRhYTRkMGZkIiwiaXN2ZXJpZnkiOnRydWUsImlhdCI6MTcxMzc0MzI1OCwiZXhwIjoxNzEzODI5NjU4fQ.uNL74JSPO7noYD7uRPBrhZndN3LhqF82evYHUjtwzqQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -279,53 +299,67 @@
 							"formdata": [
 								{
 									"key": "company_name",
-									"value": "",
-									"type": "text"
+									"value": "aaaa",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "company_field",
-									"value": "",
-									"type": "text"
+									"value": "bbbb",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "company_info",
-									"value": "",
-									"type": "text"
+									"value": "cccc",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "email",
-									"value": "",
+									"value": "muhabbymulya@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "company_email",
-									"value": "",
-									"type": "text"
+									"value": "ddd",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "company_phone",
-									"value": "",
-									"type": "text"
+									"value": "eee",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "city_id",
 									"value": "1",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "province_id",
 									"value": "1",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "photo",
 									"type": "file",
-									"src": "/C:/Users/muhab/Downloads/sate.jpg"
+									"src": "/C:/Users/muhab/Downloads/tahu goreng.jpg",
+									"disabled": true
+								},
+								{
+									"key": "linkedin",
+									"value": "linkedin",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/recruiter/c10f9786-aca8-476f-98fe-275d5735d285",
+							"raw": "http://localhost:3000/recruiter/47d0cbe6-f2d1-48a2-a45c-41594def4b0c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -333,7 +367,7 @@
 							"port": "3000",
 							"path": [
 								"recruiter",
-								"c10f9786-aca8-476f-98fe-275d5735d285"
+								"47d0cbe6-f2d1-48a2-a45c-41594def4b0c"
 							]
 						}
 					},
@@ -489,7 +523,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/worker/all/a1260e2f-fa0f-4d25-9b4d-96bde97af4c9",
+							"raw": "http://localhost:3000/worker/all/3eba4f69-1801-4cba-94b6-09530413892a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -498,7 +532,7 @@
 							"path": [
 								"worker",
 								"all",
-								"a1260e2f-fa0f-4d25-9b4d-96bde97af4c9"
+								"3eba4f69-1801-4cba-94b6-09530413892a"
 							]
 						}
 					},
@@ -510,7 +544,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/worker/a1260e2f-fa0f-4d25-9b4d-96bde97af4c9",
+							"raw": "http://localhost:3000/worker/4c8bdfeb-30d7-4449-90ee-a4294536f680",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -518,7 +552,7 @@
 							"port": "3000",
 							"path": [
 								"worker",
-								"a1260e2f-fa0f-4d25-9b4d-96bde97af4c9"
+								"4c8bdfeb-30d7-4449-90ee-a4294536f680"
 							]
 						}
 					},
@@ -578,7 +612,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/worker/detail?search=&searchBy=&sortBy=&sort=ASC&limit=&page=1",
+							"raw": "http://localhost:3000/worker/detail?search=Muhabby&searchBy=name&sortBy=&sort=ASC&limit=&page=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -591,11 +625,11 @@
 							"query": [
 								{
 									"key": "search",
-									"value": ""
+									"value": "Muhabby"
 								},
 								{
 									"key": "searchBy",
-									"value": "",
+									"value": "name",
 									"description": "name | skill_name"
 								},
 								{
@@ -672,14 +706,7 @@
 					"name": "Update Worker",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiMDIyMDM0NTYtZDEyMy00ZDM5LThiY2YtM2NmMjE3NDVjYWRiIiwiZW1haWwiOiJiZW5qYW1pbi50aG9tYXNAZXhhbXBsZS5jb20iLCJuYW1lIjoiQmVuamFtaW4gVGhvbWFzIiwicGhvbmUiOiI5MDEyMzQ1Njc4IiwicG9zaXRpb24iOiJ1bmRlZmluZWQiLCJyb2xlIjoid29ya2VyIiwib3RwIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNC0wNC0yMFQxNTo0MTozNi40MzlaIiwidXBkYXRlZF9hdCI6bnVsbCwidmVyaWZ5b3RwIjoiZWJkNTU0ZmItOGNmMi00MDNjLWE3MTctYmQ1OGFjMGQwN2VjIiwiaXN2ZXJpZnkiOnRydWUsImlhdCI6MTcxMzY4NjEyNCwiZXhwIjoxNzEzNzcyNTI0fQ.qulK9JpBp5iHSacFDUAkQoiz7VPAJP-iWsQG6MS1pu0",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "PUT",
 						"header": [],
@@ -693,7 +720,7 @@
 								},
 								{
 									"key": "job_desk",
-									"value": "",
+									"value": "Developer Profesional",
 									"type": "text"
 								},
 								{
@@ -708,7 +735,7 @@
 								},
 								{
 									"key": "last_work",
-									"value": "",
+									"value": "Desain Grafis",
 									"type": "text"
 								},
 								{
@@ -719,12 +746,12 @@
 								{
 									"key": "photo",
 									"type": "file",
-									"src": []
+									"src": "/C:/Users/muhab/Downloads/foto1jpeg.jpeg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/worker/03737a33-642b-4354-949d-9a352def54a4",
+							"raw": "http://localhost:3000/worker/df35b07c-c3ea-4e27-89be-932f32d4d56d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -732,7 +759,7 @@
 							"port": "3000",
 							"path": [
 								"worker",
-								"03737a33-642b-4354-949d-9a352def54a4"
+								"df35b07c-c3ea-4e27-89be-932f32d4d56d"
 							]
 						}
 					},
@@ -851,7 +878,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/skills/c8e8f0b3-506a-4f66-99a0-c8b84f601002",
+							"raw": "http://localhost:3000/skills/c8a3bfa6-e52c-4102-8fd8-361c760d11f9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -859,7 +886,7 @@
 							"port": "3000",
 							"path": [
 								"skills",
-								"c8e8f0b3-506a-4f66-99a0-c8b84f601002"
+								"c8a3bfa6-e52c-4102-8fd8-361c760d11f9"
 							]
 						}
 					},
@@ -975,20 +1002,21 @@
 							"urlencoded": [
 								{
 									"key": "skill_name",
-									"value": "Test2",
+									"value": "PHP, Javascript, React, Tailwind",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/skills",
+							"raw": "http://localhost:3000/skills/39f0ff93-0d73-4d1d-aed3-b42900a5c3f6",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"skills"
+								"skills",
+								"39f0ff93-0d73-4d1d-aed3-b42900a5c3f6"
 							]
 						}
 					},
@@ -1007,13 +1035,13 @@
 							"urlencoded": [
 								{
 									"key": "skill_name",
-									"value": "Coding",
+									"value": "PHP, Javascript, React, Tailwind",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/skills/c8e8f0b3-506a-4f66-99a0-c8b84f601002",
+							"raw": "http://localhost:3000/skills/39f0ff93-0d73-4d1d-aed3-b42900a5c3f6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1021,7 +1049,7 @@
 							"port": "3000",
 							"path": [
 								"skills",
-								"c8e8f0b3-506a-4f66-99a0-c8b84f601002"
+								"39f0ff93-0d73-4d1d-aed3-b42900a5c3f6"
 							]
 						}
 					},
@@ -1140,7 +1168,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/workExperience/16bd4015-4210-4e74-a640-6e853fae843c",
+							"raw": "http://localhost:3000/workExperience/3eba4f69-1801-4cba-94b6-09530413892a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1148,7 +1176,7 @@
 							"port": "3000",
 							"path": [
 								"workExperience",
-								"16bd4015-4210-4e74-a640-6e853fae843c"
+								"3eba4f69-1801-4cba-94b6-09530413892a"
 							]
 						}
 					},
@@ -1260,46 +1288,50 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+							"mode": "formdata",
+							"formdata": [
 								{
 									"key": "position",
-									"value": "Karyawan baru",
+									"value": "Web Developer",
 									"type": "text"
 								},
 								{
 									"key": "company_name",
-									"value": "PT A",
+									"value": "PT Maju Mundur Sejahtera",
 									"type": "text"
 								},
 								{
 									"key": "working_start_at",
-									"value": "10-12-2001",
-									"description": "Format: DD-MM-YYYY  |  12-12-2012",
+									"value": "01-01-2023",
 									"type": "text"
 								},
 								{
 									"key": "working_end_at",
-									"value": "10-12-2010",
-									"description": "Format: DD-MM-YYYY  |  12-12-2012",
+									"value": "12-12-2023",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Singkat",
+									"value": "Membuat web mulai dari back-end hingga front-end",
 									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/muhab/Downloads/1.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/workExperience",
+							"raw": "http://localhost:3000/workExperience/f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"workExperience"
+								"workExperience",
+								"f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31"
 							]
 						}
 					},
@@ -1473,7 +1505,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/portofolio/3cbd9694-7f32-4a92-8f51-02ac6126cc8d",
+							"raw": "http://localhost:3000/portofolio/8ab6c714-b29e-4eba-a687-72c8183ff0cf",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1481,7 +1513,7 @@
 							"port": "3000",
 							"path": [
 								"portofolio",
-								"3cbd9694-7f32-4a92-8f51-02ac6126cc8d"
+								"8ab6c714-b29e-4eba-a687-72c8183ff0cf"
 							]
 						}
 					},
@@ -1596,31 +1628,37 @@
 							"mode": "formdata",
 							"formdata": [
 								{
+									"key": "porto_name",
+									"value": "Hire Job - Professional Developer Seeker",
+									"type": "text"
+								},
+								{
 									"key": "link_repo",
-									"value": "link",
+									"value": "https://github.com/",
 									"type": "text"
 								},
 								{
 									"key": "type",
-									"value": "aaa",
+									"value": "Web",
 									"type": "text"
 								},
 								{
 									"key": "photo",
 									"type": "file",
-									"src": "/C:/Users/muhab/Downloads/sate.jpg"
+									"src": "/C:/Users/muhab/Downloads/2.png"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/portofolio",
+							"raw": "http://localhost:3000/portofolio/f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"portofolio"
+								"portofolio",
+								"f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31"
 							]
 						}
 					},
@@ -1630,13 +1668,25 @@
 					"name": "Update Portofolio",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiYTEyNjBlMmYtZmEwZi00ZDI1LTliNGQtOTZiZGU5N2FmNGM5IiwiZW1haWwiOiJtdWhhYmJ5bXVseWFAZ21haWwuY29tIiwibmFtZSI6Ik11aGFiYnkiLCJwaG9uZSI6IjA4NTMxMDAxODkxIiwicG9zaXRpb24iOiJ1bmRlZmluZWQiLCJyb2xlIjoid29ya2VyIiwib3RwIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNC0wNC0xOFQwNDoyODo0MC40MDlaIiwidXBkYXRlZF9hdCI6bnVsbCwidmVyaWZ5b3RwIjoiNjhmYzViMGItNzA1Zi00NDQ1LTk5Y2MtNDQxNTk3ZDFhOWUwIiwiaXN2ZXJpZnkiOnRydWUsImlhdCI6MTcxMzcxNjc4OCwiZXhwIjoxNzEzODAzMTg4fQ.xNq0sC8KXN8sHOGNoEiEIb8gx0E5SAwRg4Ce_ILTaGU",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
+								{
+									"key": "porto_name",
+									"value": "porto name baru",
+									"type": "text"
+								},
 								{
 									"key": "link_repo",
 									"value": "Sate",
@@ -1655,7 +1705,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/portofolio/3cbd9694-7f32-4a92-8f51-02ac6126cc8d",
+							"raw": "http://localhost:3000/portofolio/2dc21d88-3c5f-479c-9ea4-1600570debd2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1663,7 +1713,7 @@
 							"port": "3000",
 							"path": [
 								"portofolio",
-								"3cbd9694-7f32-4a92-8f51-02ac6126cc8d"
+								"2dc21d88-3c5f-479c-9ea4-1600570debd2"
 							]
 						}
 					},
@@ -1782,7 +1832,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/city/50",
+							"raw": "http://localhost:3000/city/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1790,7 +1840,7 @@
 							"port": "3000",
 							"path": [
 								"city",
-								"50"
+								"1"
 							]
 						}
 					},
@@ -1931,49 +1981,6 @@
 					"response": []
 				},
 				{
-					"name": "Update CIty",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "link_repo",
-									"value": "Link repo baru",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "Mobile",
-									"type": "text"
-								},
-								{
-									"key": "photo",
-									"value": "",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:3000/portofolio/aeea6482-fa74-47ed-b7db-8a2ef49930d5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"portofolio",
-								"aeea6482-fa74-47ed-b7db-8a2ef49930d5"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Delete CIty",
 					"request": {
 						"auth": {
@@ -2086,7 +2093,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/contact/f3452635-9060-4cb1-ba80-f22ee1f9323a",
+							"raw": "http://localhost:3000/contact/152a83c4-c1ce-409d-be58-3cac9f22be12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2094,7 +2101,7 @@
 							"port": "3000",
 							"path": [
 								"contact",
-								"f3452635-9060-4cb1-ba80-f22ee1f9323a"
+								"152a83c4-c1ce-409d-be58-3cac9f22be12"
 							]
 						}
 					},
@@ -2210,35 +2217,36 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "@gmail",
+									"value": "email@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "instagram",
-									"value": "link",
+									"value": "@instagram",
 									"type": "text"
 								},
 								{
 									"key": "github",
-									"value": "link",
+									"value": "@github",
 									"type": "text"
 								},
 								{
 									"key": "gitlab",
-									"value": "link",
+									"value": "@gitlab",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/contact",
+							"raw": "http://localhost:3000/contact/f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"contact"
+								"contact",
+								"f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31"
 							]
 						}
 					},
@@ -2301,7 +2309,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/contact/88db878e-fe44-4ec5-9685-cfbb61b8c78a",
+							"raw": "http://localhost:3000/contact/152a83c4-c1ce-409d-be58-3cac9f22be12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2309,7 +2317,7 @@
 							"port": "3000",
 							"path": [
 								"contact",
-								"88db878e-fe44-4ec5-9685-cfbb61b8c78a"
+								"152a83c4-c1ce-409d-be58-3cac9f22be12"
 							]
 						}
 					},

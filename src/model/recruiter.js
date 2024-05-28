@@ -17,23 +17,20 @@ const Pool = require("../config/db");
 
 const getRecuiterModel = async () => {
   return new Promise((resolve, reject) => {
-    Pool.query(
-      "SELECT * FROM detail_profile_recruiter",
-      (err, res) => {
-        if (!err) {
-          return resolve(res);
-        } else {
-          reject(err);
-        }
+    Pool.query("SELECT * FROM detail_profile_recruiter", (err, res) => {
+      if (!err) {
+        return resolve(res);
+      } else {
+        reject(err);
       }
-    );
+    });
   });
 };
 
 // const getRecuiterByIdModel = async (id_user) => {
 //   return new Promise((resolve, reject) => {
 //     Pool.query(
-//       `SELECT 
+//       `SELECT
 //           user_auth.name,
 //           user_auth.position,
 //           user_auth.email,
@@ -128,7 +125,7 @@ const updateRecruiterModel = async (data) => {
     province_id,
     city_id,
     photo,
-    linkedin
+    linkedin,
   } = data;
   return new Promise((resolve, reject) =>
     Pool.query(

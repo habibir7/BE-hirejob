@@ -8,8 +8,6 @@ const {
   searchCityModel,
   searchCityCountModel,
 } = require("../model/city");
-const { search } = require("../router");
-const { Protect } = require("../middleware/private");
 
 const CityController = {
   getCityById: async (req, res, next) => {
@@ -93,9 +91,7 @@ const CityController = {
       // Check sortBy
       let sortBy = "city_name";
       if (req.query.sortBy) {
-        if (
-          req.query.sortBy === "city_name"
-        ) {
+        if (req.query.sortBy === "city_name") {
           sortBy = req.query.sortBy;
         }
       }

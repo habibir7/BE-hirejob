@@ -26,7 +26,7 @@ const showWorkerModel = async () => {
 
 const showWorkerByIdModel = async (id) => {
   console.log("model - showWorkerById");
-  console.log(id)
+  console.log(id);
   return new Promise((resolve, reject) =>
     Pool.query(
       `
@@ -268,5 +268,5 @@ module.exports = {
   inputWorkerModel,
   updateWorkerModel,
   deleteWorkerModel,
-  showWorkerAllDataByIdModel
+  showWorkerAllDataByIdModel,
 };

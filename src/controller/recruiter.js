@@ -4,9 +4,7 @@ const {
   getRecuiterByIdModel,
   updateRecruiterModel,
 } = require("../model/recruiter");
-const {
-  updateAuthRecruiterModel
-} = require("../model/auth")
+const { updateAuthRecruiterModel } = require("../model/auth");
 const cloudinary = require("../config/photo");
 
 const recuiterController = {
@@ -21,6 +19,7 @@ const recuiterController = {
       return res.status(404).json({ message: "gagal getUsers controller" });
     }
   },
+
   getRecruiterByID: async (req, res, next) => {
     try {
       let { id_user } = req.params;
@@ -39,10 +38,11 @@ const recuiterController = {
       return res.status(404).json({ message: "gagal getUsers controller" });
     }
   },
+
   updateRecruiter: async (req, res, next) => {
     try {
-      let id_user = req.payload.id_user
-      console.log(req.payload.id_user)
+      let id_user = req.payload.id_user;
+      console.log(req.payload.id_user);
       let {
         company_name,
         company_field,
@@ -53,7 +53,7 @@ const recuiterController = {
         city_id,
         province_id,
         photo,
-        linkedin
+        linkedin,
       } = req.body;
       //   let recruiter = await getRecuiterByIdModel(id_user);
       let recruiter = await getRecuiterByIdModel(id_user);
@@ -64,7 +64,7 @@ const recuiterController = {
           .json({ message: "recruiter not found or id invalid" });
       }
       let Recruiter = resultRecruiter[0];
-      console.log(Recruiter)
+      console.log(Recruiter);
       let data = {
         id_user,
         company_name: company_name || Recruiter.company_name,
@@ -111,7 +111,7 @@ const recuiterController = {
         // Process
         data.photo = imageUpload.secure_url;
         let result = await updateRecruiterModel(data);
-        let resultauth = await updateAuthRecruiterModel(data)
+        let resultauth = await updateAuthRecruiterModel(data);
         if (result.rowCount === 1 && resultauth.rowCount === 1) {
           return res
             .status(200)
@@ -131,8 +131,8 @@ const recuiterController = {
         // Process
         data.photo = Recruiter.photo;
         let result = await updateRecruiterModel(data);
-        let resultauth = await updateAuthRecruiterModel(data)
-        if (result.rowCount === 1  && resultauth.rowCount === 1) {
+        let resultauth = await updateAuthRecruiterModel(data);
+        if (result.rowCount === 1 && resultauth.rowCount === 1) {
           return res
             .status(200)
             .json({ code: 200, message: "Success update data" });

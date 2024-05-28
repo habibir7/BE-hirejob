@@ -49,14 +49,17 @@ const showContactByIdModel = async (id_user) => {
 const getContactByIdModel = async (id_user) => {
   console.log("model - getContactById");
   return new Promise((resolve, reject) =>
-    Pool.query(`SELECT * FROM contact WHERE id_user = '${id_user}'`, (err, res) => {
-      if (!err) {
-        return resolve(res);
-      } else {
-        console.log("error db -", err);
-        reject(err);
+    Pool.query(
+      `SELECT * FROM contact WHERE id_user = '${id_user}'`,
+      (err, res) => {
+        if (!err) {
+          return resolve(res);
+        } else {
+          console.log("error db -", err);
+          reject(err);
+        }
       }
-    })
+    )
   );
 };
 

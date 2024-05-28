@@ -51,14 +51,17 @@ const showWorkExperienceByIdModel = async (user_id) => {
 const getWorkExperienceByIdModel = async (id) => {
   console.log("model - getWorkExperienceById");
   return new Promise((resolve, reject) =>
-    Pool.query(`SELECT * FROM work_experience WHERE id = '${id}'`, (err, res) => {
-      if (!err) {
-        return resolve(res);
-      } else {
-        console.log("error db -", err);
-        reject(err);
+    Pool.query(
+      `SELECT * FROM work_experience WHERE id = '${id}'`,
+      (err, res) => {
+        if (!err) {
+          return resolve(res);
+        } else {
+          console.log("error db -", err);
+          reject(err);
+        }
       }
-    })
+    )
   );
 };
 
@@ -107,7 +110,16 @@ const searchWorkExperienceCountModel = async (data) => {
 
 const inputWorkExperienceModel = async (data) => {
   console.log("model - inputWorkExperience");
-  let { id, position, company_name, working_start_at, working_end_at, description, id_user, photo } = data;
+  let {
+    id,
+    position,
+    company_name,
+    working_start_at,
+    working_end_at,
+    description,
+    id_user,
+    photo,
+  } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -139,7 +151,15 @@ const inputWorkExperienceModel = async (data) => {
 
 const updateWorkExperienceModel = async (data) => {
   console.log("model - updateWorkExperience");
-  let { id, position, company_name, working_start_at, working_end_at, description, photo} = data;
+  let {
+    id,
+    position,
+    company_name,
+    working_start_at,
+    working_end_at,
+    description,
+    photo,
+  } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(

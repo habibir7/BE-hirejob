@@ -8,16 +8,15 @@ const {
   createOtpAuthModel,
   updatePasswordAuthModel,
   nullOtpAuthModel,
-  activatedUser
+  activatedUser,
 } = require("../model/auth");
-const {
-  createRecruiterModel
-} = require("../model/recruiter")
-const {
-  inputWorkerModel
-} = require("../model/worker");
+const { createRecruiterModel } = require("../model/recruiter");
+const { inputWorkerModel } = require("../model/worker");
 const { GenerateToken } = require("../helper/token");
-const { sendEmailActivated,sendEmailActivatedotp } = require("../helper/email");
+const {
+  sendEmailActivated,
+  sendEmailActivatedotp,
+} = require("../helper/email");
 
 const AuthController = {
   login: async (req, res, next) => {
@@ -40,13 +39,15 @@ const AuthController = {
     if (!isVerify) {
       return res.status(401).json({ status: 401, messages: "password wrong" });
     }
-    if(!userData.isverify){
+    if (!userData.isverify) {
       return res
-      .status(401)
-      .json({ status: 401, messages: "account not verified, please check your email" });
+        .status(401)
+        .json({
+          status: 401,
+          messages: "account not verified, please check your email",
+        });
     }
 
-    
     console.log(userData);
 
     delete userData.password;
@@ -56,6 +57,7 @@ const AuthController = {
       .status(201)
       .json({ status: 201, messages: "login success", token, userData });
   },
+
   getAuth: async (req, res, next) => {
     try {
       let users = await getAuthModel();
@@ -67,9 +69,11 @@ const AuthController = {
       return res.status(404).json({ message: "gagal getUsers controller" });
     }
   },
+
   createAuth: async (req, res, next) => {
     try {
-      let { email, password, name, phone, role, position, company_name } = req.body;
+      let { email, password, name, phone, role, position, company_name } =
+        req.body;
       if (
         !email ||
         email === "" ||
@@ -86,16 +90,16 @@ const AuthController = {
           .status(401)
           .json({ code: 401, message: "Harap masukkan data dengan lengkap" });
       }
-      if(role == "recruiter"){
-        if(
+      if (role == "recruiter") {
+        if (
           !company_name ||
           company_name == "" ||
           !position ||
           position == ""
-        ){
+        ) {
           return res
-          .status(401)
-          .json({ code: 401, message: "Harap masukkan data dengan lengkap" });
+            .status(401)
+            .json({ code: 401, message: "Harap masukkan data dengan lengkap" });
         }
       }
       password = await argon2.hash(password);
@@ -107,41 +111,48 @@ const AuthController = {
           message: "Email sudah terdaftar coba masukkan email lain",
         });
       }
-      let data = { id_user: uuidv4(), email, password, name, phone, role , verifyotp: uuidv4()};
+      let data = {
+        id_user: uuidv4(),
+        email,
+        password,
+        name,
+        phone,
+        role,
+        verifyotp: uuidv4(),
+      };
 
+      let url = `https://hirejob-khaki.vercel.app/auth/activated/${data.id_user}/${data.verifyotp}`;
 
-      let url = `https://hirejob-khaki.vercel.app/auth/activated/${data.id_user}/${data.verifyotp}`
+      let sendOTP = await sendEmailActivated(email, url, name);
 
-      let sendOTP = await sendEmailActivated(email,url,name)
-
-        if(!sendOTP){
-            return res
-            .status(401)
-            .json({ status: 401, messages: "register failed when send email" });
-        }
-
-      if(role == "recruiter"){
-        data = {id_recruiter:uuidv4(),...data,company_name,position}
-        let resultauth = await createAuthModel(data);
-        let result = await createRecruiterModel(data)
-        if (result.rowCount === 1 && resultauth.rowCount === 1) {
-          return res
-            .status(201)
-            .json({ code: 201, message: "Data berhasil Di input" });
-        }
-      }else if(role == "worker"){
-        data = {id:uuidv4(),...data}
-        let resultauth = await createAuthModel(data);
-        let result = await inputWorkerModel(data)
-        if (result.rowCount === 1 && resultauth.rowCount === 1) {
-          return res
-            .status(201)
-            .json({ code: 201, message: "Data berhasil Di input" });
-        }
-      }else{
+      if (!sendOTP) {
         return res
-        .status(401)
-        .json({ code: 401, message: "Maaf role tidak ditemukan" });
+          .status(401)
+          .json({ status: 401, messages: "register failed when send email" });
+      }
+
+      if (role == "recruiter") {
+        data = { id_recruiter: uuidv4(), ...data, company_name, position };
+        let resultauth = await createAuthModel(data);
+        let result = await createRecruiterModel(data);
+        if (result.rowCount === 1 && resultauth.rowCount === 1) {
+          return res
+            .status(201)
+            .json({ code: 201, message: "Data berhasil Di input" });
+        }
+      } else if (role == "worker") {
+        data = { id: uuidv4(), ...data };
+        let resultauth = await createAuthModel(data);
+        let result = await inputWorkerModel(data);
+        if (result.rowCount === 1 && resultauth.rowCount === 1) {
+          return res
+            .status(201)
+            .json({ code: 201, message: "Data berhasil Di input" });
+        }
+      } else {
+        return res
+          .status(401)
+          .json({ code: 401, message: "Maaf role tidak ditemukan" });
       }
       return res
         .status(401)
@@ -154,6 +165,7 @@ const AuthController = {
         .json({ code: 404, message: "Register Controller Error" });
     }
   },
+
   requestOTP: async (req, res, next) => {
     try {
       let { email } = req.body;
@@ -196,13 +208,14 @@ const AuthController = {
 
       return res
         .status(201)
-        .json({ code: 201, message: "Otp berhasil Di kirim" , email});
+        .json({ code: 201, message: "Otp berhasil Di kirim", email });
     } catch (err) {
       console.log("OTP Error");
       console.log(err);
       return res.status(404).json({ code: 404, message: "OTP request Error" });
     }
   },
+
   otpLogin: async (req, res, next) => {
     try {
       let { email, otp } = req.body;
@@ -235,6 +248,7 @@ const AuthController = {
         .json({ status: 201, messages: "OTP success", token, userData });
     } catch (err) {}
   },
+
   resetPassword: async (req, res, next) => {
     try {
       let { password } = req.body;
@@ -244,13 +258,13 @@ const AuthController = {
           messages: "new password is required",
         });
       }
-      email = req.payload.email
+      email = req.payload.email;
       password = await argon2.hash(password);
       let result = await updatePasswordAuthModel(password, req.payload.id_user);
       if (result.rowCount === 1) {
         return res
           .status(201)
-          .json({ code: 201, message: "Data berhasil Di input" ,email});
+          .json({ code: 201, message: "Data berhasil Di input", email });
       }
       return res
         .status(404)
@@ -263,39 +277,36 @@ const AuthController = {
         .json({ code: 404, message: "Register Controller Error" });
     }
   },
+  
   verification: async (req, res, next) => {
     let { id_user, otp } = req.params;
 
     let user = await getAuthByIdModel(id_user);
     if (user.rowCount === 0) {
-        return res
-            .status(404)
-            .json({ status: 404, messages: "email not register" });
+      return res
+        .status(404)
+        .json({ status: 404, messages: "email not register" });
     }
     let userData = user.rows[0];
 
     if (otp !== userData.verifyotp) {
-        return res
-            .status(404)
-            .json({ status: 404, messages: "otp invalid" });
+      return res.status(404).json({ status: 404, messages: "otp invalid" });
     }
 
     let activated = await activatedUser(id_user);
 
     if (!activated) {
-        return res
-            .status(404)
-            .json({ status: 404, messages: "account failed verification" });
+      return res
+        .status(404)
+        .json({ status: 404, messages: "account failed verification" });
     }
 
-    if(userData.role === "worker")
-    {
-      return res.redirect('https://hirejob-project.vercel.app/login/worker')
-    }else if(userData.role === "recruiter")
-    {
-      return res.redirect('https://hirejob-project.vercel.app/login/recruiter')
+    if (userData.role === "worker") {
+      return res.redirect("https://hirejob-project.vercel.app/login/worker");
+    } else if (userData.role === "recruiter") {
+      return res.redirect("https://hirejob-project.vercel.app/login/recruiter");
     }
-}
+  },
 };
 
 module.exports = AuthController;

@@ -132,7 +132,7 @@ const inputSkillsModel = async (data) => {
 
 const updateSkillsModel = async (data) => {
   console.log("model - updateSkills");
-  let { id, skill_name} = data;
+  let { id, skill_name } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
