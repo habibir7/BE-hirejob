@@ -255,7 +255,6 @@ const workerController = {
       // Process
       let data = {
         id,
-        province_id: province_id || newWorker.province_id,
         city_id: city_id || newWorker.city_id,
         last_work: last_work || newWorker.last_work,
         bio: bio || newWorker.bio,

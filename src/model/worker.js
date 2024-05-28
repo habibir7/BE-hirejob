@@ -217,15 +217,14 @@ const inputWorkerModel = async (data) => {
 
 const updateWorkerModel = async (data) => {
   console.log("model - updateWorker");
-  let { id, province_id, city_id, last_work, bio, photo, job_desk } = data;
+  let { id, city_id, last_work, bio, photo, job_desk } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
       `
       UPDATE 
           detail_profile_worker 
-      SET 
-          province_id='${province_id}', 
+      SET  
           city_id='${city_id}', 
           last_work='${last_work}', 
           bio='${bio}',
