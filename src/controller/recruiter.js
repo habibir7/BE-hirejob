@@ -31,7 +31,7 @@ const recuiterController = {
 
       let users = await getRecuiterByIdModel(id_user);
       let result = users.rows;
-      return res.status(200).json({ message: "sukses getUsers", data: result });
+      return res.status(200).json({ message: "sukses getUsers", data: result[0] });
     } catch (err) {
       console.log("users controller error");
       console.log(err);
