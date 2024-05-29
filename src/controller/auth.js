@@ -133,7 +133,7 @@ const AuthController = {
       }
 
       if (role == "recruiter") {
-        data = { id_recruiter: uuidv4(), ...data, company_name, position, city_id };
+        data = { id_recruiter: uuidv4(), ...data, company_name, position };
         let resultauth = await createAuthModel(data);
         let result = await createRecruiterModel(data);
         if (result.rowCount === 1 && resultauth.rowCount === 1) {

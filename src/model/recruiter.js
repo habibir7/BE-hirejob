@@ -76,7 +76,7 @@ const createRecruiterModel = async (data) => {
   let { id_recruiter, company_name, id_user, city_id } = data;
   return new Promise((resolve, reject) =>
     Pool.query(
-      `INSERT INTO detail_profile_recruiter (id_recruiter, company_name, id_user, city_id, created_at, updated_at) VALUES ('${id_recruiter}', '${company_name}', '${city_id}', '${id_user}', NOW(), NULL)`,
+      `INSERT INTO detail_profile_recruiter (id_recruiter, company_name, id_user, city_id, created_at, updated_at) VALUES ('${id_recruiter}', '${company_name}', '${id_user}', '${city_id}', NOW(), NULL)`,
       (err, res) => {
         if (!err) {
           return resolve(res);
