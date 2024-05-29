@@ -6,14 +6,24 @@ const Router = require("./src/router");
 const app = express();
 const port = 3000;
 
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-    // access-control-allow-credentials: true,
-    optionSuccessStatus: 200,
-  })
-);
+// app.use(
+//   cors({
+// origin: "*",
+// credentials: true,
+// // access-control-allow-credentials: true,
+// optionSuccessStatus: 200,
+//   })
+// );
+
+const corsOption = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOption));
+
+app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -26,5 +36,5 @@ app.get("/", (req, res) => {
 app.use(Router);
 
 app.listen(port, () => {
-  console.log(`Program berjalan di port:${port}, buka di localhost:${port}`);
+  console.log(`Program berjalan di port:${port}, buka di http://localhost:${port}`);
 });
