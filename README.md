@@ -127,7 +127,7 @@ Contributions are what make the open source community such an amazing place to b
         <a href="https://github.com/muhabby">
           <img width="100" src="https://avatars.githubusercontent.com/u/94688759?v=4" alt="Muhabby"><br/>
           <sub><b>Muhabby Mulya</b></sub> <br/>
-          <p>Project Manager | Back End Web Developer</p>
+          <h6>Project Manager | Back End Web Developer</h6>
         </a>
       </td>
       <td align="center">
