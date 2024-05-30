@@ -127,28 +127,28 @@ Contributions are what make the open source community such an amazing place to b
         <a href="https://github.com/muhabby">
           <img width="100" src="https://avatars.githubusercontent.com/u/94688759?v=4" alt="Muhabby"><br/>
           <sub><b>Muhabby Mulya</b></sub> <br/>
-          <h5>Project Manager | Back End Web Developer</h5>
+          <p>Project Manager | Back End Web Developer</p>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/habibir7">
           <img width="100" src="https://avatars.githubusercontent.com/u/45602586?v=4" alt="Habibi"><br/>
           <sub><b>Muhammad Habibi Ramadhan</b></sub> <br/>
-          <sub>Leader of Back End Web Developer</sub>
+          <h6>Leader of Back End Web Developer</h6>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/rikiprimus">
           <img width="100" src="https://avatars.githubusercontent.com/u/34765525?v=4" alt="Ricky"><br/>
           <sub><b>Ricky Primus Saputra</b></sub> <br/>
-          <sub>Leader of Front End Web Developer</sub>
+          <h6>Leader of Front End Web Developer</h6>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/ekyourkid">
           <img width="100" src="https://avatars.githubusercontent.com/u/57765757?v=4" alt="Rizky"><br/>
           <sub><b>Rizky Syahputra</b></sub> <br/>
-          <sub>Front End Web Developer</sub>
+          <h6>Front End Web Developer</h6>
         </a>
       </td>
     </tr>
