@@ -24,27 +24,27 @@ const AuthController = {
     if (!email || !password || email == "" || password == "") {
       return res.status(401).json({
         status: 401,
-        messages: "email & password is required",
+        messages: "Email & password is required",
       });
     }
     let user = await getAuthByEmailModel(email);
     if (user.rowCount === 0) {
       return res
         .status(401)
-        .json({ status: 401, messages: "email not register" });
+        .json({ status: 401, messages: "Email not register" });
     }
     let userData = user.rows[0];
 
     let isVerify = await argon2.verify(userData.password, password);
     if (!isVerify) {
-      return res.status(401).json({ status: 401, messages: "password wrong" });
+      return res.status(401).json({ status: 401, messages: "Incorrect password" });
     }
     if (!userData.isverify) {
       return res
         .status(401)
         .json({
           status: 401,
-          messages: "account not verified, please check your email",
+          messages: "Account not verified, please check your email",
         });
     }
 
@@ -55,18 +55,18 @@ const AuthController = {
 
     return res
       .status(201)
-      .json({ status: 201, messages: "login success", token, userData });
+      .json({ status: 201, messages: "Login success", token, userData });
   },
 
   getAuth: async (req, res, next) => {
     try {
       let users = await getAuthModel();
       let result = users.rows;
-      return res.status(200).json({ message: "sukses getUsers", data: result });
+      return res.status(200).json({ message: "Success getUsers", data: result });
     } catch (err) {
       console.log("users controller error");
       console.log(err);
-      return res.status(404).json({ message: "gagal getUsers controller" });
+      return res.status(404).json({ message: "Failed getUsers controller" });
     }
   },
 
@@ -88,7 +88,7 @@ const AuthController = {
       ) {
         return res
           .status(401)
-          .json({ code: 401, message: "Harap masukkan data dengan lengkap" });
+          .json({ code: 401, message: "Please fill in all required fields" });
       }
       if (role == "recruiter") {
         if (
@@ -99,7 +99,7 @@ const AuthController = {
         ) {
           return res
             .status(401)
-            .json({ code: 401, message: "Harap masukkan data dengan lengkap" });
+            .json({ code: 401, message: "Please fill in all required fields" });
         }
       }
       password = await argon2.hash(password);
@@ -108,7 +108,7 @@ const AuthController = {
       if (cek.rowCount === 1) {
         return res.status(404).json({
           code: 404,
-          message: "Email sudah terdaftar coba masukkan email lain",
+          message: "Email is already registered, please login",
         });
       }
       let data = {
@@ -129,7 +129,7 @@ const AuthController = {
       if (!sendOTP) {
         return res
           .status(401)
-          .json({ status: 401, messages: "register failed when send email" });
+          .json({ status: 401, messages: "Register failed when send email" });
       }
 
       if (role == "recruiter") {
@@ -139,7 +139,7 @@ const AuthController = {
         if (result.rowCount === 1 && resultauth.rowCount === 1) {
           return res
             .status(201)
-            .json({ code: 201, message: "Data berhasil Di input" });
+            .json({ code: 201, message: "Register success, please login" });
         }
       } else if (role == "worker") {
         data = { id: uuidv4(), ...data };
@@ -148,16 +148,16 @@ const AuthController = {
         if (result.rowCount === 1 && resultauth.rowCount === 1) {
           return res
             .status(201)
-            .json({ code: 201, message: "Data berhasil Di input" });
+            .json({ code: 201, message: "Register success, please login" });
         }
       } else {
         return res
           .status(401)
-          .json({ code: 401, message: "Maaf role tidak ditemukan" });
+          .json({ code: 401, message: "Role not found" });
       }
       return res
         .status(401)
-        .json({ code: 401, message: "Maaf data tidak berhasil Di input" });
+        .json({ code: 401, message: "Data input failed" });
     } catch (err) {
       console.log("Register Error");
       console.log(err);
@@ -173,14 +173,14 @@ const AuthController = {
       if (!email || email == "") {
         return res.status(401).json({
           status: 401,
-          messages: "email is required",
+          messages: "Email is required",
         });
       }
       let user = await getAuthByEmailModel(email);
       if (user.rowCount === 0) {
         return res
           .status(401)
-          .json({ status: 401, messages: "email not register" });
+          .json({ status: 401, messages: "Email not registered" });
       }
 
       let userData = user.rows[0];
@@ -197,19 +197,19 @@ const AuthController = {
       if (!sendOTP) {
         return res
           .status(401)
-          .json({ status: 401, messages: "register failed when send email" });
+          .json({ status: 401, messages: "Register failed when send email" });
       }
 
       let otpStatus = await createOtpAuthModel(otp, userData.id_user);
       if (otpStatus.rowCount === 0) {
         return res
           .status(401)
-          .json({ status: 401, messages: "error Otp create" });
+          .json({ status: 401, messages: "Error create OTP" });
       }
 
       return res
         .status(201)
-        .json({ code: 201, message: "Otp berhasil Di kirim", email });
+        .json({ code: 201, message: "OTP sent successfully", email });
     } catch (err) {
       console.log("OTP Error");
       console.log(err);
@@ -223,20 +223,20 @@ const AuthController = {
       if (!email || email == "" || !otp || otp == "") {
         return res.status(401).json({
           status: 401,
-          messages: "email & OTP is required",
+          messages: "Email & OTP is required",
         });
       }
       let user = await getAuthByEmailModel(email);
       if (user.rowCount === 0) {
         return res
           .status(401)
-          .json({ status: 401, messages: "email not register" });
+          .json({ status: 401, messages: "Email not register" });
       }
 
       let userData = user.rows[0];
       console.log(otp);
       if (userData.otp !== otp) {
-        return res.status(401).json({ status: 401, messages: "otp wrong" });
+        return res.status(401).json({ status: 401, messages: "OTP invalid" });
       }
       console.log(userData);
       await nullOtpAuthModel(userData.id_user);
@@ -256,7 +256,7 @@ const AuthController = {
       if (!password || password == "") {
         return res.status(401).json({
           status: 401,
-          messages: "new password is required",
+          messages: "New password is required",
         });
       }
       email = req.payload.email;
@@ -265,11 +265,11 @@ const AuthController = {
       if (result.rowCount === 1) {
         return res
           .status(201)
-          .json({ code: 201, message: "Data berhasil Di input", email });
+          .json({ code: 201, message: "Data input successfully", email });
       }
       return res
         .status(404)
-        .json({ code: 404, message: "error update password" });
+        .json({ code: 404, message: "Error update password" });
     } catch (err) {
       console.log("Register Error");
       console.log(err);
@@ -286,12 +286,12 @@ const AuthController = {
     if (user.rowCount === 0) {
       return res
         .status(404)
-        .json({ status: 404, messages: "email not register" });
+        .json({ status: 404, messages: "Email not register" });
     }
     let userData = user.rows[0];
 
     if (otp !== userData.verifyotp) {
-      return res.status(404).json({ status: 404, messages: "otp invalid" });
+      return res.status(404).json({ status: 404, messages: "OTP invalid" });
     }
 
     let activated = await activatedUser(id_user);
@@ -299,7 +299,7 @@ const AuthController = {
     if (!activated) {
       return res
         .status(404)
-        .json({ status: 404, messages: "account failed verification" });
+        .json({ status: 404, messages: "Account failed verification" });
     }
 
     if (userData.role === "worker") {
