@@ -13,7 +13,7 @@
   <p align="center">
     <a href="https://github.com/habibir7/BE-hirejob/issues">Report Bug</a>
     ·
-    <a href="https://github.com/habibir7/BE-hirejob/issue">Request Feature</a>
+    <a href="https://github.com/habibir7/BE-hirejob/issues">Request Feature</a>
   </p>
 </div>
 
@@ -33,7 +33,7 @@
 
 ## About The Project
 
-Peworld Hire Job Rest API is server api that used in [`Peworld - Hirejob Web Aplication`](https://hirejob-project.vercel.app) . This server manage all function and endpoint in Peworld - Hirejob Web such as create and update profile for recruiter and worker, add skill, work expreience and portofolio for worker, and hire worker for recruiter. Besides that, this web also provides chat features so that recruiters and workers can interact with each other. This website is also facilitated by authentication, so only users who have registered and logged in can access it so that data security will be secure.
+Peworld Hire Job Rest API is server api that used in [`Peworld - Hirejob Web Aplication`](https://hirejob-project.vercel.app) . This server manage all function and endpoint in Peworld - Hirejob Web such as create and update profile for recruiter and worker, add skill, work experience and portofolio for worker, and hire worker for recruiter. Besides that, this web also provides chat features so that recruiter and worker can interact with each other. This website is also facilitated by authentication, so only users who have registered and logged in can access it so that data will be secure.
 
 ### Built With
 
@@ -68,7 +68,7 @@ This is an example of how to list things you need to use the software and how to
 1. Clone the repo
 
 ```sh
-https://github.com/NisrinaNataraharja/BE-Food-Recipes.git
+https://github.com/habibir7/BE-hirejob.git
 ```
 
 2. Install NPM packages
@@ -77,7 +77,7 @@ https://github.com/NisrinaNataraharja/BE-Food-Recipes.git
 npm install
 ```
 
-3. Add .env file at root folder project, and add following
+3. Add .env file at folder project, and add following
 
 ```sh
 
@@ -100,7 +100,7 @@ EMAIL_PASS= password of the email you want to use for nodemailer
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions that make the open source community the best place to learn and create. Every contribution you make is valuable.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b your/branch`)
@@ -154,9 +154,5 @@ Contributions are what make the open source community such an amazing place to b
     </tr>
   </table>
 </center>
-
-## License
-
-Distributed under the [MIT](/LICENSE) License.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
