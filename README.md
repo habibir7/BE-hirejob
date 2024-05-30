@@ -7,7 +7,7 @@
   <h3 align="center">Peworld Hire Job Rest API</h3>
   
   <a href="">
-    <img src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717078202/hirejob-peworld-logo/Peworld_Logo_d6wugd.png" alt="Logo" width="300px">
+    <img src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717078202/hirejob-peworld-logo/Peworld_Logo_d6wugd.png" alt="Logo" width="250px">
   </a>
 
   <p align="center">
@@ -127,7 +127,7 @@ Contributions are what make the open source community such an amazing place to b
         <a href="https://github.com/muhabby">
           <img width="100" src="https://avatars.githubusercontent.com/u/94688759?v=4" alt="Muhabby"><br/>
           <sub><b>Muhabby Mulya</b></sub> <br/>
-          <h3>Project Manager | Back End Web Developer</h3>
+          <h5>Project Manager | Back End Web Developer</h5>
         </a>
       </td>
       <td align="center">
