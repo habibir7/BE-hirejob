@@ -27,7 +27,7 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Related Project](#related-project)
-- [Contact](#contact)
+- [Our Team](#our-team)
 
 <!-- ABOUT THE PROJECT -->
 
@@ -95,7 +95,6 @@ EMAIL_PASS= password of the email you want to use for nodemailer
 
 ```
 
-
 <!-- CONTRIBUTING -->
 
 ## Contributing
@@ -116,7 +115,7 @@ Contributions that make the open source community the best place to learn and cr
 - [`Peworld Hirejob Web Rest API`](https://hirejob-khaki.vercel.app/)
 - [`Peworld Hirejob Web Frontend Repository`](https://github.com/rikiprimus/FE-hirejob)
 
-<!-- CONTACT -->
+<!-- OUR TEAM -->
 
 ## Our Team
 
