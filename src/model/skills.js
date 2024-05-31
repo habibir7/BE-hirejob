@@ -108,7 +108,7 @@ const searchSkillsCountModel = async (data) => {
 
 const inputSkillsModel = async (data) => {
   console.log("model - inputSkills");
-  let { id, skill_name, id_user } = data;
+  let { skill_id, skill_name, id_user } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -116,7 +116,7 @@ const inputSkillsModel = async (data) => {
       INSERT INTO 
           skills (id, skill_name, created_at, id_user) 
       VALUES
-          ('${id}', '${skill_name}', NOW(), '${id_user}')
+          ('${skill_id}', '${skill_name}', NOW(), '${id_user}')
       `,
       (err, res) => {
         if (!err) {
