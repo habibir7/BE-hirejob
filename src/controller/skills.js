@@ -52,7 +52,7 @@ const skillsController = {
       return res.status(200).json({
         code: 200,
         message: "Success showSkillsById",
-        data: result,
+        data: result[0],
       });
     } catch (err) {
       console.log("showSkillsById error");
