@@ -217,7 +217,7 @@ const inputWorkerModel = async (data) => {
 
 const updateWorkerModel = async (data) => {
   console.log("model - updateWorker");
-  let { id, city_id, last_work, bio, photo, job_desk } = data;
+  let { id, city_id, last_work, bio, photo, job_desk, province, city } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -230,6 +230,8 @@ const updateWorkerModel = async (data) => {
           bio='${bio}',
           photo='${photo}',
           job_desk='${job_desk}',
+          province='${province}',
+          city='${city}',
           updated_at=NOW() 
       WHERE
           user_id='${id}';

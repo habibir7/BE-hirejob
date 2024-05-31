@@ -76,6 +76,13 @@ CREATE TABLE messagedetail(
 
 SELECT * FROM messagedetail
 
+
+SELECT messagedetail.*, detail_profile_recruiter.company_name, detail_profile_recruiter.photo  FROM messagedetail JOIN detail_profile_recruiter ON messagedetail.id_recruiter = detail_profile_recruiter.id_user  WHERE id_worker='dfac313c-2c4c-4e55-81ab-af1bc9e8335d'
+
+SELECT messagedetail.*, user_auth.name, detail_profile_worker.photo FROM messagedetail JOIN detail_profile_worker ON messagedetail.id_worker = detail_profile_worker.user_id JOIN user_auth ON messagedetail.id_worker = user_auth.id_user WHERE messagedetail.id_recruiter='824d74de-2a9d-4c75-8d5a-f38d34ad0b4b'
+
+SELECT * FROM message WHERE id_messagedetail='10d61c8f-8885-4b57-a8f7-15abfc0e6801' ORDER BY created_at DESC
+
 CREATE TABLE message(
     id_message VARCHAR(50) NOT NULL,
     id_messagedetail VARCHAR(50) NOT NULL,

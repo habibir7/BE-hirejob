@@ -54,6 +54,8 @@ const recuiterController = {
         province_id,
         photo,
         linkedin,
+        city,
+        province,
       } = req.body;
       //   let recruiter = await getRecuiterByIdModel(id_user);
       let recruiter = await getRecuiterByIdModel(id_user);
@@ -77,6 +79,8 @@ const recuiterController = {
         province_id: province_id || Recruiter.province_id,
         photo: photo || Recruiter.photo,
         linkedin: linkedin || Recruiter.linkedin,
+        city: city || Recruiter.city,
+        province: province || Recruiter.province,
         // user_id : id_user
       };
 

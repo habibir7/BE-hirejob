@@ -219,7 +219,7 @@ const workerController = {
 
   updateWorker: async (req, res, next) => {
     try {
-      let { name, province_id, city_id, last_work, bio, photo, job_desk } =
+      let { name, province_id, city_id, last_work, bio, photo, job_desk, province, city } =
         req.body;
 
       // Check token
@@ -262,6 +262,8 @@ const workerController = {
         job_desk: job_desk || newWorker.job_desk,
         name: name || newWorker.name,
         id_user: newWorker.user_id,
+        province: province || newWorker.province,
+        city: city || newWorker.city,
         email: newWorker.email,
         phone: newWorker.phone,
       };

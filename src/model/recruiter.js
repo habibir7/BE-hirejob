@@ -132,6 +132,8 @@ const updateRecruiterModel = async (data) => {
     city_id,
     photo,
     linkedin,
+    city,
+    province,
   } = data;
   return new Promise((resolve, reject) =>
     Pool.query(
@@ -147,7 +149,9 @@ const updateRecruiterModel = async (data) => {
           city_id='${city_id}', 
           province_id='${province_id}', 
           photo='${photo}',
-          linkedin='${linkedin}'
+          linkedin='${linkedin}',
+          city='${city}',
+          province='${province}'
       WHERE
           id_user='${id_user}'`,
       (err, res) => {
