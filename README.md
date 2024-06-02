@@ -112,7 +112,6 @@ Contributions that make the open source community the best place to learn and cr
 ## Related Project
 
 - [`Peworld Hirejob Web Demo`](https://hirejob-project.vercel.app/)
-- [`Peworld Hirejob Web Rest API`](https://hirejob-khaki.vercel.app/)
 - [`Peworld Hirejob Web Frontend Repository`](https://github.com/rikiprimus/FE-hirejob)
 
 <!-- OUR TEAM -->
