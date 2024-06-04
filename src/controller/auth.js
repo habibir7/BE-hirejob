@@ -119,7 +119,8 @@ const AuthController = {
         name,
         phone,
         role,
-        city_id : 516,
+        city_id : 1,
+        province_id: 1,
         verifyotp: uuidv4(),
       };
 
