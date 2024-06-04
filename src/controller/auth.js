@@ -121,6 +121,7 @@ const AuthController = {
         role,
         city_id : 1,
         province_id: 1,
+        photo: 'https://res.cloudinary.com/dpasid4jl/image/upload/v1717426859/general-assets/3_fuibe7.jpg',
         verifyotp: uuidv4(),
       };
 

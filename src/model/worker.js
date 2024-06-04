@@ -193,15 +193,15 @@ const searchWorkerCountModel = async (data) => {
 
 const inputWorkerModel = async (data) => {
   console.log("model - inputWorker");
-  let { id, id_user, city_id, province_id } = data;
+  let { id, id_user, city_id, province_id, photo } = data;
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
       `
       INSERT INTO 
-          detail_profile_worker (id, user_id, city_id, province_id, created_at) 
+          detail_profile_worker (id, user_id, city_id, province_id, photo, created_at) 
       VALUES
-          ('${id}','${id_user}', '${city_id}', '${province_id}', NOW());
+          ('${id}','${id_user}', '${city_id}', '${province_id}', '${photo}', NOW());
       `,
       (err, res) => {
         if (!err) {
