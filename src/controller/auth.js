@@ -45,7 +45,7 @@ const AuthController = {
         .status(401)
         .json({
           status: 401,
-          messages: "Account not verified, please check your email",
+          messages: "Account not verified, please check your email for activation",
         });
     }
 

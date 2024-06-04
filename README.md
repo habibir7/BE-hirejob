@@ -7,7 +7,7 @@
   <h3 align="center">Peworld Hire Job Rest API</h3>
   
   <a href="">
-    <img src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717078202/hirejob-peworld-logo/Peworld_Logo_d6wugd.png" alt="Logo" width="250px">
+    <img src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717530475/hirejob-peworld-logo/Logo-bg-white_lccbcc.png" alt="Logo" width="200px">
   </a>
 
   <p align="center">
@@ -21,13 +21,28 @@
 
 ## Table of Contents
 
-- [About the Project](#about-the-project)
-  - [Built With](#built-with)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Related Project](#related-project)
-- [Our Team](#our-team)
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#screenshoots">Screenshots</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#related-project">Related Project</a></li>
+    <li><a href="#team">Team</a></li>
+  </ol>
+</details>
 
 <!-- ABOUT THE PROJECT -->
 
@@ -59,7 +74,7 @@ Peworld Hire Job Rest API is server api that used in [`Peworld - Hirejob Web Apl
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+This is an example of how to list things you need to use the software and how to install.
 
 - [nodejs](https://nodejs.org/en/download/)
 
@@ -95,6 +110,47 @@ EMAIL_PASS= password of the email you want to use for nodemailer
 
 ```
 
+<!-- SCREENSHOTS -->
+
+## Screenshoots
+
+<p align="center" display=flex>
+    <table>
+        <tr>
+            <td>Login Page</td>
+            <td>Register Page</td>
+        </tr>
+        <tr>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531092/hirejob-peworld-logo/Login_gsfuyb.png" alt="Login Page" width=100%></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531092/hirejob-peworld-logo/Regist_x5g2fe.png" alt="Register Page" width=100%/></td>
+        </tr>
+        <tr>
+            <td>Landing Page</td>
+            <td>Home Perekrut</td>
+        </tr>
+        <tr>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531093/hirejob-peworld-logo/Landing_xj7lpl.png" alt="Landing Page" width=100%></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531089/hirejob-peworld-logo/Home_Perekrut_ghte5p.png" alt="Home Recruiter" width=100%/></td>
+        </tr>
+        <tr>
+            <td>Edit Profile Pekerja </td>
+            <td>Profile Talent</td>
+        </tr>
+        <tr>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531088/hirejob-peworld-logo/Edit_Profile_evvo2x.png" alt="Edit Profile Pekerja" width=100%></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531090/hirejob-peworld-logo/Profile_Talent_choj9j.png" alt="Profile Talent" width=100%/></td>
+        </tr>
+        <tr>
+            <td>Hiring</td>
+            <td>Chat</td>
+        </tr>
+        <tr>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531089/hirejob-peworld-logo/Hiring_am4xsu.png" alt="Hiring" width=100%></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531088/hirejob-peworld-logo/Chat_wwn3m8.png" alt="Chat" width=100%/></td>
+        </tr>
+    </table>  
+</p>
+
 <!-- CONTRIBUTING -->
 
 ## Contributing
@@ -116,7 +172,7 @@ Contributions that make the open source community the best place to learn and cr
 
 <!-- OUR TEAM -->
 
-## Our Team
+## Team
 
 <center>
   <table>
