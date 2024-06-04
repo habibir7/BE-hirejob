@@ -145,7 +145,7 @@ const AuthController = {
             .json({ code: 201, message: "Register success, please login" });
         }
       } else if (role == "worker") {
-        data = { id: uuidv4(), ...data, skill_name: "Skill Belum Terisi", skill_id: uuidv4() };
+        data = { id: uuidv4(), ...data, skill_name: null, skill_id: uuidv4() };
         let resultauth = await createAuthModel(data);
         let result = await inputWorkerModel(data);
         let skill = await inputSkillsModel(data);
