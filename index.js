@@ -3,17 +3,9 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const Router = require("./src/router");
+
 const app = express();
 const port = 3000;
-
-// app.use(
-//   cors({
-// origin: "*",
-// credentials: true,
-// // access-control-allow-credentials: true,
-// optionSuccessStatus: 200,
-//   })
-// );
 
 const corsOption = {
   origin: "*",

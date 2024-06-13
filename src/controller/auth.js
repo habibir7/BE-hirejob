@@ -125,15 +125,16 @@ const AuthController = {
         verifyotp: uuidv4(),
       };
 
-      let url = `https://hirejob-khaki.vercel.app/auth/activated/${data.id_user}/${data.verifyotp}`;
+      // KARENA EMAIL LAGI BERMASALAH JADI VERIFIKASI EMAIL DI NONAKTIKAN DULU
+      // let url = `https://hirejob-khaki.vercel.app/auth/activated/${data.id_user}/${data.verifyotp}`;
 
-      let sendOTP = await sendEmailActivated(email, url, name);
+      // let sendOTP = await sendEmailActivated(email, url, name);
 
-      if (!sendOTP) {
-        return res
-          .status(401)
-          .json({ status: 401, messages: "Register failed when send email" });
-      }
+      // if (!sendOTP) {
+      //   return res
+      //     .status(401)
+      //     .json({ status: 401, messages: "Register failed when send email" });
+      // }
 
       if (role == "recruiter") {
         data = { id_recruiter: uuidv4(), ...data, company_name, position };

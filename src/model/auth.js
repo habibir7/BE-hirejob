@@ -45,7 +45,7 @@ const createAuthModel = async (data) => {
   console.log(data);
   return new Promise((resolve, reject) =>
     Pool.query(
-      `INSERT INTO user_auth (id_user, email, password, name, phone, position, role, verifyotp, created_at, updated_at) VALUES ('${id_user}','${email}', '${password}', '${name}', '${phone}', '${position}', '${role}', '${verifyotp}', NOW(), NULL)`,
+      `INSERT INTO user_auth (id_user, email, password, name, phone, position, role, verifyotp, created_at, updated_at, isverify) VALUES ('${id_user}','${email}', '${password}', '${name}', '${phone}', '${position}', '${role}', '${verifyotp}', NOW(), NULL, true)`,
       (err, res) => {
         if (!err) {
           return resolve(res);
