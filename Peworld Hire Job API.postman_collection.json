@@ -1,0 +1,2213 @@
+{
+	"info": {
+		"_postman_id": "004b4d2e-175f-46b8-bf49-085cfaf214c9",
+		"name": "Peworld Hire Job API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33167825"
+	},
+	"item": [
+		{
+			"name": "Auth API",
+			"item": [
+				{
+					"name": "Get Auth",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "User Test",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "08xxx",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "worker",
+									"description": "worker / recruiter",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "position",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTP Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "muhabbymuly@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/otp",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"otp"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "habibir7@gmail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTP Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "muhabbymulya@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "otp",
+									"value": "u0Ddb",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/inputotp",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"inputotp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiYTEyNjBlMmYtZmEwZi00ZDI1LTliNGQtOTZiZGU5N2FmNGM5IiwiZW1haWwiOiJtdWhhYmJ5bXVseWFAZ21haWwuY29tIiwibmFtZSI6Ik11aGFiYnkiLCJwaG9uZSI6IjA4NTMxMDAxODkxIiwicG9zaXRpb24iOiJ1bmRlZmluZWQiLCJyb2xlIjoid29ya2VyIiwib3RwIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNC0wNC0xOFQwNDoyODo0MC40MDlaIiwidXBkYXRlZF9hdCI6bnVsbCwidmVyaWZ5b3RwIjoiNjhmYzViMGItNzA1Zi00NDQ1LTk5Y2MtNDQxNTk3ZDFhOWUwIiwiaXN2ZXJpZnkiOnRydWUsImlhdCI6MTcxMzQxODI5MSwiZXhwIjoxNzEzNTA0NjkxfQ.vHv9drqiPmsBLP0mbmY1UzqA9vBsQDPL3ZXY1S7C3bY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "qwerty123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/passwordreset",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"passwordreset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recruiter API",
+			"item": [
+				{
+					"name": "GET Recruiter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recruiter",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recruiter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Recruiter By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recruiter/71d50ce8-d548-4ad0-aa36-fd64bce6fe3d",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recruiter",
+								"71d50ce8-d548-4ad0-aa36-fd64bce6fe3d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Recruiter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiNzFkNTBjZTgtZDU0OC00YWQwLWFhMzYtZmQ2NGJjZTZmZTNkIiwiZW1haWwiOiJtdWhhYmJ5bXVseWFAZ21haWwuY29tIiwibmFtZSI6Ik11aGFiYnkiLCJwaG9uZSI6IjA4eHh4IiwicG9zaXRpb24iOiJCb3MiLCJyb2xlIjoicmVjcnVpdGVyIiwib3RwIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNC0wNS0yOVQyMToyMDoyNC40NDNaIiwidXBkYXRlZF9hdCI6bnVsbCwidmVyaWZ5b3RwIjoiMTllOWI2MDctZjk4Yi00MzZkLWIwZGYtY2MzOWU1NTk0OGQ3IiwiaXN2ZXJpZnkiOnRydWUsImlhdCI6MTcxNjk4ODg5OSwiZXhwIjoxNzE3MDc1Mjk5fQ.oML3PU31ygkPjESpArZTriohZyFF_eHDhvXxYzy977E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "company_name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "company_field",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "company_info",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "company_email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "company_phone",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "province",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "linkedin",
+									"value": "linkedin",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/recruiter",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recruiter"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Worker",
+			"item": [
+				{
+					"name": "Show Worker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"        <th>Category ID</th>",
+									"        <th>User ID</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"            <td>{{category_id}}</td>",
+									"            <td>{{user_id}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/worker",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"worker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Worker All Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"        <th>Category ID</th>",
+									"        <th>User ID</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"            <td>{{category_id}}</td>",
+									"            <td>{{user_id}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/worker/all/84048a59-f8d8-4291-adb3-9b3bea95072a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"worker",
+								"all",
+								"84048a59-f8d8-4291-adb3-9b3bea95072a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Worker By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/worker/84048a59-f8d8-4291-adb3-9b3bea95072a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"worker",
+								"84048a59-f8d8-4291-adb3-9b3bea95072a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Worker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/worker/detail?search=&searchBy=name&sortBy=&sort=ASC&limit=4&page=7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"worker",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "searchBy",
+									"value": "name",
+									"description": "name | skill_name"
+								},
+								{
+									"key": "sortBy",
+									"value": "",
+									"description": "created_at | name | skill_name"
+								},
+								{
+									"key": "sort",
+									"value": "ASC",
+									"description": "ASC | DESC"
+								},
+								{
+									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Worker",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiMmEzNjNlMWYtNTJjZi00MjQwLTljZTctNDcyMGQ4OTAxZTExIiwiZW1haWwiOiJla3kxNTc5QGdtYWlsLmNvbSIsIm5hbWUiOiJKaW1teSBQYWdlIiwicGhvbmUiOiI4NTcxODQ4NDA2NSIsInBvc2l0aW9uIjoidW5kZWZpbmVkIiwicm9sZSI6IndvcmtlciIsIm90cCI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjQtMDUtMjdUMTU6Mzg6MDMuNjI4WiIsInVwZGF0ZWRfYXQiOm51bGwsInZlcmlmeW90cCI6IjE3ZDZiNmFmLTlhNmMtNDZiOC04ZDFlLWUyZDY4M2E4OWMyMiIsImlzdmVyaWZ5Ijp0cnVlLCJpYXQiOjE3MTY5NjQxNjUsImV4cCI6MTcxNzA1MDU2NX0.5luH41yniAHwf1dpwkzXO3s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "job_desk",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "province",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "last_work",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/worker",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"worker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Worker",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/worker/04eeb8b6-0acf-4ac6-839f-66f382f93c3e",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"worker",
+								"04eeb8b6-0acf-4ac6-839f-66f382f93c3e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Skills",
+			"item": [
+				{
+					"name": "Show Skills",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"        <th>Category ID</th>",
+									"        <th>User ID</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"            <td>{{category_id}}</td>",
+									"            <td>{{user_id}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/skills",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Skills By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/skills/2a363e1f-52cf-4240-9ce7-4720d8901e11",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"2a363e1f-52cf-4240-9ce7-4720d8901e11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Skills",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/skills/detail?search=&searchBy=&sortBy=&sort=&limit=&page=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "searchBy",
+									"value": "",
+									"description": "skill_name"
+								},
+								{
+									"key": "sortBy",
+									"value": "",
+									"description": "created_at | updated_at"
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"description": "ASC | DESC"
+								},
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Skills",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "skill_name",
+									"value": "PHP, Javascript, React, Tailwind",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/skills/39f0ff93-0d73-4d1d-aed3-b42900a5c3f6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"39f0ff93-0d73-4d1d-aed3-b42900a5c3f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Skills",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "skill_name",
+									"value": "PHP, Javascript, React, Tailwind",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/skills/39f0ff93-0d73-4d1d-aed3-b42900a5c3f6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"39f0ff93-0d73-4d1d-aed3-b42900a5c3f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Skills",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/skills/c8e8f0b3-506a-4f66-99a0-c8b84f601002",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"c8e8f0b3-506a-4f66-99a0-c8b84f601002"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Work Experience",
+			"item": [
+				{
+					"name": "Show Work Experience",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"        <th>Category ID</th>",
+									"        <th>User ID</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"            <td>{{category_id}}</td>",
+									"            <td>{{user_id}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/workExperience",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workExperience"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Work Experience By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/workExperience/3eba4f69-1801-4cba-94b6-09530413892a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workExperience",
+								"3eba4f69-1801-4cba-94b6-09530413892a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Work Experience",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/workExperience/detail?search=&searchBy=&sortBy=&sort=&limit=&page=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workExperience",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "searchBy",
+									"value": "",
+									"description": "skill_name"
+								},
+								{
+									"key": "sortBy",
+									"value": "",
+									"description": "created_at | updated_at"
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"description": "ASC | DESC"
+								},
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Work Experience",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "position",
+									"value": "Web Developer",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "PT Maju Mundur Sejahtera",
+									"type": "text"
+								},
+								{
+									"key": "working_start_at",
+									"value": "01-01-2023",
+									"type": "text"
+								},
+								{
+									"key": "working_end_at",
+									"value": "12-12-2023",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Membuat web mulai dari back-end hingga front-end",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/muhab/Downloads/1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/workExperience/f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workExperience",
+								"f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Work Experience",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "position",
+									"value": "Managemen Trainee",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "working_start_at",
+									"value": "01-02-2001",
+									"description": "Format: DD-MM-YYYY  |  12-12-2012",
+									"type": "text"
+								},
+								{
+									"key": "working_end_at",
+									"value": "01-02-2001",
+									"description": "Format: DD-MM-YYYY  |  12-12-2012",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/workExperience/16bd4015-4210-4e74-a640-6e853fae843c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workExperience",
+								"16bd4015-4210-4e74-a640-6e853fae843c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Work Experience",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/workExperience/13fab571-d20f-4d63-9e26-9aa4d45b8514",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workExperience",
+								"13fab571-d20f-4d63-9e26-9aa4d45b8514"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Portofolio",
+			"item": [
+				{
+					"name": "Show Portofolio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"        <th>Category ID</th>",
+									"        <th>User ID</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"            <td>{{category_id}}</td>",
+									"            <td>{{user_id}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/portofolio",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"portofolio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Portofolio By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/portofolio/8ab6c714-b29e-4eba-a687-72c8183ff0cf",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"portofolio",
+								"8ab6c714-b29e-4eba-a687-72c8183ff0cf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Portofolio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/portofolio/detail?search=mobile&searchBy=&sortBy=&sort=&limit=1&page=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"portofolio",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "mobile"
+								},
+								{
+									"key": "searchBy",
+									"value": "",
+									"description": "type"
+								},
+								{
+									"key": "sortBy",
+									"value": "",
+									"description": "created_at | updated_at"
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"description": "ASC | DESC"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Portofolio",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "porto_name",
+									"value": "Hire Job - Professional Developer Seeker",
+									"type": "text"
+								},
+								{
+									"key": "link_repo",
+									"value": "https://github.com/",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Web",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/muhab/Downloads/2.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/portofolio/f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"portofolio",
+								"f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Portofolio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiYTEyNjBlMmYtZmEwZi00ZDI1LTliNGQtOTZiZGU5N2FmNGM5IiwiZW1haWwiOiJtdWhhYmJ5bXVseWFAZ21haWwuY29tIiwibmFtZSI6Ik11aGFiYnkiLCJwaG9uZSI6IjA4NTMxMDAxODkxIiwicG9zaXRpb24iOiJ1bmRlZmluZWQiLCJyb2xlIjoid29ya2VyIiwib3RwIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNC0wNC0xOFQwNDoyODo0MC40MDlaIiwidXBkYXRlZF9hdCI6bnVsbCwidmVyaWZ5b3RwIjoiNjhmYzViMGItNzA1Zi00NDQ1LTk5Y2MtNDQxNTk3ZDFhOWUwIiwiaXN2ZXJpZnkiOnRydWUsImlhdCI6MTcxMzcxNjc4OCwiZXhwIjoxNzEzODAzMTg4fQ.xNq0sC8KXN8sHOGNoEiEIb8gx0E5SAwRg4Ce_ILTaGU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "porto_name",
+									"value": "porto name baru",
+									"type": "text"
+								},
+								{
+									"key": "link_repo",
+									"value": "Sate",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/portofolio/2dc21d88-3c5f-479c-9ea4-1600570debd2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"portofolio",
+								"2dc21d88-3c5f-479c-9ea4-1600570debd2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Portofolio",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/portofolio/aeea6482-fa74-47ed-b7db-8a2ef49930d5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"portofolio",
+								"aeea6482-fa74-47ed-b7db-8a2ef49930d5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "Show CIty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"        <th>Category ID</th>",
+									"        <th>User ID</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"            <td>{{category_id}}</td>",
+									"            <td>{{user_id}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/city",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show CIty By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/city/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"city",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search CIty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/city/detail?search=&searchBy=&sortBy=&sort=&limit=10&page=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"city",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "searchBy",
+									"value": "",
+									"description": "city_name"
+								},
+								{
+									"key": "sortBy",
+									"value": "",
+									"description": "city_name"
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"description": "ASC | DESC"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create CIty",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "city_name",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "province_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/city",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete CIty",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/city/25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"city",
+								"25"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Show Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"        <th>Category ID</th>",
+									"        <th>User ID</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"            <td>{{category_id}}</td>",
+									"            <td>{{user_id}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/contact",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Contact By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/contact/152a83c4-c1ce-409d-be58-3cac9f22be12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contact",
+								"152a83c4-c1ce-409d-be58-3cac9f22be12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Title</th>",
+									"        <th>Ingredient</th>",
+									"        <th>Photo</th>",
+									"        <th>Created At</th>",
+									"        <th>Updated At</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.data}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{title}}</td>",
+									"            <td>{{ingredient}}</td>",
+									"            <td>{{photo}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/contact/detail?search=muh&searchBy=&sortBy=&sort=&limit=&page=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contact",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "muh"
+								},
+								{
+									"key": "searchBy",
+									"value": "",
+									"description": "email"
+								},
+								{
+									"key": "sortBy",
+									"value": "",
+									"description": "created_at | updated_at"
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"description": "ASC | DESC"
+								},
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Contact",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "email@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "instagram",
+									"value": "@instagram",
+									"type": "text"
+								},
+								{
+									"key": "github",
+									"value": "@github",
+									"type": "text"
+								},
+								{
+									"key": "gitlab",
+									"value": "@gitlab",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/contact/f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contact",
+								"f268cedc-f6b6-4b02-ba1d-7cf7b0bacf31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Contact",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "muhabby@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "instagram",
+									"value": "muhabby_",
+									"type": "text"
+								},
+								{
+									"key": "github",
+									"value": "muhabby",
+									"type": "text"
+								},
+								{
+									"key": "gitlab",
+									"value": "muhabby",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/contact/f3452635-9060-4cb1-ba80-f22ee1f9323a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contact",
+								"f3452635-9060-4cb1-ba80-f22ee1f9323a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Contact",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/contact/152a83c4-c1ce-409d-be58-3cac9f22be12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contact",
+								"152a83c4-c1ce-409d-be58-3cac9f22be12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
