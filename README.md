@@ -1,12 +1,11 @@
-<br />
-<p align="center">
+<div id="top"></div>
 
 <br />
 <div align="center">
   <h3 align="center">Peworld Hire Job Rest API</h3>
   
   <a href="">
-    <img src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717530475/hirejob-peworld-logo/Logo-bg-white_lccbcc.png" alt="Logo" width="200px">
+    <img src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717530475/peworld-hirejob-assets/logo/Logo-bg-white_lccbcc.png" alt="Logo" width="200px">
   </a>
 
   <p align="center">
@@ -42,7 +41,7 @@
 
 ## About The Project
 
-Peworld Hire Job Rest API is server api that used in [`Peworld - Hirejob Website`](https://hirejob-project.vercel.app) . This server manage all function and endpoint in Peworld - Hirejob Web such as create and update profile for recruiter and worker, add skill, work experience and portofolio for worker, and hire worker for recruiter. Besides that, this web also provides chat features so that recruiter and worker can interact with each other. This website is also facilitated by authentication, so only users who have registered and logged in can access it so that data will be secure.
+Peworld Hire Job Rest API is server api that used in [Peworld - Hirejob Website](https://hirejob-project.vercel.app) . This server manage all function and endpoint in Peworld - Hirejob Web such as create and update profile for recruiter and worker, add skill, work experience and portofolio for worker, and hire worker for recruiter. Besides that, this web also provides chat features so that recruiter and worker can interact with each other. This website is also facilitated by authentication, so only users who have registered and logged in can access it so that data will be secure.
 
 ### Built With
 
@@ -52,13 +51,13 @@ Peworld Hire Job Rest API is server api that used in [`Peworld - Hirejob Website
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install.
+Before going to the installation stage there are some software that must be installed first.
 
 - [Node.Js](https://nodejs.org/en/download/)
 
 ### Installation
 
-- Clone the repo
+- Clone Repository
 ```sh
 git clone https://github.com/habibir7/BE-hirejob.git
 ```
