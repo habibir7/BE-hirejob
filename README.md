@@ -46,6 +46,9 @@ Peworld Hire Job Rest API is server api that used in [Peworld - Hirejob Website]
 ### Built With
 
 - [Express.Js](https://expressjs.com/)
+- [Nodemon](https://nodemon.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Cloudinary](https://cloudinary.com/)
 
 ## Getting Started
 
