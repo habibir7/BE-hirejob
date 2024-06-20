@@ -100,32 +100,32 @@ Here is a project that use Peworld Hire Job Rest API.
             <td>Register Page</td>
         </tr>
         <tr align="center">
-            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531092/hirejob-peworld-logo/Login_gsfuyb.png" alt="Login Page" width=100%></td>
-            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531092/hirejob-peworld-logo/Regist_x5g2fe.png" alt="Register Page" width=100%/></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531092/peworld-hirejob-assets/ss-website/Login_gsfuyb.png" alt="Login Page" width=100%></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531092/peworld-hirejob-assets/ss-website/Regist_x5g2fe.png" alt="Register Page" width=100%/></td>
         </tr>
         <tr align="center">
             <td>Landing Page</td>
             <td>Home Perekrut</td>
         </tr>
         <tr align="center">
-            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531093/hirejob-peworld-logo/Landing_xj7lpl.png" alt="Landing Page" width=100%></td>
-            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531089/hirejob-peworld-logo/Home_Perekrut_ghte5p.png" alt="Home Recruiter" width=100%/></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531093/peworld-hirejob-assets/ss-website/Landing_xj7lpl.png" alt="Landing Page" width=100%></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531089/peworld-hirejob-assets/ss-website/Home_Perekrut_ghte5p.png" alt="Home Recruiter" width=100%/></td>
         </tr>
         <tr align="center">
             <td>Edit Profile Pekerja </td>
             <td>Profile Talent</td>
         </tr>
         <tr align="center">
-            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531088/hirejob-peworld-logo/Edit_Profile_evvo2x.png" alt="Edit Profile Pekerja" width=100%></td>
-            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531090/hirejob-peworld-logo/Profile_Talent_choj9j.png" alt="Profile Talent" width=100%/></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531088/peworld-hirejob-assets/ss-website/Edit_Profile_evvo2x.png" alt="Edit Profile Pekerja" width=100%></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531090/peworld-hirejob-assets/ss-website/Profile_Talent_choj9j.png" alt="Profile Talent" width=100%/></td>
         </tr>
         <tr align="center">
             <td>Hiring</td>
             <td>Chat</td>
         </tr>
         <tr align="center">
-            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531089/hirejob-peworld-logo/Hiring_am4xsu.png" alt="Hiring" width=100%></td>
-            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531088/hirejob-peworld-logo/Chat_wwn3m8.png" alt="Chat" width=100%/></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531089/peworld-hirejob-assets/ss-website/Hiring_am4xsu.png" alt="Hiring" width=100%></td>
+            <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717531088/peworld-hirejob-assets/ss-website/Chat_wwn3m8.png" alt="Chat" width=100%/></td>
         </tr>
     </table>  
 </p>
